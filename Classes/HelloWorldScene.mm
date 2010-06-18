@@ -9,6 +9,7 @@
 
 // Import the interfaces
 #import "HelloWorldScene.h"
+#import "IILine2D.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -124,7 +125,38 @@ enum {
 		label.position = ccp( screenSize.width/2, screenSize.height-50);
 		
 		[self schedule: @selector(tick:)];
+        
+        IILine2D *line = [IILine2D lineFromOrigin:CGPointMake(30, 50) toEnd:CGPointMake(50, 100) withTextureFile:@"path_texture.png"];
+        [self addChild:line];
+        
+        IILine2D *line2 = [IILine2D lineFromOrigin:CGPointMake(50, 100) toEnd:CGPointMake(50, 150) withTextureFile:@"path_texture.png"];
+        [self addChild:line2];
+        
+        IILine2D *line3 = [IILine2D lineFromOrigin:CGPointMake(50, 150) toEnd:CGPointMake(100, 180) withTextureFile:@"path_texture.png"];
+        [self addChild:line3];
+        
+        IILine2D *line4 = [IILine2D lineFromOrigin:CGPointMake(100, 180) toEnd:CGPointMake(150, 180) withTextureFile:@"path_texture.png"];
+        [self addChild:line4];
+        
+        IILine2D *line5 = [IILine2D lineFromOrigin:CGPointMake(150, 180) toEnd:CGPointMake(180, 150) withTextureFile:@"path_texture.png"];
+        [self addChild:line5];
+        
+        IILine2D *line6 = [IILine2D lineFromOrigin:CGPointMake(180, 150) toEnd:CGPointMake(250, 140) withTextureFile:@"path_texture.png"];
+        [self addChild:line6];
+        
+        IILine2D *line7 = [IILine2D lineFromOrigin:CGPointMake(250, 140) toEnd:CGPointMake(210, 100) withTextureFile:@"path_texture.png"];
+        [self addChild:line7];
+        
+        IILine2D *line8 = [IILine2D lineFromOrigin:CGPointMake(210, 100) toEnd:CGPointMake(150, 80) withTextureFile:@"path_texture.png"];
+        [self addChild:line8];
+        
+        IILine2D *line9 = [IILine2D lineFromOrigin:CGPointMake(150, 80) toEnd:CGPointMake(130, 100) withTextureFile:@"path_texture.png"];
+        [self addChild:line9];
+        
+        IILine2D *line10 = [IILine2D lineFromOrigin:CGPointMake(130, 100) toEnd:CGPointMake(120, 150) withTextureFile:@"path_texture.png"];
+        [self addChild:line10];
 	}
+    
 	return self;
 }
 
