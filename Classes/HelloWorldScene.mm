@@ -208,6 +208,11 @@ enum {
         [self addChild:line8];
         [self addChild:line9];
         [self addChild:line10];
+        
+        IILine2D *upLine = [IILine2D lineFromOrigin:CGPointMake(200, 210) toEnd:CGPointMake(200, 230) withTextureFile:@"path_texture_debug.png"];
+        upLine.xTextureTranslate = 2;
+        upLine.yTextureTranslate = 2;
+        [self addChild:upLine];
 	}
     
 	return self;
@@ -233,19 +238,26 @@ enum {
     static int offset = 0;
     count++;
     
+    
+    // Test sprite animation by changing texture position on 
     if (count % 2 == 0) {
         offset++;
-            // TODO: Make this part of the sprite implementation.
-        [line updateTextureCoords:CGRectMake(0, -offset % 16, 8, line.length)];
-        [line2 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line2.length)];
-        [line3 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line3.length)];
-        [line4 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line4.length)];
-        [line5 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line5.length)];
-        [line6 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line6.length)];
-        [line7 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line7.length)];
-        [line8 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line8.length)];
-        [line9 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line9.length)];
-        [line10 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line10.length)];
+        // TODO: Make this part of the sprite implementation.
+        line.xTextureTranslate = offset % 8;
+        line2.xTextureTranslate = offset % 8;
+        
+        line3.xTextureTranslate = (offset / 2) % 8;
+        line3.yTextureTranslate = offset % 16;
+        
+        line4.xTextureTranslate = (offset / 2) % 8;
+        line4.yTextureTranslate = offset % 16;
+        
+        line5.yTextureTranslate = offset % 16;
+        line6.yTextureTranslate = offset % 16;
+        line7.yTextureTranslate = offset % 16;
+        line8.yTextureTranslate = offset % 16;
+        line9.yTextureTranslate = offset % 16;
+        line10.yTextureTranslate = offset % 16;
     }
 }
 

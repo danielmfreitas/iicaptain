@@ -284,6 +284,7 @@
 		50F4144910692EE7002A0D5E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F4144410692EE7002A0D5E /* Default.png */; };
 		50F4144A10692EE7002A0D5E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F4144510692EE7002A0D5E /* fps_images.png */; };
 		50F4144B10692EE7002A0D5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F4144610692EE7002A0D5E /* Icon.png */; };
+		D3189D1C11CC86F900C694B2 /* path_texture_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = D3189D1B11CC86F900C694B2 /* path_texture_debug.png */; };
 		D3308DE611CB321000AC838A /* IILine2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308DE511CB321000AC838A /* IILine2D.m */; };
 		D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308E8511CB3A9600AC838A /* IIMath2D.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
@@ -585,6 +586,7 @@
 		50F4144510692EE7002A0D5E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		50F4144610692EE7002A0D5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		50F4144710692EE7002A0D5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3189D1B11CC86F900C694B2 /* path_texture_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture_debug.png; sourceTree = "<group>"; };
 		D3308DE411CB321000AC838A /* IILine2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IILine2D.h; sourceTree = "<group>"; };
 		D3308DE511CB321000AC838A /* IILine2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IILine2D.m; sourceTree = "<group>"; };
 		D3308E8411CB3A9600AC838A /* IIMath2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIMath2D.h; sourceTree = "<group>"; };
@@ -1116,6 +1118,7 @@
 		D35462DF11CB3D8A0053E707 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D3189D1B11CC86F900C694B2 /* path_texture_debug.png */,
 				D35462E311CB3E3F0053E707 /* path_texture.png */,
 			);
 			path = Images;
@@ -1337,6 +1340,7 @@
 				50F4144A10692EE7002A0D5E /* fps_images.png in Resources */,
 				50F4144B10692EE7002A0D5E /* Icon.png in Resources */,
 				D35462E411CB3E3F0053E707 /* path_texture.png in Resources */,
+				D3189D1C11CC86F900C694B2 /* path_texture_debug.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
