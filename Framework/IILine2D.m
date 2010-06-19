@@ -28,7 +28,7 @@
     CGFloat rotation = 0;
     
     if (startPoint.x == endPoint.x) { // Line is vertical
-        
+        rotation = 0;
     } else if (startPoint.y == endPoint.y) { // Line is horizontal
         rotation = 90;
     } else {
@@ -40,13 +40,15 @@
             rotation = -90 - [IIMath2D radiansToDegrees:atanf(slope)];
         }
     }
-    
-    [self setPosition:midPoint];
+
     ccTexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
-    [self.texture setTexParameters:&params];
-    [self setRotation: rotation];
     CGRect originalTextureRect = self.textureRect;
-    self.textureRect = CGRectMake(0.0, 0.0, originalTextureRect.size.width, self.length);
+    
+    [self.texture setTexParameters:&params];
+    [self setTextureRect: CGRectMake(0.0, 0.0, originalTextureRect.size.width, self.length)];
+    [self setPosition:midPoint];
+    [self setRotation: rotation];
+    [self setFlipY: YES];
 }
 
 - (id) initFromOrigin: (CGPoint) startPoint toEnd: (CGPoint) endPoint withTextureFile: (NSString*) fileName {
