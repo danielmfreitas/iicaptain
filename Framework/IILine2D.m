@@ -28,10 +28,23 @@
     CGFloat rotation = 0;
     
     if (startPoint.x == endPoint.x) { // Line is vertical
-        rotation = 0;
+        
+        if (yLength > 0) {
+            rotation = 0;
+        } else {
+            rotation = -180;
+        }
+        
     } else if (startPoint.y == endPoint.y) { // Line is horizontal
-        rotation = 90;
+        
+        if (xLength > 0) {
+            rotation = 90;
+        } else {
+            rotation = -90;
+        }
+        
     } else {
+        
         CGFloat slope = (endPoint.y - startPoint.y) / (endPoint.x - startPoint.x);
         
         if (xLength >= 0) {

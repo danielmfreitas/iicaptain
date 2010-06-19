@@ -126,16 +126,77 @@ enum {
 		
 		[self schedule: @selector(tick:)];
         
-        line = [IILine2D lineFromOrigin:CGPointMake(50, 50) toEnd:CGPointMake(50, 114) withTextureFile:@"path_texture.png"];
-        line2 = [IILine2D lineFromOrigin:CGPointMake(50, 114) toEnd:CGPointMake(50, 146) withTextureFile:@"path_texture.png"];
-        line3 = [IILine2D lineFromOrigin:CGPointMake(50, 146) toEnd:CGPointMake(100, 180) withTextureFile:@"path_texture.png"];
-        line4 = [IILine2D lineFromOrigin:CGPointMake(100, 180) toEnd:CGPointMake(150, 180) withTextureFile:@"path_texture.png"];
-        line5 = [IILine2D lineFromOrigin:CGPointMake(150, 180) toEnd:CGPointMake(180, 150) withTextureFile:@"path_texture.png"];
-        line6 = [IILine2D lineFromOrigin:CGPointMake(180, 150) toEnd:CGPointMake(250, 140) withTextureFile:@"path_texture.png"];
-        line7 = [IILine2D lineFromOrigin:CGPointMake(250, 140) toEnd:CGPointMake(210, 100) withTextureFile:@"path_texture.png"];
-        line8 = [IILine2D lineFromOrigin:CGPointMake(210, 100) toEnd:CGPointMake(150, 80) withTextureFile:@"path_texture.png"];
-        line9 = [IILine2D lineFromOrigin:CGPointMake(150, 80) toEnd:CGPointMake(130, 100) withTextureFile:@"path_texture.png"];
-        line10 = [IILine2D lineFromOrigin:CGPointMake(130, 100) toEnd:CGPointMake(120, 150) withTextureFile:@"path_texture.png"];
+        float x1, y1, x2, y2;
+        
+        x1 = 50;
+        y1 = 150;
+        x2 = cos(M_PI / 2) * 16;
+        y2 = sin(M_PI / 2) * 16;
+        
+        line = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line.end.x;
+        y1 = line.end.y;
+        x2 = cos(M_PI / 2) * 16;
+        y2 = sin(M_PI / 2) * 16;
+        
+        line2 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line2.end.x;
+        y1 = line2.end.y;
+        x2 = cos(M_PI / 6) * 64;
+        y2 = sin(M_PI / 6) * 64;
+        
+        line3 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line3.end.x;
+        y1 = line3.end.y;
+        x2 = cos(0) * 64;
+        y2 = sin(0) * 64;
+        
+        line4 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line4.end.x;
+        y1 = line4.end.y;
+        x2 = cos(5 * M_PI / 3) * 64;
+        y2 = sin(5 * M_PI / 3) * 64;
+        
+        line5 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line5.end.x;
+        y1 = line5.end.y;
+        x2 = cos(11 * M_PI / 6) * 96;
+        y2 = sin(11 * M_PI / 6) * 96;
+        
+        line6 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line6.end.x;
+        y1 = line6.end.y;
+        x2 = cos(5 * M_PI / 4) * 48;
+        y2 = sin(5 * M_PI / 4) * 48;
+        
+        line7 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line7.end.x;
+        y1 = line7.end.y;
+        x2 = cos(7 * M_PI / 6) * 128;
+        y2 = sin(7 * M_PI / 6) * 128;
+        
+        line8 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line8.end.x;
+        y1 = line8.end.y;
+        x2 = cos(2 * M_PI / 3) * 64;
+        y2 = sin(2 * M_PI / 3) * 64;
+        
+        line9 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
+        
+        x1 = line9.end.x;
+        y1 = line9.end.y;
+        x2 = cos(3 * M_PI / 2) * 32;
+        y2 = sin(3 * M_PI / 2) * 32;
+        
+        line10 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
         [self addChild:line];
         [self addChild:line2];
@@ -168,21 +229,24 @@ enum {
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
+    static int count = 0;
     static int offset = 0;
-    offset++;
+    count++;
     
-    // TODO: Make this part of the sprite implementation.
-    [line updateTextureCoords:CGRectMake(0, -offset % 16, 8, line.length)];
-    [line2 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line2.length)];
-    [line3 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line3.length)];
-    [line4 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line4.length)];
-    [line5 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line5.length)];
-    [line6 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line6.length)];
-    [line7 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line7.length)];
-    [line8 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line8.length)];
-    [line9 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line9.length)];
-    [line10 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line10.length)];
-
+    if (count % 2 == 0) {
+        offset++;
+            // TODO: Make this part of the sprite implementation.
+        [line updateTextureCoords:CGRectMake(0, -offset % 16, 8, line.length)];
+        [line2 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line2.length)];
+        [line3 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line3.length)];
+        [line4 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line4.length)];
+        [line5 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line5.length)];
+        [line6 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line6.length)];
+        [line7 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line7.length)];
+        [line8 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line8.length)];
+        [line9 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line9.length)];
+        [line10 updateTextureCoords:CGRectMake(0, -offset % 16, 8, line10.length)];
+    }
 }
 
 -(void) addNewSpriteWithCoords:(CGPoint)p
