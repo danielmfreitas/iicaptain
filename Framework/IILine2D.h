@@ -17,8 +17,8 @@
  * As a subclass of CCSprite, this class inherits all benefits from sprites.
  */
 @interface IILine2D : CCSprite {
-    CGPoint origin;
-    CGPoint end;
+    CGPoint startPoint;
+    CGPoint endPoint;
     CGPoint midPoint;
     CGFloat length;
     CGFloat yOffset;
@@ -30,13 +30,13 @@
  * The origin point of the line (i.e. (x1, y1)). Changing the origin point will update the line's length and midPoint
  * accordingly.
  */
-@property (nonatomic) CGPoint origin;
+@property (nonatomic) CGPoint startPoint;
 
 /**
  * The end point of the line (i.e. (x2, y2)). Changing the end point will update the line's length and midPoint
  * accordingly.
  */
-@property (nonatomic) CGPoint end;
+@property (nonatomic) CGPoint endPoint;
 
 /**
  * The position of the point which split the lines in two equal parts. i.e. the coordinates of the middle of the line.

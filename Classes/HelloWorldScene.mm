@@ -135,64 +135,64 @@ enum {
         
         line = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line.end.x;
-        y1 = line.end.y;
+        x1 = line.endPoint.x;
+        y1 = line.endPoint.y;
         x2 = cos(M_PI / 2) * 16;
         y2 = sin(M_PI / 2) * 16;
         
         line2 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line2.end.x;
-        y1 = line2.end.y;
+        x1 = line2.endPoint.x;
+        y1 = line2.endPoint.y;
         x2 = cos(M_PI / 6) * 64;
         y2 = sin(M_PI / 6) * 64;
         
         line3 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line3.end.x;
-        y1 = line3.end.y;
+        x1 = line3.endPoint.x;
+        y1 = line3.endPoint.y;
         x2 = cos(0) * 64;
         y2 = sin(0) * 64;
         
         line4 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line4.end.x;
-        y1 = line4.end.y;
+        x1 = line4.endPoint.x;
+        y1 = line4.endPoint.y;
         x2 = cos(5 * M_PI / 3) * 64;
         y2 = sin(5 * M_PI / 3) * 64;
         
         line5 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line5.end.x;
-        y1 = line5.end.y;
+        x1 = line5.endPoint.x;
+        y1 = line5.endPoint.y;
         x2 = cos(11 * M_PI / 6) * 96;
         y2 = sin(11 * M_PI / 6) * 96;
         
         line6 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line6.end.x;
-        y1 = line6.end.y;
+        x1 = line6.endPoint.x;
+        y1 = line6.endPoint.y;
         x2 = cos(5 * M_PI / 4) * 48;
         y2 = sin(5 * M_PI / 4) * 48;
         
         line7 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line7.end.x;
-        y1 = line7.end.y;
+        x1 = line7.endPoint.x;
+        y1 = line7.endPoint.y;
         x2 = cos(7 * M_PI / 6) * 128;
         y2 = sin(7 * M_PI / 6) * 128;
         
         line8 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line8.end.x;
-        y1 = line8.end.y;
+        x1 = line8.endPoint.x;
+        y1 = line8.endPoint.y;
         x2 = cos(2 * M_PI / 3) * 64;
         y2 = sin(2 * M_PI / 3) * 64;
         
         line9 = [IILine2D lineFromOrigin:CGPointMake(x1, y1) toEnd:CGPointMake(x1 + x2, y1 + y2) withTextureFile:@"path_texture.png"];
         
-        x1 = line9.end.x;
-        y1 = line9.end.y;
+        x1 = line9.endPoint.x;
+        y1 = line9.endPoint.y;
         x2 = cos(3 * M_PI / 2) * 32;
         y2 = sin(3 * M_PI / 2) * 32;
         
