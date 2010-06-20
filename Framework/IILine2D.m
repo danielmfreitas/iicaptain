@@ -19,39 +19,6 @@
 @synthesize yTextureTranslate;
 
 /*
- * This method has been copied verbatin from the CCSprite class. This method is not declared in CCSprite interface so it
- * was causing compilation warnings from XCode. This method is required to update the position of the texture within the
- * sprite.
- * Note: This method should be checked when switching to a new version of cocos2d as it might change implementation.
- */
--(void)updateTextureCoords:(CGRect)rect
-{
-	
-	float atlasWidth = texture_.pixelsWide;
-	float atlasHeight = texture_.pixelsHigh;
-    
-	float left = rect.origin.x / atlasWidth;
-	float right = (rect.origin.x + rect.size.width) / atlasWidth;
-	float top = rect.origin.y / atlasHeight;
-	float bottom = (rect.origin.y + rect.size.height) / atlasHeight;
-    
-	
-	if( flipX_)
-		CC_SWAP(left,right);
-	if( flipY_)
-		CC_SWAP(top,bottom);
-	
-	quad_.bl.texCoords.u = left;
-	quad_.bl.texCoords.v = bottom;
-	quad_.br.texCoords.u = right;
-	quad_.br.texCoords.v = bottom;
-	quad_.tl.texCoords.u = left;
-	quad_.tl.texCoords.v = top;
-	quad_.tr.texCoords.u = right;
-	quad_.tr.texCoords.v = top;
-}
-
-/*
  * Calculates the required rotation so the sprite sits on top of the line.
  */
 - (CGFloat) calculateRotationWithXLength: (CGFloat) xLength yLength: (CGFloat) yLength startPoint: (CGPoint) p1 endPoint: (CGPoint) p2 {
@@ -154,14 +121,14 @@
 
 - (void) setXTextureTranslate: (float) offset {
     xTextureTranslate = offset;
-    [self updateTextureCoords:CGRectMake(-xTextureTranslate, yTextureTranslate - yOffset,
-                                         self.textureRect.size.width, self.length)];
+    [self setTextureRect:CGRectMake(-xTextureTranslate, yTextureTranslate - yOffset,
+                                    self.textureRect.size.width, self.length)];
 }
 
 - (void) setYTextureTranslate: (float) offset {
     yTextureTranslate = offset;
-    [self updateTextureCoords:CGRectMake(-xTextureTranslate, yTextureTranslate - yOffset,
-                                         self.textureRect.size.width, self.length)];
+    [self setTextureRect:CGRectMake(-xTextureTranslate, yTextureTranslate - yOffset,
+                                    self.textureRect.size.width, self.length)];
 }
 
 
