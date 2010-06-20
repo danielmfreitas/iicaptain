@@ -3,7 +3,7 @@
 //  iiCaptain
 //
 //  Created by Daniel Freitas on 10-06-18.
-//  Copyright TEKSystems 2010. All rights reserved.
+//  Copyright Eye Eye 2010. All rights reserved.
 //
 
 #import "iiCaptainAppDelegate.h"
