@@ -3,7 +3,7 @@
 //  iiCaptain
 //
 //  Created by Daniel Freitas on 10-06-18.
-//  Copyright TEKSystems 2010. All rights reserved.
+//  Copyright Eye Eye 2010. All rights reserved.
 //
 
 
@@ -16,7 +16,6 @@
 // HelloWorld Layer
 @interface HelloWorld : CCLayer
 {
-	b2World* world;
 	GLESDebugDraw *m_debugDraw;
     IILine2D *line;
     IILine2D *line2;
