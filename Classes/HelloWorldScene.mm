@@ -175,31 +175,31 @@ enum {
 
 -(void) tick: (ccTime) dt
 {
-    //static int count = 0;
-//    static int offset = 0;
-//    count++;
-//    
-//    
-//    // Test sprite animation by changing texture position on 
-//    if (count % 2 == 0) {
-//        offset++;
-//        // TODO: Make this part of the sprite implementation.
-//        line.xTextureTranslate = offset % 8;
-//        line2.xTextureTranslate = offset % 8;
-//        
-//        line3.xTextureTranslate = (offset / 2) % 8;
-//        line3.yTextureTranslate = offset % 16;
-//        
-//        line4.xTextureTranslate = (offset / 2) % 8;
-//        line4.yTextureTranslate = offset % 16;
-//        
-//        line5.yTextureTranslate = offset % 16;
-//        line6.yTextureTranslate = offset % 16;
-//        line7.yTextureTranslate = offset % 16;
-//        line8.yTextureTranslate = offset % 16;
-//        line9.yTextureTranslate = offset % 16;
-//        line10.yTextureTranslate = offset % 16;
-//    }
+    static int count = 0;
+    static int offset = 0;
+    count++;
+    
+    
+    // Test sprite animation by changing texture position on 
+    if (count % 2 == 0) {
+        offset++;
+        // TODO: Make this part of the sprite implementation.
+        line.xTextureTranslate = offset % 8;
+        line2.xTextureTranslate = offset % 8;
+        
+        line3.xTextureTranslate = (offset / 2) % 8;
+        line3.yTextureTranslate = offset % 16;
+        
+        line4.xTextureTranslate = (offset / 2) % 8;
+        line4.yTextureTranslate = offset % 16;
+        
+        line5.yTextureTranslate = offset % 16;
+        line6.yTextureTranslate = offset % 16;
+        line7.yTextureTranslate = offset % 16;
+        line8.yTextureTranslate = offset % 16;
+        line9.yTextureTranslate = offset % 16;
+        line10.yTextureTranslate = offset % 16;
+    }
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
