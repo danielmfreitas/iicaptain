@@ -3,7 +3,7 @@
 //  iiCaptain
 //
 //  Created by Daniel Freitas on 10-06-18.
-//  Copyright Eye Eye. All rights reserved.
+//  Copyright 2010 Eye Eye. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -27,5 +27,30 @@
  * Converts radians to degrees.
  */
 + (CGFloat) radiansToDegrees: (CGFloat) angleInRadians;
+
+/**
+ * Calculates the acute angle (in radians) between two lines.
+ */
++ (CGFloat) angleBetweenLines: (CGPoint) line1Start line1End: (CGPoint) line1End line2Start: (CGPoint) line2Start line2End: (CGPoint) line2End;
+
+/**
+ * Checks if the line formed by two points is vertical.
+ */
++ (BOOL) lineIsVertical: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd;
+
+/**
+ * Checks if the line formed by two points is horizontal.
+ */
++ (BOOL) lineIsHorizontal: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd;
+
+/**
+ * Calculate the angle (in rads) that the line forms with the x-axis.
+ */
++ (CGFloat) lineAngleFromX: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd;
+
+/**
+ * Calculate the slope of a line. Note: a division by 0 will occur if the line is vertical.
+ */
++ (CGFloat) slopeOfLine: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd;
 
 @end

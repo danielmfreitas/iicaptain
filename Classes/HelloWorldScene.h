@@ -11,23 +11,13 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "GLES-Render.h"
-#import "IILine2D.h"
+#import "IISmoothPath.h"
 
 // HelloWorld Layer
 @interface HelloWorld : CCLayer
 {
 	GLESDebugDraw *m_debugDraw;
-    IILine2D *line;
-    IILine2D *line2;
-    IILine2D *line3;
-    IILine2D *line4;
-    IILine2D *line5;
-    IILine2D *line6;
-    IILine2D *line7;
-    IILine2D *line8;
-    IILine2D *line9;
-    IILine2D *line10;
-    
+    IISmoothPath *path;
 }
 
 // returns a Scene that contains the HelloWorld as the only child

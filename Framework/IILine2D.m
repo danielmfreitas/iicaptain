@@ -3,7 +3,7 @@
 //  FollowRouteDemo
 //
 //  Created by Daniel Freitas on 10-06-14.
-//  Copyright Eye Eye. All rights reserved.
+//  Copyright 2010 Eye Eye. All rights reserved.
 //
 
 #import "IILine2D.h"
