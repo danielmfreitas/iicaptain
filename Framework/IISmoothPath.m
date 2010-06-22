@@ -16,6 +16,8 @@
 @implementation IISmoothPath
 
 @synthesize minimumLineLength;
+@synthesize acceptingInput;
+@synthesize iterationIndex;
 
 -(id) initWithMinimumLineLength: (CGFloat) minimumLength {
 
@@ -23,6 +25,7 @@
         linesInPath = [[NSMutableArray alloc] init];
         minimumLineLength = minimumLength;
         firstPoint = CGPointZero;
+        acceptingInput = NO;
     }
 
     return self;
@@ -74,6 +77,29 @@
     firstPoint = CGPointZero;
 }
 
+-(NSInteger) count {
+    return [linesInPath count];
+}
+
+-(IILine2D *) firstLine {
+    if (linesInPath.count == 0) {
+        return nil;
+    } else {
+        iterationIndex = 0;
+        return [linesInPath objectAtIndex:0];
+    }
+}
+
+-(IILine2D *) nextLine {
+    if (iterationIndex < linesInPath.count - 1) {
+        iterationIndex++;
+        return [linesInPath objectAtIndex:iterationIndex];
+    } else {
+        return nil;
+    }
+
+}
+
 -(IILine2D *) lastLine {
     if (linesInPath.count == 0) {
         return nil;
@@ -81,6 +107,14 @@
         return [linesInPath lastObject];
     }
 
+}
+
+-(void) startAcceptingInput {
+    acceptingInput = YES;
+}
+
+-(void) stopAcceptingInput {
+    acceptingInput = NO;
 }
 
 - (void) dealloc {

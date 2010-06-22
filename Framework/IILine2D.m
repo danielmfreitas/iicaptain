@@ -63,13 +63,6 @@
     endPoint = finalPoint;
     length = [IIMath2D lineLengthFromPoint:aPoint toEndPoint:finalPoint];
     
-    /*
-     * The yOffset is how many pixels we have to shift down the texture along the Y axis so we have the bottom of the
-     * image aligned with the start of the line. Since in iphone the screen coordinates are inverted in relation to
-     * OpenGLES and cocos, the texture is repeated from top to bottom, instead of bottom to top.
-     */
-    yOffset = (int) length % (int) self.textureRect.size.height;
-    
     CGFloat xLength = finalPoint.x - aPoint.x;
     CGFloat yLength = finalPoint.y - aPoint.y;
     midPoint = CGPointMake(aPoint.x + (xLength / 2), aPoint.y + (yLength / 2));
