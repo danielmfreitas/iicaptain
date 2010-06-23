@@ -18,7 +18,6 @@
         pathToFollow = [[IISmoothPath alloc]initWithMinimumLineLength:16];
         currentLineBeingFollowed = nil;
         speed = 32;
-        rotateSpeed = 90;
     }
     
     return self;
@@ -33,6 +32,11 @@
             CGFloat timeToMove = currentLineBeingFollowed.length / speed;
             CCMoveTo *moveTo = [CCMoveTo actionWithDuration:timeToMove position:currentLineBeingFollowed.endPoint];
             [self runAction:moveTo];
+            
+            CGFloat angle = currentLineBeingFollowed.rotation - self.rotation;
+            // TODO Change hardcoded duration for rotation
+            CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
+            [self runAction:rotateAction];
         }
     } else {
         currentLineBeingFollowed.startPoint = self.position;
@@ -42,12 +46,36 @@
             IILine2D *nextLine = [pathToFollow nextLine];
             
             if (nextLine != nil) {
+                
+                // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
+                // do not scre up.
+                if (self.rotation >= 360) {
+                    self.rotation = self.rotation - 360;
+                } else if (self.rotation <= -360) {
+                    self.rotation = self.rotation + 360;
+                }
+                
                 currentLineBeingFollowed = nextLine;
                 
                 CGFloat timeToMove = currentLineBeingFollowed.length / speed;
                 
                 CCMoveTo *moveTo = [CCMoveTo actionWithDuration:timeToMove position:currentLineBeingFollowed.endPoint];
                 [self runAction:moveTo];
+                
+                CGFloat angle = currentLineBeingFollowed.rotation - self.rotation;
+                
+                // Make sure the shortest angle is obtained.
+                if (angle < -180) {
+                    angle = angle +360;
+                }
+                
+                if (angle > 180) {
+                    angle = angle - 360;
+                }
+                
+                // TODO Change hardcoded duration for rotation
+                CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
+                [self runAction:rotateAction];
             }
         }
     }
