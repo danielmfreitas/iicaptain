@@ -21,7 +21,7 @@
 
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
 
-- (void) update: (ccTime) dt;
+- (void) update: (ccTime) timeElapsedSinceLastFrame;
 // TODO Temporary hack to stop movement if path changes while last path is not complete.
 - (void) stopMovement;
 

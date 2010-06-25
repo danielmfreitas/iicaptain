@@ -23,103 +23,100 @@
     return self;
 }
 
-- (void) update: (ccTime) dt {
+- (void) setCurrentLineBeingFollowed: (IILine2D *) theLine {
+    if (currentLineBeingFollowed != theLine) {
+        [currentLineBeingFollowed release];
+        currentLineBeingFollowed = theLine;
+        [currentLineBeingFollowed retain];
+    }
+}
+
+- (void) rotateToLine: (IILine2D *) line {
+    CGFloat angle = line.rotation - self.rotation;
+            
+    // Make sure the shortest angle is obtained.
+    if (angle < -180) {
+        angle = angle +360;
+    }
+
+    if (angle > 180) {
+        angle = angle - 360;
+    }
+
+    // TODO Change hardcoded duration for rotation
+    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
+    [self runAction:rotateAction];
+
+}
+
+- (void) updatePosition: (CGFloat) pixelsToMove remainingLength: (CGFloat) remainingLength {
+    CGFloat movementRatio = pixelsToMove / remainingLength;
+            
+    CGFloat dX = (currentLineBeingFollowed.endPoint.x - self.position.x);
+    CGFloat dY = (currentLineBeingFollowed.endPoint.y - self.position.y);
+
+    CGFloat movementX = dX * movementRatio;
+    CGFloat movementY = dY * movementRatio;
+
+    self.position = CGPointMake(self.position.x + movementX, self.position.y + movementY);
+    currentLineBeingFollowed.startPoint = CGPointMake(self.position.x, self.position.y);
+
+}
+
+- (void) normalizeRotation {
     
+    if (self.rotation >= 360) {
+        self.rotation = self.rotation - 360;
+    } else if (self.rotation <= -360) {
+        self.rotation = self.rotation + 360;
+    }
+}
+
+- (void) updateHeroMovement: (ccTime) timeElapsedSinceLastFrame  {
     if (currentLineBeingFollowed == nil) {
         if ([pathToFollow count] > 0) {
-            currentLineBeingFollowed = [pathToFollow firstLine];
-            [currentLineBeingFollowed retain];
-            
-            CGFloat angle = currentLineBeingFollowed.rotation - self.rotation;
-            
-            // Make sure the shortest angle is obtained.
-            if (angle < -180) {
-                angle = angle +360;
-            }
-            
-            if (angle > 180) {
-                angle = angle - 360;
-            }
-            
-            // TODO Change hardcoded duration for rotation
-            CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
-            [self runAction:rotateAction];
+            [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
+            [self rotateToLine: currentLineBeingFollowed];
         }
     }
 
     if (currentLineBeingFollowed != nil) {
-        CGFloat pixelsToMove = speed * dt;
-        
+        CGFloat pixelsToMoveThisFrame = speed * timeElapsedSinceLastFrame;
         CGFloat remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
         
-        if (pixelsToMove > remainingLength) {
+        if (pixelsToMoveThisFrame > remainingLength) {
             
             [pathToFollow removeFirstLine];
-            IILine2D *nextLine = [pathToFollow firstLine];
             
-            CGFloat remainingMovement = pixelsToMove - remainingLength;
-            
-            if (nextLine != nil) {
-                                        
+            if ([pathToFollow firstLine] != nil) {
+                
+                CGFloat remainingPixelsToMove = pixelsToMoveThisFrame - remainingLength;
                 // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
                 // do not screw up.
-                if (self.rotation >= 360) {
-                    self.rotation = self.rotation - 360;
-                } else if (self.rotation <= -360) {
-                    self.rotation = self.rotation + 360;
-                }
-                
-                // Move directly to the end of the current line
+                [self normalizeRotation];
+
+                // Move directly to the end of the current line and get next line in path
                 self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
-                [currentLineBeingFollowed release];
-                currentLineBeingFollowed = nextLine;
-                [currentLineBeingFollowed retain];
+                [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
                 
-                // Calculates the remainign length for the new line in path
+                // Calculates the remainign length on the new line in path
                 remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
-                CGFloat movementRatio = remainingMovement / remainingLength;
-                
-                CGFloat dX = (currentLineBeingFollowed.endPoint.x - self.position.x);
-                CGFloat dY = (currentLineBeingFollowed.endPoint.y - self.position.y);
-                
-                CGFloat movementX = dX * movementRatio;
-                CGFloat movementY = dY * movementRatio;
-                
-                self.position = CGPointMake(self.position.x + movementX, self.position.y + movementY);
-                currentLineBeingFollowed.startPoint = CGPointMake(self.position.x, self.position.y);
-                
-                CGFloat angle = currentLineBeingFollowed.rotation - self.rotation;
-                                    
-                // Make sure the shortest angle is obtained.
-                if (angle < -180) {
-                    angle = angle +360;
-                }
-                
-                if (angle > 180) {
-                    angle = angle - 360;
-                }
-                
-                // TODO Change hardcoded duration for rotation
-                CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
-                [self runAction:rotateAction];
+                [self updatePosition: remainingPixelsToMove remainingLength: remainingLength];
+                [self rotateToLine: currentLineBeingFollowed];
             } else {
                 self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
                 [pathToFollow removeFirstLine];
-                currentLineBeingFollowed = nil;
+                [self setCurrentLineBeingFollowed:nil];
             }
         } else {
-            CGFloat movementRatio = pixelsToMove / remainingLength;
-            
-            CGFloat dX = (currentLineBeingFollowed.endPoint.x - self.position.x);
-            CGFloat dY = (currentLineBeingFollowed.endPoint.y - self.position.y);
-            
-            CGFloat movementX = dX * movementRatio;
-            CGFloat movementY = dY * movementRatio;
-            
-            self.position = CGPointMake(self.position.x + movementX, self.position.y + movementY);
-            currentLineBeingFollowed.startPoint = CGPointMake(self.position.x, self.position.y);
+            [self updatePosition: pixelsToMoveThisFrame remainingLength: remainingLength];
         }
     }
+
+}
+- (void) update: (ccTime) timeElapsedSinceLastFrame {
+    
+    [self updateHeroMovement: timeElapsedSinceLastFrame];
 }
 
 - (void) stopMovement {
