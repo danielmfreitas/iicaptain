@@ -10,6 +10,7 @@
 #import <cocos2d/CCSprite.h>
 #import "IISmoothPath.h"
 #import "IILine2D.h"
+#import "IIMath2D.h"
 
 @interface IICaptain : CCSprite {
     IISmoothPath *pathToFollow;
@@ -21,6 +22,8 @@
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
 
 - (void) update: (ccTime) dt;
+// TODO Temporary hack to stop movement if path changes while last path is not complete.
+- (void) stopMovement;
 
 +(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
 

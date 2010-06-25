@@ -17,7 +17,6 @@
 
 @synthesize minimumLineLength;
 @synthesize acceptingInput;
-@synthesize iterationIndex;
 
 -(id) initWithMinimumLineLength: (CGFloat) minimumLength {
 
@@ -49,18 +48,8 @@
             
             CGPoint adjustedPoint = CGPointMake(adjustedX, adjustedY);
             IILine2D *line = [IILine2D lineFromOrigin:lastPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
-            IILine2D *lastLine = [self lastLine];
-            
-            if ([IIMath2D angleBetweenLines:lastLine.startPoint line1End:lastLine.endPoint
-                                 line2Start:lastLine.startPoint line2End:lastLine.endPoint] <= MAX_ANGLE_IN_RADS
-                                 && lastLine.length <= minimumLineLength * 2) {
-                // TODO Add algorithm to smooth lines
-                [linesInPath addObject:line];
-                [self addChild:line];
-            } else {
-                [linesInPath addObject:line];
-                [self addChild:line];
-            }
+            [linesInPath addObject:line];
+            [self addChild:line];
 
             lastPoint = adjustedPoint;
         }
@@ -85,19 +74,8 @@
     if (linesInPath.count == 0) {
         return nil;
     } else {
-        iterationIndex = 0;
         return [linesInPath objectAtIndex:0];
     }
-}
-
--(IILine2D *) nextLine {
-    if (iterationIndex < linesInPath.count - 1) {
-        iterationIndex++;
-        return [linesInPath objectAtIndex:iterationIndex];
-    } else {
-        return nil;
-    }
-
 }
 
 -(IILine2D *) lastLine {
@@ -107,6 +85,14 @@
         return [linesInPath lastObject];
     }
 
+}
+
+-(void) removeFirstLine {
+    if (linesInPath.count > 0) {
+        IILine2D *firstLine = [self firstLine];
+        [linesInPath removeObjectAtIndex:0];
+        [self removeChild:firstLine cleanup:YES];
+    }
 }
 
 -(void) startAcceptingInput {

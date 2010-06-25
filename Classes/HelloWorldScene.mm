@@ -127,6 +127,7 @@ enum {
         location.y <= spriteBounds.origin.y + spriteBounds.size.height) {
         
         location = hero.position;
+        [hero stopMovement];
         [hero.pathToFollow clear];
         [hero.pathToFollow startAcceptingInput];
         [hero.pathToFollow processPoint:location];
