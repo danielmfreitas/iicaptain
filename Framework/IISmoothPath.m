@@ -50,7 +50,6 @@
             IILine2D *line = [IILine2D lineFromOrigin:lastPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
             [linesInPath addObject:line];
             [self addChild:line];
-
             lastPoint = adjustedPoint;
         }
     }
