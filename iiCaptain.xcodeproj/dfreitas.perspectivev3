@@ -349,7 +349,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D35652D011D59C7E0010DC7A</string>
+										<string>D3D9E48911D59D4300289370</string>
 										<key>history</key>
 										<array>
 											<string>D35462F411CB42320053E707</string>
@@ -375,7 +375,7 @@
 											<string>D3C4ADC211D44C3700A883B4</string>
 											<string>D3C4ADD011D44D0200A883B4</string>
 											<string>D3C4ADE611D45B4D00A883B4</string>
-											<string>D35652BF11D55CAD0010DC7A</string>
+											<string>D3D9E47C11D59D1D00289370</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -389,18 +389,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1122, 679}}</string>
+								<string>{{0, 0}, {1122, 676}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>679pt</string>
+							<string>676pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>94pt</string>
+							<string>97pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -414,7 +414,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1122, 67}}</string>
+										<string>{{10, 27}, {1122, 70}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -468,7 +468,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1122, 67}}</string>
+										<string>{{10, 27}, {1122, 70}}</string>
 										<key>RubberWindowFrame</key>
 										<string>0 59 1440 819 0 0 1440 878 </string>
 									</dict>
@@ -498,11 +498,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D35652C111D55CAE0010DC7A</string>
+				<string>D3D9E47E11D59D1E00289370</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>D35652C211D55CAE0010DC7A</string>
+				<string>D3D9E47F11D59D1E00289370</string>
 				<string>D3E0809D11CB2A3A0036D6DF</string>
-				<string>D35652C311D55CAE0010DC7A</string>
+				<string>D3D9E48011D59D1E00289370</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -651,14 +651,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D35652C411D55CAE0010DC7A</string>
+				<string>D3D9E48111D59D1E00289370</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>D35652C511D55CAE0010DC7A</string>
-				<string>D35652C611D55CAE0010DC7A</string>
-				<string>D35652C711D55CAE0010DC7A</string>
-				<string>D35652C811D55CAE0010DC7A</string>
-				<string>D35652C911D55CAE0010DC7A</string>
+				<string>D3D9E48211D59D1E00289370</string>
+				<string>D3D9E48311D59D1E00289370</string>
+				<string>D3D9E48411D59D1E00289370</string>
+				<string>D3D9E48511D59D1E00289370</string>
+				<string>D3D9E48611D59D1E00289370</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -675,7 +675,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>299211902.30137902</real>
+	<real>299212099.79065901</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
