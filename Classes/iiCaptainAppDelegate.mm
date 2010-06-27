@@ -14,6 +14,10 @@
 
 @synthesize window;
 
+- (void)handleDrag:(UIPanGestureRecognizer *)sender {
+    NSLog(@"Got dragging");
+}
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
@@ -52,6 +56,11 @@
 		
 		
 	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
+    
+    UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] 
+                                              initWithTarget:self action:@selector(handleDrag:)];
+    [window addGestureRecognizer:dragRecognizer];
+    [dragRecognizer release];
 }
 
 
