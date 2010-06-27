@@ -1536,7 +1536,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = iiCaptain;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphonesimulator4.0;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -1559,7 +1559,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = iiCaptain;
-				SDKROOT = iphoneos3.2;
+				SDKROOT = iphonesimulator4.0;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;

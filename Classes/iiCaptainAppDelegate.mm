@@ -18,6 +18,10 @@
     NSLog(@"Got dragging");
 }
 
+- (void)handleDrag2:(UIPanGestureRecognizer *)sender {
+    NSLog(@"Got dragging2");
+}
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
@@ -59,8 +63,15 @@
     
     UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] 
                                               initWithTarget:self action:@selector(handleDrag:)];
+    [dragRecognizer setMaximumNumberOfTouches:1];
+    
+    UIPanGestureRecognizer *dragRecognizer2 = [[UIPanGestureRecognizer alloc] 
+                                              initWithTarget:self action:@selector(handleDrag2:)];
+    [dragRecognizer2 setMinimumNumberOfTouches:2];    
     [window addGestureRecognizer:dragRecognizer];
+    [window addGestureRecognizer:dragRecognizer2];
     [dragRecognizer release];
+    [dragRecognizer2 release];
 }
 
 
