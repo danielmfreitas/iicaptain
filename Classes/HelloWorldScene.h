@@ -14,6 +14,7 @@
 #import "IISmoothPath.h"
 #import <cocos2d/CCSpriteSheet.h>
 #import "IICaptain.h"
+#import "IIGestureManager.h"
 
 // HelloWorld Layer
 @interface HelloWorld : CCLayer
@@ -21,10 +22,15 @@
 	GLESDebugDraw *m_debugDraw;
     CCSpriteSheet *heroSpriteSheet;
     IICaptain *hero;
+    IIGestureManager *manager;
 }
 
+@property (nonatomic, retain) IIGestureManager *manager;
+
 // returns a Scene that contains the HelloWorld as the only child
-+(id) scene;
++(id) sceneAndManager: (IIGestureManager *) theManager;
+
+-(id) initWithManager: (IIGestureManager *) theManager;
 
 // adds a new sprite at a given coordinate
 -(void) addNewSpriteWithCoords:(CGPoint)p;

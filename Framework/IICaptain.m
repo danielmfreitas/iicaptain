@@ -12,6 +12,7 @@
 @implementation IICaptain
 
 @synthesize pathToFollow;
+@synthesize manager;
 
 - (id) init {
     if ((self = [super init])) {
@@ -121,6 +122,7 @@
         [self followCurrentLine: timeElapsedSinceLastFrame];
     }
 }
+
 - (void) update: (ccTime) timeElapsedSinceLastFrame {
     
     [self updateHeroMovement: timeElapsedSinceLastFrame];
@@ -135,9 +137,26 @@
     [super dealloc];
 }
 
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
+- (void) handleGesture: (UIGestureRecognizer *) sender {
+    
+    NSLog(@"Captured gesture.");
+}
+
+- (void) setManager:(IIGestureManager *) theManager {
+    if (manager != nil) {
+        [manager release];
+    }
+    
+    manager = theManager;
+    [manager addTarget: self action: @selector(handleGesture:) toRecognizer: @"dragGesture"];
+}
+
++(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect andManager: (IIGestureManager *) theManager
 {
-	return [[[self alloc] initWithTexture:texture rect:rect] autorelease];
+	IICaptain *me = [[[self alloc] initWithTexture:texture rect:rect] autorelease];
+    me.manager = theManager;
+    
+    return me;
 }
 
 @end

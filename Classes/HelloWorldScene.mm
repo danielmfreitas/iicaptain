@@ -28,23 +28,25 @@ enum {
 // HelloWorld implementation
 @implementation HelloWorld
 
-+(id) scene
+@synthesize manager;
+
++(id) sceneAndManager: (IIGestureManager *) theManager;
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorld *layer = [HelloWorld node];
+	HelloWorld *layer = [[HelloWorld alloc] initWithManager: theManager];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
-	
+    
 	// return the scene
 	return scene;
 }
 
 // initialize your instance here
--(id) init
+-(id) initWithManager: (IIGestureManager *) theManager
 {
 	if( (self=[super init])) {
 		
@@ -59,10 +61,12 @@ enum {
 		
 		[self schedule: @selector(tick:)];
         
-        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile:@"ship.png"];
-        [self addChild:heroSpriteSheet z:1];
+        manager = theManager;
         
-        hero = [IICaptain spriteWithTexture:heroSpriteSheet.texture rect:CGRectMake(0, 0, 32, 32)];
+        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile:@"ship.png"];
+        hero = [IICaptain spriteWithTexture:heroSpriteSheet.texture rect:CGRectMake(0, 0, 32, 32) andManager: manager];
+        
+        [self addChild:heroSpriteSheet z:1];        
         [heroSpriteSheet addChild:hero];
         [self addChild:hero.pathToFollow z:-1];
         

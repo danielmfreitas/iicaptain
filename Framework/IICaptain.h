@@ -11,20 +11,23 @@
 #import "IISmoothPath.h"
 #import "IILine2D.h"
 #import "IIMath2D.h"
+#import "IIGestureManager.h"
 
 @interface IICaptain : CCSprite {
     IISmoothPath *pathToFollow;
     IILine2D *currentLineBeingFollowed;
     CGFloat speed;
     CGFloat rotateSpeed;
+    IIGestureManager *manager;
 }
 
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
+@property (nonatomic, retain) IIGestureManager *manager;
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
 // TODO Temporary hack to stop movement if path changes while last path is not complete.
 - (void) stopMovement;
 
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect;
++(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect andManager: (IIGestureManager *) theManager;
 
 @end

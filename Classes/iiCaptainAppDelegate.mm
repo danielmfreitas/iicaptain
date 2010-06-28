@@ -9,6 +9,7 @@
 #import "iiCaptainAppDelegate.h"
 #import "cocos2d.h"
 #import "HelloWorldScene.h"
+#import "IIGestureManager.h"
 
 @implementation iiCaptainAppDelegate
 
@@ -58,20 +59,29 @@
 	[[CCDirector sharedDirector] attachInView:window];	
 	[window makeKeyAndVisible];		
 		
-		
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
+	IIGestureManager *manager = [IIGestureManager gestureManagerWithTargetView:window];
+    UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] init];
+    [dragRecognizer setMinimumNumberOfTouches:1];
     
-    UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] 
-                                              initWithTarget:self action:@selector(handleDrag:)];
-    [dragRecognizer setMaximumNumberOfTouches:1];
+    IIGesture *gesture = [[IIGesture alloc] initWithName:@"dragGesture" andGestureRecognizer:dragRecognizer];
     
-    UIPanGestureRecognizer *dragRecognizer2 = [[UIPanGestureRecognizer alloc] 
-                                              initWithTarget:self action:@selector(handleDrag2:)];
-    [dragRecognizer2 setMinimumNumberOfTouches:2];    
-    [window addGestureRecognizer:dragRecognizer];
-    [window addGestureRecognizer:dragRecognizer2];
-    [dragRecognizer release];
-    [dragRecognizer2 release];
+    [manager addGesture:gesture];
+	
+	[[CCDirector sharedDirector] runWithScene: [HelloWorld sceneAndManager: manager]];
+    
+    
+    
+    //UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] 
+//                                              initWithTarget:self action:@selector(handleDrag:)];
+//    [dragRecognizer setMaximumNumberOfTouches:1];
+//    [window addGestureRecognizer:dragRecognizer];
+//    [dragRecognizer release];
+//            
+//    UIPanGestureRecognizer *dragRecognizer2 = [[UIPanGestureRecognizer alloc] 
+//                                              initWithTarget:self action:@selector(handleDrag2:)];
+//    [dragRecognizer2 setMinimumNumberOfTouches:2];        
+//    [window addGestureRecognizer:dragRecognizer2];
+//    [dragRecognizer2 release];
 }
 
 
