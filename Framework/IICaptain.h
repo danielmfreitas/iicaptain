@@ -21,8 +21,10 @@
     IIGestureManager *manager;
 }
 
+// TODO Remove this property once I figure out how to automatically add the pathToFollow to the parent view.
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
-@property (nonatomic, retain) IIGestureManager *manager;
+
+-(id) initWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager;
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
 // TODO Temporary hack to stop movement if path changes while last path is not complete.

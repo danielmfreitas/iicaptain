@@ -8,15 +8,68 @@
 
 #import "IICaptain.h"
 
-
 @implementation IICaptain
 
 @synthesize pathToFollow;
-@synthesize manager;
 
-- (id) init {
-    if ((self = [super init])) {
-        pathToFollow = [[IISmoothPath alloc]initWithMinimumLineLength:16];
+- (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
+    CGPoint point = [sender locationInView: sender.view];
+    
+    
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+            
+            // Check the touch began in the hero sprite
+            point = [[CCDirector sharedDirector] convertToGL:point];
+            CGRect spriteBounds = CGRectMake(self.position.x - self.contentSize.width / 2,
+                                             self.position.y - self.contentSize.height / 2,
+                                             self.contentSize.width,
+                                             self.contentSize.height);
+            
+            if (point.x >= spriteBounds.origin.x
+                && point.x <= spriteBounds.origin.x + spriteBounds.size.width
+                && point.y >= spriteBounds.origin.y &&
+                point.y <= spriteBounds.origin.y + spriteBounds.size.height) {
+                
+                point = self.position;
+                [self stopMovement];
+                [pathToFollow clear];
+                [pathToFollow startAcceptingInput];
+                [pathToFollow processPoint:point];
+            }
+            break;
+        case UIGestureRecognizerStateChanged:
+            
+            point = [[CCDirector sharedDirector] convertToGL:point];
+            
+            if (pathToFollow.acceptingInput) {
+                [pathToFollow processPoint:point];
+            }
+            break;
+        case UIGestureRecognizerStateEnded:
+            
+            if (pathToFollow.acceptingInput) {
+                [pathToFollow stopAcceptingInput];
+            }
+            
+            break;
+        default:
+            break;
+    }
+    
+    NSLog(@"Captured gesture %i: (%f, %f).", sender.state, point.x, point.y);
+}
+
+- (void) setManager:(IIGestureManager *) theManager {
+    manager = theManager;
+    [manager addTarget: self action: @selector(handleDragGesture:) toRecognizer: @"singleDragGesture"];
+    [manager retain];
+}
+
+-(id) initWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager {
+    if ((self = [super initWithTexture: texture rect: rect])) {
+        [self setManager: theManager];
+        pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
         currentLineBeingFollowed = nil;
         speed = 32;
     }
@@ -133,27 +186,14 @@
 }
 
 -(void) dealloc {
+    [manager release];
     [pathToFollow release];
     [super dealloc];
 }
 
-- (void) handleGesture: (UIGestureRecognizer *) sender {
-    
-    NSLog(@"Captured gesture.");
-}
-
-- (void) setManager:(IIGestureManager *) theManager {
-    if (manager != nil) {
-        [manager release];
-    }
-    
-    manager = theManager;
-    [manager addTarget: self action: @selector(handleGesture:) toRecognizer: @"dragGesture"];
-}
-
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect andManager: (IIGestureManager *) theManager
++(id) spriteWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager
 {
-	IICaptain *me = [[[self alloc] initWithTexture:texture rect:rect] autorelease];
+	IICaptain *me = [[[self alloc] initWithTexture:texture rect:rect andManager: theManager] autorelease];
     me.manager = theManager;
     
     return me;

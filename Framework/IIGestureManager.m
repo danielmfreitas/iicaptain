@@ -8,6 +8,24 @@
 
 #import "IIGestureManager.h"
 
+/**
+ * Encapsulates information about the target action where gesture events will be forwarded to. Besides the target and
+ * action elements, this object also has a IIGestureFilter which, if present, will be used to check if the event
+ * should be forwarded to the target action.
+ */
+@interface IITargetAction : NSObject
+{
+    id target;
+    SEL action;
+    id<IIGestureFilter> filter;
+}
+
+@property (nonatomic, readonly) id target;
+@property (nonatomic, readonly) SEL action;
+@property (nonatomic, readonly) id<IIGestureFilter> filter;
+
+@end
+
 /*
  * IITargetAction implementation.
  * =====================================================================================================================
@@ -49,7 +67,7 @@
  * IIGesture implementation.
  * =====================================================================================================================
  */
-@implementation IIGesture
+@implementation IITaggedGestureRecognizer
 
 @synthesize name;
 @synthesize gestureRecognizer;
@@ -63,7 +81,7 @@
     }
 }
 
-- (IIGesture *) initWithName: (NSString *) theName andGestureRecognizer: (UIGestureRecognizer *) theGestureRecognizer {
+- (IITaggedGestureRecognizer *) initWithName: (NSString *) theName andGestureRecognizer: (UIGestureRecognizer *) theGestureRecognizer {
     if ((self = [super init])) {
         name = theName;
         [name retain];
@@ -98,6 +116,8 @@
  */
 @implementation IIGestureManager
 
+@synthesize targetView;
+
 - (id) initWithView: (UIView *) view {
     if ((self = [super init])) {
         gesturesDictionary = [[NSMutableDictionary alloc] init];
@@ -108,13 +128,14 @@
     return self;
 }
 
-- (void) addGesture: (IIGesture *) gesture {
-    [gesturesDictionary setObject:gesture forKey:gesture.name];
-    [targetView addGestureRecognizer:gesture.gestureRecognizer];
+- (void) addGesture: (IITaggedGestureRecognizer *) gesture {
+    [gesturesDictionary setObject: gesture forKey: gesture.name];
+    [targetView addGestureRecognizer: gesture.gestureRecognizer];
 }
 
-- (void) removeGesture: (IIGesture *) gesture {
-    [gesturesDictionary removeObjectForKey:gesture.name];
+- (void) removeGesture: (IITaggedGestureRecognizer *) gesture {
+    [gesturesDictionary removeObjectForKey: gesture.name];
+    [targetView removeGestureRecognizer: gesture.gestureRecognizer];
 }
 
 - (void) addTarget: (id) theTarget action: (SEL) theAction toRecognizer: (NSString *) recognizerName {
@@ -122,9 +143,12 @@
 }
 
 - (void) addTarget: (id) theTarget action: (SEL) theAction toRecognizer: (NSString *) recognizerName withFilter: (id<IIGestureFilter>) filter {
-    IIGesture *theGesture = [gesturesDictionary objectForKey: recognizerName];
+    IITaggedGestureRecognizer *theGesture = [gesturesDictionary objectForKey: recognizerName];
+    
     IITargetAction *targetAction = [[IITargetAction alloc] initWithTarget: theTarget andAction: theAction withFilter: filter];
     [theGesture addTargetAction: targetAction];
+    
+    [targetAction release];
 }
 
 - (void) dealloc {
