@@ -293,6 +293,7 @@
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
+		D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
 		DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
@@ -606,6 +607,8 @@
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
 		D38DC63111D058980022249E /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIStartOnNodeGestureFilter.h; sourceTree = "<group>"; };
+		D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIStartOnNodeGestureFilter.m; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC6640040F83B3EA000B3E49 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1133,6 +1136,8 @@
 				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
 				D33DA41011D81A3500E55001 /* IICollections.h */,
 				D33DA41111D81A3500E55001 /* IICollections.m */,
+				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
+				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -1385,6 +1390,7 @@
 				D38DC60511D056580022249E /* IICaptain.m in Sources */,
 				D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */,
 				D33DA41211D81A3500E55001 /* IICollections.m in Sources */,
+				D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

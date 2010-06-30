@@ -66,10 +66,11 @@ enum {
         
         heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"ship.png"];
         hero = [IICaptain spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 32) andManager: manager];
+        [hero addPathToNode: self];
         
         [self addChild:heroSpriteSheet z:1]; 
         // TODO Figure out a way to add pathToFollow automatically.
-        [self addChild: hero.pathToFollow z: -1];
+        // [self addChild: hero.pathToFollow z: -1];
         [heroSpriteSheet addChild:hero];
         
         CCAnimation *moveAnimation = [CCAnimation animationWithName:@"heroMove" delay:0.3f];

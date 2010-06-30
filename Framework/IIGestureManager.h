@@ -27,7 +27,7 @@
      * Decides if the gesture event will be forwarded to the target action. The recognizer argument is the gesture
      * that has been detected.
      */
-    -(BOOL) acceptsEvent: (UIGestureRecognizer *) recognizer;
+    - (BOOL) acceptsEvent: (UIGestureRecognizer *) recognizer;
 @end
 
 /**
