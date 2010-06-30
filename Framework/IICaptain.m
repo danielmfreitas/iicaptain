@@ -7,15 +7,45 @@
 //
 
 #import "IICaptain.h"
-
+#import "IIStartOnNodeGestureFilter.h"
 
 @implementation IICaptain
 
 @synthesize pathToFollow;
 
-- (id) init {
-    if ((self = [super init])) {
-        pathToFollow = [[IISmoothPath alloc]initWithMinimumLineLength:16];
+- (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
+    CGPoint point = [sender locationInView: sender.view];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+    
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+            point = self.position;
+            [self stopMovement];
+            [pathToFollow clear];
+            [pathToFollow processPoint:point];
+
+            break;
+        case UIGestureRecognizerStateChanged:
+            
+            [pathToFollow processPoint:point];
+            
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) setManager:(IIGestureManager *) theManager {
+    manager = theManager;
+    IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: self] autorelease];
+    [manager addTarget: self action: @selector(handleDragGesture:) toRecognizer: @"singleDragGesture" withFilter: filter];
+    [manager retain];
+}
+
+- (id) initWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager {
+    if ((self = [super initWithTexture: texture rect: rect])) {
+        [self setManager: theManager];
+        pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
         currentLineBeingFollowed = nil;
         speed = 32;
     }
@@ -46,7 +76,6 @@
     // TODO Change hardcoded duration for rotation
     CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
     [self runAction:rotateAction];
-
 }
 
 - (void) updatePosition: (CGFloat) pixelsToMove remainingLength: (CGFloat) remainingLength {
@@ -61,7 +90,6 @@
 
     self.position = CGPointMake(self.position.x + movementX, self.position.y + movementY);
     currentLineBeingFollowed.startPoint = CGPointMake(self.position.x, self.position.y);
-
 }
 
 - (void) normalizeRotation {
@@ -77,36 +105,77 @@
     CGFloat pixelsToMoveThisFrame = speed * timeElapsedSinceLastFrame;
     CGFloat remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
     
-    if (pixelsToMoveThisFrame > remainingLength) {
-        
-        [pathToFollow removeFirstLine];
-        
-        if ([pathToFollow firstLine] != nil) {
-            
-            // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
-            // do not screw up.
-            [self normalizeRotation];
-            
-            // Move directly to the end of the current line and get next line in path
-            self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
-            [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
-
-            // Get the remaining pixels we still have to move on the new line
-            CGFloat remainingPixelsToMove = pixelsToMoveThisFrame - remainingLength;
-
-            // Calculates the remainign length on the new line in path
-            remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
-            [self updatePosition: remainingPixelsToMove remainingLength: remainingLength];
-            [self rotateToLine: currentLineBeingFollowed];
-        } else {
-            // If last line in path, just set final position to the end of the line.
-            self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
-            [pathToFollow removeFirstLine];
-            [self setCurrentLineBeingFollowed:nil];
-        }
-    } else {
+    if (pixelsToMoveThisFrame <= remainingLength) {
         [self updatePosition: pixelsToMoveThisFrame remainingLength: remainingLength];
+    } else {
+        // If pixels to move > ramining length of current line, consumes pixels from the next lines until all pixels
+        // are accounted or the path ends.
+        while (pixelsToMoveThisFrame > remainingLength) {
+            [pathToFollow removeFirstLine];
+            
+            if ([pathToFollow firstLine] != nil) {
+                
+                // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
+                // do not screw up.
+                [self normalizeRotation];
+                
+                // Move directly to the end of the current line and get next line in path
+                self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
+                [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
+                
+                // Get the remaining pixels we still have to move on the new line
+                pixelsToMoveThisFrame = pixelsToMoveThisFrame - remainingLength;
+                
+                // Calculates the remainign length on the new line in path
+                remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
+            } else {
+                // If last line in path, just set final position to the end of the line.
+                self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
+                self.rotation = currentLineBeingFollowed.rotation;
+                pixelsToMoveThisFrame = 0;
+                remainingLength = 0;
+                [pathToFollow removeFirstLine];
+                [self setCurrentLineBeingFollowed:nil];
+            }
+        }
+       
+        // Move only if we still have pixels to move.
+        if (pixelsToMoveThisFrame > 0) {
+            [self updatePosition: pixelsToMoveThisFrame remainingLength: remainingLength];
+            [self rotateToLine: currentLineBeingFollowed];
+        }
     }
+    
+    //if (pixelsToMoveThisFrame > remainingLength) {
+//        
+//        [pathToFollow removeFirstLine];
+//        
+//        if ([pathToFollow firstLine] != nil) {
+//            
+//            // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
+//            // do not screw up.
+//            [self normalizeRotation];
+//            
+//            // Move directly to the end of the current line and get next line in path
+//            self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
+//            [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
+//
+//            // Get the remaining pixels we still have to move on the new line
+//            CGFloat remainingPixelsToMove = pixelsToMoveThisFrame - remainingLength;
+//
+//            // Calculates the remainign length on the new line in path
+//            remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(self.position.x, self.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
+//            [self updatePosition: remainingPixelsToMove remainingLength: remainingLength];
+//            [self rotateToLine: currentLineBeingFollowed];
+//        } else {
+//            // If last line in path, just set final position to the end of the line.
+//            self.position = CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y);
+//            [pathToFollow removeFirstLine];
+//            [self setCurrentLineBeingFollowed:nil];
+//        }
+//    } else {
+//            
+//    }
 }
 
 - (void) updateHeroMovement: (ccTime) timeElapsedSinceLastFrame  {
@@ -121,6 +190,7 @@
         [self followCurrentLine: timeElapsedSinceLastFrame];
     }
 }
+
 - (void) update: (ccTime) timeElapsedSinceLastFrame {
     
     [self updateHeroMovement: timeElapsedSinceLastFrame];
@@ -130,14 +200,22 @@
     currentLineBeingFollowed = nil;
 }
 
--(void) dealloc {
-    [pathToFollow release];
-    [super dealloc];
+- (void) addPathToNode: (CCNode *) theNode {
+    [theNode addChild: pathToFollow];
 }
 
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect
++(id) spriteWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager
 {
-	return [[[self alloc] initWithTexture:texture rect:rect] autorelease];
+	IICaptain *me = [[[self alloc] initWithTexture:texture rect:rect andManager: theManager] autorelease];
+    me.manager = theManager;
+    
+    return me;
+}
+
+-(void) dealloc {
+    [manager release];
+    [pathToFollow release];
+    [super dealloc];
 }
 
 @end

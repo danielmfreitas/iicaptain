@@ -288,9 +288,12 @@
 		D3308DE611CB321000AC838A /* IILine2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308DE511CB321000AC838A /* IILine2D.m */; };
 		D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308E8511CB3A9600AC838A /* IIMath2D.m */; };
 		D338448011CED05400D18251 /* IISmoothPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D338447F11CED05400D18251 /* IISmoothPath.m */; };
+		D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D33DA35A11D7842A00E55001 /* IIGestureManager.m */; };
+		D33DA41211D81A3500E55001 /* IICollections.m in Sources */ = {isa = PBXBuildFile; fileRef = D33DA41111D81A3500E55001 /* IICollections.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
+		D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */; };
 		DC6640030F83B3EA000B3E49 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */; };
 		DC6640050F83B3EA000B3E49 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC6640040F83B3EA000B3E49 /* OpenAL.framework */; };
 		DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */; };
@@ -596,10 +599,16 @@
 		D3308E8511CB3A9600AC838A /* IIMath2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIMath2D.m; sourceTree = "<group>"; };
 		D338447E11CED05400D18251 /* IISmoothPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISmoothPath.h; sourceTree = "<group>"; };
 		D338447F11CED05400D18251 /* IISmoothPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISmoothPath.m; sourceTree = "<group>"; };
+		D33DA35911D7842A00E55001 /* IIGestureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGestureManager.h; sourceTree = "<group>"; };
+		D33DA35A11D7842A00E55001 /* IIGestureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIGestureManager.m; sourceTree = "<group>"; };
+		D33DA41011D81A3500E55001 /* IICollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICollections.h; sourceTree = "<group>"; };
+		D33DA41111D81A3500E55001 /* IICollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICollections.m; sourceTree = "<group>"; };
 		D35462E311CB3E3F0053E707 /* path_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture.png; sourceTree = "<group>"; };
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
 		D38DC63111D058980022249E /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIStartOnNodeGestureFilter.h; sourceTree = "<group>"; };
+		D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIStartOnNodeGestureFilter.m; sourceTree = "<group>"; };
 		DC6640020F83B3EA000B3E49 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		DC6640040F83B3EA000B3E49 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1123,6 +1132,12 @@
 				D3308E8511CB3A9600AC838A /* IIMath2D.m */,
 				D38DC60311D056580022249E /* IICaptain.h */,
 				D38DC60411D056580022249E /* IICaptain.m */,
+				D33DA35911D7842A00E55001 /* IIGestureManager.h */,
+				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
+				D33DA41011D81A3500E55001 /* IICollections.h */,
+				D33DA41111D81A3500E55001 /* IICollections.m */,
+				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
+				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -1373,6 +1388,9 @@
 				D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */,
 				D338448011CED05400D18251 /* IISmoothPath.m in Sources */,
 				D38DC60511D056580022249E /* IICaptain.m in Sources */,
+				D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */,
+				D33DA41211D81A3500E55001 /* IICollections.m in Sources */,
+				D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1531,7 +1549,6 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				HEADER_SEARCH_PATHS = libs;
 				INFOPLIST_FILE = Resources/Info.plist;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1556,7 +1573,6 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				HEADER_SEARCH_PATHS = libs;
 				INFOPLIST_FILE = Resources/Info.plist;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1564,7 +1580,6 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = iiCaptain;
 				SDKROOT = iphoneos4.0;
-				VALID_ARCHS = "armv7 armv6";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
@@ -1573,7 +1588,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1581,7 +1595,7 @@
 				HEADER_SEARCH_PATHS = libs;
 				PREBINDING = NO;
 				PRODUCT_NAME = "cocos2d libraries";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -1589,7 +1603,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1598,7 +1611,7 @@
 				OTHER_CFLAGS = "-fvisibility=hidden";
 				PREBINDING = NO;
 				PRODUCT_NAME = "cocos2d libraries";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos3.2;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1619,11 +1632,10 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fvisibility=hidden";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
-				VALID_ARCHS = "armv7 armv6";
 			};
 			name = Debug;
 		};
@@ -1640,11 +1652,10 @@
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fvisibility=hidden";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
-				VALID_ARCHS = "armv7 armv6";
 			};
 			name = Release;
 		};

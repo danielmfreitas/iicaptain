@@ -28,23 +28,25 @@ enum {
 // HelloWorld implementation
 @implementation HelloWorld
 
-+(id) scene
+@synthesize manager;
+
++(id) sceneAndManager: (IIGestureManager *) theManager;
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	HelloWorld *layer = [HelloWorld node];
+	HelloWorld *layer = [[HelloWorld alloc] initWithManager: theManager];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
-	
+    
 	// return the scene
 	return scene;
 }
 
 // initialize your instance here
--(id) init
+-(id) initWithManager: (IIGestureManager *) theManager
 {
 	if( (self=[super init])) {
 		
@@ -59,12 +61,17 @@ enum {
 		
 		[self schedule: @selector(tick:)];
         
-        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile:@"ship.png"];
-        [self addChild:heroSpriteSheet z:1];
+        manager = theManager;
+        [manager retain];
         
-        hero = [IICaptain spriteWithTexture:heroSpriteSheet.texture rect:CGRectMake(0, 0, 32, 32)];
+        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"ship.png"];
+        hero = [IICaptain spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 32) andManager: manager];
+        [hero addPathToNode: self];
+        
+        [self addChild:heroSpriteSheet z:1]; 
+        // TODO Figure out a way to add pathToFollow automatically.
+        // [self addChild: hero.pathToFollow z: -1];
         [heroSpriteSheet addChild:hero];
-        [self addChild:hero.pathToFollow z:-1];
         
         CCAnimation *moveAnimation = [CCAnimation animationWithName:@"heroMove" delay:0.3f];
         
@@ -110,49 +117,49 @@ enum {
     [hero update:dt];
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:[touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
-    
-    // Check the touch began in the hero sprite
-    CGRect spriteBounds = CGRectMake(hero.position.x - hero.contentSize.width / 2,
-                                     hero.position.y - hero.contentSize.height / 2,
-                                     hero.contentSize.width,
-                                     hero.contentSize.height);
-    
-    if (location.x >= spriteBounds.origin.x
-        && location.x <= spriteBounds.origin.x + spriteBounds.size.width
-        && location.y >= spriteBounds.origin.y &&
-        location.y <= spriteBounds.origin.y + spriteBounds.size.height) {
-        
-        location = hero.position;
-        [hero stopMovement];
-        [hero.pathToFollow clear];
-        [hero.pathToFollow startAcceptingInput];
-        [hero.pathToFollow processPoint:location];
-    }
-}
-
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (hero.pathToFollow.acceptingInput) {
-        UITouch *touch = [touches anyObject];
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        [hero.pathToFollow processPoint:location];
-    }
-}
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (hero.pathToFollow.acceptingInput) {
-        UITouch *touch = [touches anyObject];
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        [hero.pathToFollow processPoint:location];
-        [hero.pathToFollow stopAcceptingInput];
-    }
-}
+//- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = [touches anyObject];
+//    CGPoint location = [touch locationInView:[touch view]];
+//    location = [[CCDirector sharedDirector] convertToGL:location];
+//    
+//    // Check the touch began in the hero sprite
+//    CGRect spriteBounds = CGRectMake(hero.position.x - hero.contentSize.width / 2,
+//                                     hero.position.y - hero.contentSize.height / 2,
+//                                     hero.contentSize.width,
+//                                     hero.contentSize.height);
+//    
+//    if (location.x >= spriteBounds.origin.x
+//        && location.x <= spriteBounds.origin.x + spriteBounds.size.width
+//        && location.y >= spriteBounds.origin.y &&
+//        location.y <= spriteBounds.origin.y + spriteBounds.size.height) {
+//        
+//        location = hero.position;
+//        [hero stopMovement];
+//        [hero.pathToFollow clear];
+//        [hero.pathToFollow startAcceptingInput];
+//        [hero.pathToFollow processPoint:location];
+//    }
+//}
+//
+//- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//    if (hero.pathToFollow.acceptingInput) {
+//        UITouch *touch = [touches anyObject];
+//        CGPoint location = [touch locationInView:[touch view]];
+//        location = [[CCDirector sharedDirector] convertToGL:location];
+//        [hero.pathToFollow processPoint:location];
+//    }
+//}
+//
+//- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    if (hero.pathToFollow.acceptingInput) {
+//        UITouch *touch = [touches anyObject];
+//        CGPoint location = [touch locationInView:[touch view]];
+//        location = [[CCDirector sharedDirector] convertToGL:location];
+//        [hero.pathToFollow processPoint:location];
+//        [hero.pathToFollow stopAcceptingInput];
+//    }
+//}
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
@@ -164,8 +171,7 @@ enum {
 {	
 	delete m_debugDraw;
     
-    [heroSpriteSheet release];
-    [hero release];
+    [manager release];
 
 	// don't forget to call "super dealloc"
 	[super dealloc];

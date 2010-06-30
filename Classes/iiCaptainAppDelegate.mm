@@ -9,10 +9,19 @@
 #import "iiCaptainAppDelegate.h"
 #import "cocos2d.h"
 #import "HelloWorldScene.h"
+#import "IIGestureManager.h"
 
 @implementation iiCaptainAppDelegate
 
 @synthesize window;
+
+- (void)handleDrag:(UIPanGestureRecognizer *)sender {
+    NSLog(@"Got dragging");
+}
+
+- (void)handleDrag2:(UIPanGestureRecognizer *)sender {
+    NSLog(@"Got dragging2");
+}
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
@@ -34,7 +43,7 @@
 	
 	// Create a depth buffer of 16 bits
 	// Enable it if you are going to use 3D transitions or 3d objects
-//	[[CCDirector sharedDirector] setDepthBufferFormat:kDepthBuffer16];
+    //[[CCDirector sharedDirector] setDepthBufferFormat:kDepthBuffer16];
 	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
@@ -50,8 +59,23 @@
 	[[CCDirector sharedDirector] attachInView:window];	
 	[window makeKeyAndVisible];		
 		
-		
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
+    // Creates gesture manager
+	IIGestureManager *manager = [IIGestureManager gestureManagerWithTargetView:window];
+    [manager autorelease];
+    
+    // Creates a single touch and drag recognizer
+    UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] init];
+    [dragRecognizer setMinimumNumberOfTouches:1];
+    [dragRecognizer setMaximumNumberOfTouches:1];
+    [dragRecognizer autorelease];
+    
+    // Add the gesture recognizer to the manager
+    IITaggedGestureRecognizer *gesture = [[IITaggedGestureRecognizer alloc] initWithName:@"singleDragGesture"
+                                                                    andGestureRecognizer:dragRecognizer];
+    [gesture autorelease];
+    [manager addGesture:gesture];
+	
+	[[CCDirector sharedDirector] runWithScene: [HelloWorld sceneAndManager: manager]];
 }
 
 

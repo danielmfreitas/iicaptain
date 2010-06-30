@@ -16,15 +16,13 @@
 @implementation IISmoothPath
 
 @synthesize minimumLineLength;
-@synthesize acceptingInput;
 
--(id) initWithMinimumLineLength: (CGFloat) minimumLength {
-
+- (id) initWithMinimumLineLength: (CGFloat) minimumLength {
+    
     if ((self = [super init])) {
         linesInPath = [[NSMutableArray alloc] init];
         minimumLineLength = minimumLength;
         firstPoint = CGPointZero;
-        acceptingInput = NO;
     }
 
     return self;
@@ -55,7 +53,7 @@
     }
 }
 
--(void) clear {
+- (void) clear {
 
     for (IILine2D *line in linesInPath) {
         [self removeChild:line cleanup:YES];
@@ -65,11 +63,11 @@
     firstPoint = CGPointZero;
 }
 
--(NSInteger) count {
+- (NSInteger) count {
     return [linesInPath count];
 }
 
--(IILine2D *) firstLine {
+- (IILine2D *) firstLine {
     if (linesInPath.count == 0) {
         return nil;
     } else {
@@ -77,7 +75,7 @@
     }
 }
 
--(IILine2D *) lastLine {
+- (IILine2D *) lastLine {
     if (linesInPath.count == 0) {
         return nil;
     } else {
@@ -86,20 +84,12 @@
 
 }
 
--(void) removeFirstLine {
+- (void) removeFirstLine {
     if (linesInPath.count > 0) {
         IILine2D *firstLine = [self firstLine];
         [linesInPath removeObjectAtIndex:0];
         [self removeChild:firstLine cleanup:YES];
     }
-}
-
--(void) startAcceptingInput {
-    acceptingInput = YES;
-}
-
--(void) stopAcceptingInput {
-    acceptingInput = NO;
 }
 
 - (void) dealloc {

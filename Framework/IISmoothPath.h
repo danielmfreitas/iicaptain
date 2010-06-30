@@ -17,17 +17,13 @@
     CGPoint firstPoint;
     CGPoint lastPoint;
     CGFloat minimumLineLength;
-    BOOL acceptingInput;
 }
 
 @property (nonatomic, readonly) CGFloat minimumLineLength;
-@property (nonatomic, readonly) BOOL acceptingInput;
 
 -(id) initWithMinimumLineLength: (CGFloat) minimumLength;
 -(void) processPoint: (CGPoint) newPoint;
 -(void) clear;
--(void) startAcceptingInput;
--(void) stopAcceptingInput;
 -(NSInteger) count;
 -(IILine2D *) firstLine;
 -(IILine2D *) lastLine;
