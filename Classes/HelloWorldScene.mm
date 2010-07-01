@@ -48,7 +48,7 @@ enum {
 // initialize your instance here
 -(id) initWithManager: (IIGestureManager *) theManager
 {
-	if( (self=[super init])) {
+	if( (self=[super initWithColor:ccc4(0, 0, 128, 255)])) {
 		
 		// enable touches
 		self.isTouchEnabled = YES;
@@ -64,47 +64,18 @@ enum {
         manager = theManager;
         [manager retain];
         
-        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"ship.png"];
-        hero = [IICaptain spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 32) andManager: manager];
+        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
+        hero = [IICaptain spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 64) andManager: manager];
         [hero addPathToNode: self];
         
         [self addChild:heroSpriteSheet z:1]; 
         // TODO Figure out a way to add pathToFollow automatically.
         // [self addChild: hero.pathToFollow z: -1];
         [heroSpriteSheet addChild:hero];
-        
-        CCAnimation *moveAnimation = [CCAnimation animationWithName:@"heroMove" delay:0.3f];
-        
-        for (int x = 0; x < 2; x++) {
-            CCSpriteFrame *frame = [CCSpriteFrame frameWithTexture:heroSpriteSheet.texture
-                                                              rect:CGRectMake(x * 32, 0, 32, 32)
-                                                            offset:ccp(0,0)];
-            [moveAnimation addFrame:frame];
-        }
-        
-        CCAnimate *moveAction = [CCAnimate actionWithAnimation:moveAnimation];
-        CCRepeatForever *repeat = [CCRepeatForever actionWithAction:moveAction];
-        [hero runAction:repeat];
-        
         [hero setPosition:CGPointMake(screenSize.width / 2, screenSize.height / 2)];
     }
     
 	return self;
-}
-
--(void) draw
-{
-	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-	// Needed states:  GL_VERTEX_ARRAY, 
-	// Unneeded states: GL_TEXTURE_2D, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	
-	// restore default GL states
-	glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 -(void) addNewSpriteWithCoords:(CGPoint)p

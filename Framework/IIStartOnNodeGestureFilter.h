@@ -14,8 +14,11 @@
 {
     CCNode *targetNode;
     BOOL shouldAcceptInput;
+    NSInteger widthTolerance;
+    NSInteger heightTolerance;
 }
 
 - (id) initWithNode: (CCNode *) node;
+- (id) initWithNode: (CCNode *) node widthTolerance: (NSInteger) theWTolerance andHeightTolerance: (NSInteger) theHTolerance;
 
 @end

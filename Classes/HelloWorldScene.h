@@ -17,7 +17,7 @@
 #import "IIGestureManager.h"
 
 // HelloWorld Layer
-@interface HelloWorld : CCLayer
+@interface HelloWorld : CCColorLayer
 {
 	GLESDebugDraw *m_debugDraw;
     CCSpriteSheet *heroSpriteSheet;

@@ -21,6 +21,16 @@
     return self;
 }
 
+- (id) initWithNode: (CCNode *) node widthTolerance: (NSInteger) theWTolerance andHeightTolerance: (NSInteger) theHTolerance {
+    
+    if ((self = [self initWithNode: node])) {
+        widthTolerance = theWTolerance;
+        heightTolerance = theHTolerance;
+    }
+    
+    return self;
+}
+
 - (BOOL) acceptsEvent: (UIGestureRecognizer *) recognizer {
     
     switch (recognizer.state) {
@@ -28,10 +38,10 @@
             CGPoint point = [recognizer locationInView: recognizer.view];
             
             point = [[CCDirector sharedDirector] convertToGL:point];
-            CGRect spriteBounds = CGRectMake(targetNode.position.x - targetNode.contentSize.width / 2,
-                                             targetNode.position.y - targetNode.contentSize.height / 2,
-                                             targetNode.contentSize.width,
-                                             targetNode.contentSize.height);
+            CGRect spriteBounds = CGRectMake(targetNode.position.x - (targetNode.contentSize.width / 2 + widthTolerance),
+                                             targetNode.position.y - (targetNode.contentSize.height / 2 + heightTolerance),
+                                             targetNode.contentSize.width + widthTolerance,
+                                             targetNode.contentSize.height + heightTolerance);
             
             if (point.x >= spriteBounds.origin.x
                 && point.x <= spriteBounds.origin.x + spriteBounds.size.width

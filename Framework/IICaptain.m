@@ -37,7 +37,7 @@
 
 - (void) setManager:(IIGestureManager *) theManager {
     manager = theManager;
-    IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: self] autorelease];
+    IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: self widthTolerance: 16 andHeightTolerance: 0] autorelease];
     [manager addTarget: self action: @selector(handleDragGesture:) toRecognizer: @"singleDragGesture" withFilter: filter];
     [manager retain];
 }
