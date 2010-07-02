@@ -15,6 +15,7 @@
 @synthesize endPoint;
 @synthesize midPoint;
 @synthesize length;
+@synthesize slope;
 @synthesize xTextureTranslate;
 @synthesize yTextureTranslate;
 
@@ -43,12 +44,12 @@
         
     } else {
         
-        CGFloat slope = (p2.y - p1.y) / (p2.x - p1.x);
+        CGFloat theSlope = (p2.y - p1.y) / (p2.x - p1.x);
         
         if (xLength >= 0) {
-            rotation = 90 - [IIMath2D radiansToDegrees:atanf(slope)];
+            rotation = 90 - [IIMath2D radiansToDegrees:atanf(theSlope)];
         } else {
-            rotation = -90 - [IIMath2D radiansToDegrees:atanf(slope)];
+            rotation = -90 - [IIMath2D radiansToDegrees:atanf(theSlope)];
         }
     }
   
@@ -62,10 +63,11 @@
     startPoint = aPoint;
     endPoint = finalPoint;
     length = [IIMath2D lineLengthFromPoint:aPoint toEndPoint:finalPoint];
+    slope = [IIMath2D slopeOfLine: aPoint lineEnd: finalPoint];
+    midPoint = [IIMath2D pointAtLength:length / 2 startPoint:aPoint endPoint:finalPoint];
     
     CGFloat xLength = finalPoint.x - aPoint.x;
     CGFloat yLength = finalPoint.y - aPoint.y;
-    midPoint = CGPointMake(aPoint.x + (xLength / 2), aPoint.y + (yLength / 2));
 
     CGFloat rotation = [self calculateRotationWithXLength: xLength yLength: yLength startPoint: aPoint endPoint: finalPoint];
 

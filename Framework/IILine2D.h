@@ -21,6 +21,7 @@
     CGPoint endPoint;
     CGPoint midPoint;
     CGFloat length;
+    CGFloat slope;
     CGFloat yOffset;
     CGFloat xTextureTranslate;
     CGFloat yTextureTranslate;
@@ -47,6 +48,11 @@
  * The length of the line.
  */
 @property (nonatomic, readonly) CGFloat length;
+
+/**
+ * The slope of the line. Returns INFINITY if the line is vertical.
+ */
+@property (nonatomic, readonly) CGFloat slope;
 
 /**
  * Translates the texture withing the sprite alongside the Y axis by the specified offset. The offset will translate the

@@ -8,7 +8,6 @@
 
 #import "IIMath2D.h"
 
-
 @implementation IIMath2D
 
 + (CGFloat) lineLengthFromPoint: (CGPoint) startPoint toEndPoint: (CGPoint) endPoint {
@@ -24,8 +23,21 @@
     return distance;
 }
 
++ (CGPoint) pointAtLength: (CGFloat) length startPoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+    
+    CGFloat lineLength = [self lineLengthFromPoint:startPoint toEndPoint:endPoint];
+    CGFloat ratio = length / lineLength;
+    
+    CGFloat xLength = endPoint.x - startPoint.x;
+    CGFloat yLength = endPoint.y - startPoint.y;
+    
+    CGPoint pointAtLength = CGPointMake(startPoint.x + (xLength * ratio), startPoint.y + (yLength * ratio));
+    
+    return pointAtLength;
+}
+
 + (CGFloat) radiansToDegrees: (CGFloat) angleInRadians {
-    return angleInRadians * 180 / M_PI;
+    return (angleInRadians * 180) / M_PI;
 }
 
 + (BOOL) lineIsVertical: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd {
@@ -46,8 +58,12 @@
     }
 }
 
-+ (CGFloat) slopeOfLine: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd {    
-    return (lineEnd.y - lineStart.y) / (lineEnd.x - lineStart.x);
++ (CGFloat) slopeOfLine: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd {   
+    if ([self lineIsVertical: lineStart lineEnd: lineEnd]) {
+        return INFINITY;
+    } else {
+        return (lineEnd.y - lineStart.y) / (lineEnd.x - lineStart.x);
+    }
 }
 
 + (CGFloat) lineAngleFromX: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd {
@@ -65,10 +81,32 @@
 
 + (CGFloat) angleBetweenLines: (CGPoint) line1Start line1End: (CGPoint) line1End line2Start: (CGPoint) line2Start line2End: (CGPoint) line2End {
     
-    CGFloat line1AngleFromX = [IIMath2D lineAngleFromX: line1Start lineEnd: line1End];
-    CGFloat line2AngleFromX = [IIMath2D lineAngleFromX: line2Start lineEnd: line2End];
+    CGFloat angleX1 = [self lineAngleFromX: line1Start lineEnd: line1End];
+    CGFloat angleX2 = [self lineAngleFromX: line2Start lineEnd: line2End];
     
-    return abs(line1AngleFromX - line2AngleFromX);
+    if (angleX1 > 0) {
+        if (line1End.x < line1Start.x) {
+            angleX1 = -M_PI + angleX1;
+        }
+    } else {
+        if (line1End.x < line1Start.x) {
+            angleX1 = M_PI + angleX1;
+        }
+    }
+    
+    if (angleX2 > 0) {
+        if (line2End.x < line2Start.x) {
+            angleX2 = -M_PI + angleX2;
+        }
+    } else {
+        if (line2End.x < line2Start.x) {
+            angleX2 = M_PI + angleX2;
+        }
+    }
+    
+    CGFloat angleBetweenLines = M_PI - fabs(angleX2 - angleX1);
+    
+    return fabs(angleBetweenLines);
 }
 
 @end
