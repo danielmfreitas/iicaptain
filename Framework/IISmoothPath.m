@@ -35,9 +35,17 @@
         return;
     }
     
+    // Get last two lines
     IILine2D *previousLine = [linesInPath objectAtIndex: [linesInPath count] - 2];
     IILine2D *lastLine = [linesInPath lastObject];
     
+    // If last line is a point, skip.
+    if (previousLine.startPoint.x == previousLine.endPoint.x && previousLine.startPoint.y == previousLine.endPoint.y) {
+        NSLog(@"Last line is a point. Return.");
+        return;
+    }
+    
+    // Get the angle between the two lines and see if it is too sharp. Igf it is, smooth it out.
     CGFloat angleBetweenLastTwoLines = [IIMath2D angleBetweenLines:previousLine.startPoint
                                                           line1End:previousLine.endPoint
                                                         line2Start:lastLine.startPoint
@@ -45,7 +53,7 @@
     
     if (angleBetweenLastTwoLines <= MIN_ANGLE_BEFORE_SMOOTH_IN_RADS) {
 
-        //1 - In the previous line, get the point at length - minimumLineLength.
+        //1 - In the previous line, get the point at (length - minimumLineLength).
         CGPoint newPointPreviousLine = [IIMath2D pointAtLength: (previousLine.length - minimumLineLength)
                                                     startPoint: previousLine.startPoint
                                                       endPoint: previousLine.endPoint];
@@ -54,7 +62,7 @@
         CGPoint newPointLastLine = [IIMath2D pointAtLength: minimumLineLength startPoint: lastLine.startPoint
                                           endPoint: lastLine.endPoint];
         
-        //3 - Adjust points so dintance between them is multiple of minimumLineLength.
+        //3 - Adjust new points so that the distance between them is a multiple of minimumLineLength.
         CGFloat newLineLength = [IIMath2D lineLengthFromPoint: newPointPreviousLine toEndPoint: newPointLastLine];
         
         NSInteger lengthMultiple = (NSInteger) (newLineLength / minimumLineLength);
@@ -71,15 +79,18 @@
         
         newPointLastLine = CGPointMake(adjustedX, adjustedY);
         
-        //4 - Move last line start point to new last line point, respecting minimumLineLength.
+        //4 - Move last line start point to new created point.
+        //    Check new length of last line and adjust it to a multiple of minimumLineLength.
         lastLine.startPoint = newPointLastLine;
         CGFloat distanceBetweenOriginalLines = [IIMath2D lineLengthFromPoint:newPointPreviousLine toEndPoint:lastLine.endPoint];
         
-        BOOL removeLastLine = NO;
-        
         if (distanceBetweenOriginalLines <= minimumLineLength) {
-            removeLastLine = YES;
+            // If the distance between the first new point and last line's end point <= minimum length we need to remove
+            // the last line. TODO removing last line still does not look so good.
+            lastLine.endPoint = lastLine.startPoint;
         } else {
+            // If the distance > minimum length, then move lastLine's star point to the new point and adjust ist's length
+            // to respect minimumLineLength ratio.
             lastLine.startPoint = newPointLastLine;
             lengthMultiple = (NSInteger) (lastLine.length / minimumLineLength);
             
@@ -96,22 +107,18 @@
             lastLine.endPoint = CGPointMake(adjustedX, adjustedY);
         }
 
-        //5 - Move previous line end point to new previous line point.
+        //5 - Move previous line end point to the first new point.
         previousLine.endPoint = newPointPreviousLine;
         
-        //6 - Now connect a new line between the points.
+        //6 - Now connect a new line between the new points.
         IILine2D *newLine = [IILine2D lineFromOrigin:newPointPreviousLine toEnd:newPointLastLine withTextureFile:@"path_texture.png"];
         [linesInPath removeLastObject];
         [linesInPath addObject:newLine];
         [self addChild:newLine];
         
-        if (!removeLastLine) {
-            [linesInPath addObject:lastLine];
-            lastPoint = lastLine.endPoint;
-        } else {
-            [self removeChild:lastLine cleanup:YES];
-            lastPoint = newLine.endPoint;
-        }
+        //Do a final check to see if the last line should be removed or not.
+        [linesInPath addObject:lastLine];
+        lastPoint = lastLine.endPoint;
     }
 }
 
