@@ -10,8 +10,8 @@
 #import "IILine2D.h"
 #import "IIMath2D.h"
 
-// 1.5707 rad =~ 90 degrees
-#define MIN_ANGLE_BEFORE_SMOOTH_IN_RADS 2.8
+// 2.7925 rad =~ 160 degrees
+#define MIN_ANGLE_BEFORE_SMOOTH_IN_RADS 2.7925
 
 @implementation IISmoothPath
 
