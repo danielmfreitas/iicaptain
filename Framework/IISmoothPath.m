@@ -23,7 +23,6 @@
     if ((self = [super init])) {
         linesInPath = [[NSMutableArray alloc] init];
         minimumLineLength = minimumLength;
-        firstPoint = CGPointZero;
     }
 
     return self;
@@ -125,23 +124,22 @@
         [linesInPath addObject:newLine];
         [self addChild:newLine];
         [linesInPath addObject:lastLine];
-        lastPoint = lastLine.endPoint;
     }
 }
 
 - (void) processPoint: (CGPoint)newPoint {
     
-    if (CGPointEqualToPoint(firstPoint, CGPointZero)) {
-        firstPoint = newPoint;
-        lastPoint = firstPoint;
+    if ([linesInPath count] == 0) {
+        IILine2D *firstLine = [IILine2D lineFromOrigin:newPoint toEnd:newPoint withTextureFile:@"path_texture.png"];
+        [linesInPath addObject:firstLine];
+        [self addChild:firstLine];
     } else {
-        if ([IIMath2D lineLengthFromPoint:lastPoint toEndPoint:newPoint] >= minimumLineLength) {
+        if ([IIMath2D lineLengthFromPoint:[self lastLine].endPoint toEndPoint:newPoint] >= minimumLineLength) {
             
-            CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:lastPoint endPoint:newPoint];
-            IILine2D *line = [IILine2D lineFromOrigin:lastPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
+            CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:[self lastLine].endPoint endPoint:newPoint];
+            IILine2D *line = [IILine2D lineFromOrigin:[self lastLine].endPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
             [linesInPath addObject:line];
             [self addChild:line];
-            lastPoint = adjustedPoint;
             
             [self smoothPath];
         }
@@ -155,7 +153,6 @@
     }
     
     [linesInPath removeAllObjects];
-    firstPoint = CGPointZero;
 }
 
 - (NSInteger) count {

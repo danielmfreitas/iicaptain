@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Debug</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -319,6 +319,8 @@
 							<string>MainColumn</string>
 							<real>226</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>0 59 1440 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -346,7 +348,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D3B500AE11DF002F00FD95F2</string>
+										<string>D3B500CF11DF019600FD95F2</string>
 										<key>history</key>
 										<array>
 											<string>D35462F411CB42320053E707</string>
@@ -378,7 +380,6 @@
 											<string>D3F8E90C11DD00D3007B4400</string>
 											<string>D3571AB411DD346500DC928D</string>
 											<string>D3571AE511DD835100DC928D</string>
-											<string>D3AFD1A611DD923200993999</string>
 											<string>D3AFD20F11DD9B6B00993999</string>
 											<string>D3AFD28311DDABC400993999</string>
 											<string>D3AFD29A11DDAC8500993999</string>
@@ -388,7 +389,8 @@
 											<string>D3AFD39911DE942000993999</string>
 											<string>D3AFD39E11DE951400993999</string>
 											<string>D322044911DEA245007ED6C2</string>
-											<string>D3B500A411DF000500FD95F2</string>
+											<string>D3B500CD11DF019600FD95F2</string>
+											<string>D3B500CE11DF019600FD95F2</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -403,6 +405,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {1192, 700}}</string>
+								<key>RubberWindowFrame</key>
+								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -480,6 +484,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1192, 46}}</string>
+										<key>RubberWindowFrame</key>
+										<string>0 59 1440 819 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -563,8 +569,6 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1440, 134}}</string>
-						<key>RubberWindowFrame</key>
-						<string>0 59 1440 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -639,11 +643,7 @@
 							</array>
 							<key>Frame</key>
 							<string>{{567, 0}, {873, 259}}</string>
-							<key>RubberWindowFrame</key>
-							<string>0 59 1440 819 0 0 1440 878 </string>
 						</dict>
-						<key>RubberWindowFrame</key>
-						<string>0 59 1440 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -690,7 +690,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>299827247.90685099</real>
+	<real>299827606.43317097</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -707,7 +707,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>D3B500AF11DF002F00FD95F2</string>
 		<string>D3B500AA11DF002700FD95F2</string>
 		<string>D3B500A711DF000500FD95F2</string>
 		<string>/Users/dfreitas/dev/projects/iphone/iiCaptain/iiCaptain.xcodeproj</string>

@@ -183,6 +183,12 @@
 			D3B500AD11DF002B00FD95F2 /* PBXTextBookmark */ = D3B500AD11DF002B00FD95F2 /* PBXTextBookmark */;
 			D3B500AE11DF002F00FD95F2 /* PBXTextBookmark */ = D3B500AE11DF002F00FD95F2 /* PBXTextBookmark */;
 			D3B500B011DF005200FD95F2 /* PBXTextBookmark */ = D3B500B011DF005200FD95F2 /* PBXTextBookmark */;
+			D3B500B911DF013C00FD95F2 /* PBXTextBookmark */ = D3B500B911DF013C00FD95F2 /* PBXTextBookmark */;
+			D3B500BA11DF013C00FD95F2 /* PBXTextBookmark */ = D3B500BA11DF013C00FD95F2 /* PBXTextBookmark */;
+			D3B500BB11DF013C00FD95F2 /* PBXTextBookmark */ = D3B500BB11DF013C00FD95F2 /* PBXTextBookmark */;
+			D3B500CD11DF019600FD95F2 /* PBXTextBookmark */ = D3B500CD11DF019600FD95F2 /* PBXTextBookmark */;
+			D3B500CE11DF019600FD95F2 /* XCBuildMessageTextBookmark */ = D3B500CE11DF019600FD95F2 /* XCBuildMessageTextBookmark */;
+			D3B500CF11DF019600FD95F2 /* PBXTextBookmark */ = D3B500CF11DF019600FD95F2 /* PBXTextBookmark */;
 			D3BDC19011D9A340000D0409 = D3BDC19011D9A340000D0409 /* PBXTextBookmark */;
 			D3BDC19111D9A340000D0409 = D3BDC19111D9A340000D0409 /* PBXTextBookmark */;
 			D3BDC19311D9A340000D0409 = D3BDC19311D9A340000D0409 /* PBXTextBookmark */;
@@ -332,7 +338,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 28";
 		rLen = 0;
-		rLoc = 638;
+		rLoc = 604;
 		rType = 0;
 		vrLen = 2014;
 		vrLoc = 284;
@@ -342,7 +348,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 28";
 		rLen = 0;
-		rLoc = 638;
+		rLoc = 604;
 		rType = 0;
 		vrLen = 2014;
 		vrLoc = 284;
@@ -417,16 +423,16 @@
 	};
 	D338447E11CED05400D18251 /* IISmoothPath.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1131, 621}}";
-			sepNavSelRange = "{429, 17}";
-			sepNavVisRange = "{0, 664}";
+			sepNavIntBoundsRect = "{{0, 0}, {1131, 658}}";
+			sepNavSelRange = "{307, 0}";
+			sepNavVisRange = "{0, 617}";
 		};
 	};
 	D338447F11CED05400D18251 /* IISmoothPath.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1379, 2093}}";
-			sepNavSelRange = "{5638, 0}";
-			sepNavVisRange = "{5044, 958}";
+			sepNavIntBoundsRect = "{{0, 0}, {1131, 2366}}";
+			sepNavSelRange = "{6723, 0}";
+			sepNavVisRange = "{5749, 1328}";
 			sepNavWindowFrame = "{{15, 151}, {1425, 722}}";
 		};
 	};
@@ -603,7 +609,7 @@
 		fRef = D338447E11CED05400D18251 /* IISmoothPath.h */;
 		name = "IISmoothPath.h: 22";
 		rLen = 17;
-		rLoc = 429;
+		rLoc = 382;
 		rType = 0;
 		vrLen = 664;
 		vrLoc = 0;
@@ -707,7 +713,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 36";
 		rLen = 0;
-		rLoc = 1061;
+		rLoc = 1027;
 		rType = 0;
 		vrLen = 2190;
 		vrLoc = 411;
@@ -717,7 +723,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 103";
 		rLen = 0;
-		rLoc = 5043;
+		rLoc = 5009;
 		rType = 0;
 		vrLen = 2765;
 		vrLoc = 2956;
@@ -727,7 +733,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 127";
 		rLen = 0;
-		rLoc = 6098;
+		rLoc = 6152;
 		rType = 0;
 		vrLen = 1518;
 		vrLoc = 4703;
@@ -737,7 +743,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 65";
 		rLen = 0;
-		rLoc = 2231;
+		rLoc = 2197;
 		rType = 0;
 		vrLen = 2788;
 		vrLoc = 1299;
@@ -747,7 +753,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 65";
 		rLen = 0;
-		rLoc = 2231;
+		rLoc = 2197;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 1386;
@@ -757,7 +763,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 117";
 		rLen = 0;
-		rLoc = 5731;
+		rLoc = 5697;
 		rType = 0;
 		vrLen = 2663;
 		vrLoc = 3496;
@@ -767,7 +773,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 65";
 		rLen = 0;
-		rLoc = 1924;
+		rLoc = 1890;
 		rType = 0;
 		vrLen = 2512;
 		vrLoc = 1210;
@@ -777,7 +783,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 122";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2668;
 		vrLoc = 3431;
@@ -787,7 +793,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 122";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2796;
 		vrLoc = 3431;
@@ -797,7 +803,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 122";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2600;
 		vrLoc = 3627;
@@ -807,7 +813,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 123";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2521;
 		vrLoc = 3627;
@@ -817,7 +823,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 123";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2532;
 		vrLoc = 3731;
@@ -827,7 +833,7 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 123";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 2532;
 		vrLoc = 3731;
@@ -837,10 +843,69 @@
 		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
 		name = "IISmoothPath.m: 122";
 		rLen = 0;
-		rLoc = 5638;
+		rLoc = 5604;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 5044;
+	};
+	D3B500B911DF013C00FD95F2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D338447E11CED05400D18251 /* IISmoothPath.h */;
+		name = "IISmoothPath.h: 22";
+		rLen = 17;
+		rLoc = 382;
+		rType = 0;
+		vrLen = 664;
+		vrLoc = 0;
+	};
+	D3B500BA11DF013C00FD95F2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
+		name = "IISmoothPath.m: 136";
+		rLen = 0;
+		rLoc = 5841;
+		rType = 0;
+		vrLen = 1680;
+		vrLoc = 5054;
+	};
+	D3B500BB11DF013C00FD95F2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
+		name = "IISmoothPath.m: 139";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1783;
+		vrLoc = 5055;
+	};
+	D3B500CD11DF019600FD95F2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D338447E11CED05400D18251 /* IISmoothPath.h */;
+		name = "IISmoothPath.h: 16";
+		rLen = 0;
+		rLoc = 307;
+		rType = 0;
+		vrLen = 617;
+		vrLoc = 0;
+	};
+	D3B500CE11DF019600FD95F2 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'lastPoint' undeclared (first use in this function)";
+		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 125;
+		rType = 1;
+	};
+	D3B500CF11DF019600FD95F2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = D338447F11CED05400D18251 /* IISmoothPath.m */;
+		name = "IISmoothPath.m: 155";
+		rLen = 0;
+		rLoc = 6723;
+		rType = 0;
+		vrLen = 1328;
+		vrLoc = 5749;
 	};
 	D3BDC19011D9A340000D0409 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -953,7 +1018,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
