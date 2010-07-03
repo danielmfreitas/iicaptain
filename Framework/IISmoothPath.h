@@ -14,8 +14,6 @@
 
 @interface IISmoothPath : CCNode {
     NSMutableArray* linesInPath;
-    CGPoint firstPoint;
-    CGPoint lastPoint;
     CGFloat minimumLineLength;
 }
 

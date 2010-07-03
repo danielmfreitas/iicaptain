@@ -166,7 +166,7 @@
 }
 
 - (void) stopMovement {
-    currentLineBeingFollowed = nil;
+    [self setCurrentLineBeingFollowed:nil];
 }
 
 - (void) addPathToNode: (CCNode *) theNode {
@@ -184,6 +184,7 @@
 -(void) dealloc {
     [manager release];
     [pathToFollow release];
+    [currentLineBeingFollowed release];
     [super dealloc];
 }
 

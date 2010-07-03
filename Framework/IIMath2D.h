@@ -24,6 +24,11 @@
 + (CGFloat) lineLengthFromPoint: (CGPoint) startPoint toEndPoint: (CGPoint) endPoint;
 
 /**
+ * Gets the point in the line formed by the start and end points at the specified length from the star point.
+ */
++ (CGPoint) pointAtLength: (CGFloat) length startPoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint;
+
+/**
  * Converts radians to degrees.
  */
 + (CGFloat) radiansToDegrees: (CGFloat) angleInRadians;
