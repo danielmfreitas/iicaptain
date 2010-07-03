@@ -50,6 +50,22 @@
     return CGPointMake(adjustedX, adjustedY);
 }
 
+/**
+ * Add the line to the path and node.
+ */
+- (void) addLine: (IILine2D *) line {
+    [linesInPath addObject:line];
+    [self addChild:line];
+}
+
+/**
+ * Remove the line from the path and node.
+ */
+- (void) removeLine: (IILine2D *) line {
+    [linesInPath removeObject:line];
+    [self removeChild:line cleanup:YES];
+}
+
 - (void) smoothPath {
     
     // Bail out if there are not at least two lines.
@@ -63,8 +79,7 @@
     
     // If last line is a POISON point, skip and remove. This will prevent the algorithm from removing last smoothed line.
     if (previousLine.startPoint.x == previousLine.endPoint.x && previousLine.startPoint.y == previousLine.endPoint.y) {
-        [linesInPath removeObjectAtIndex:[linesInPath count] - 2];
-        [self removeChild:previousLine cleanup:YES];
+        [self removeLine:previousLine];
         return;
     }
     
@@ -113,33 +128,43 @@
         //6 - Now connect a new line between the new points.
         IILine2D *newLine = [IILine2D lineFromOrigin:newPointPreviousLine toEnd:newPointLastLine withTextureFile:@"path_texture.png"];
         
-        [linesInPath removeLastObject];
+        // Remove last line to reinsert it after new line.
+        [linesInPath removeObject:lastLine];
         
         // If previous line new length is zero, remove it.
         if (previousLine.length == 0) {
-            [linesInPath removeLastObject];
-            [self removeChild:previousLine cleanup:YES];
+            [self removeLine:previousLine];
         }
         
-        [linesInPath addObject:newLine];
-        [self addChild:newLine];
+        [self addLine:newLine];
         [linesInPath addObject:lastLine];
     }
 }
 
 - (void) processPoint: (CGPoint)newPoint {
     
+    static IILine2D *firstLineInPath = nil;
+    
     if ([linesInPath count] == 0) {
-        IILine2D *firstLine = [IILine2D lineFromOrigin:newPoint toEnd:newPoint withTextureFile:@"path_texture.png"];
-        [linesInPath addObject:firstLine];
-        [self addChild:firstLine];
+        if (firstLineInPath == nil) {
+            firstLineInPath = [IILine2D lineFromOrigin:newPoint toEnd:newPoint withTextureFile:@"path_texture.png"];
+            [firstLineInPath retain];
+        } else {
+            if ([IIMath2D lineLengthFromPoint:firstLineInPath.endPoint toEndPoint:newPoint] >= minimumLineLength) {
+                CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:[self lastLine].endPoint endPoint:newPoint];
+                firstLineInPath.endPoint = adjustedPoint;
+                [self addLine:firstLineInPath];
+                [firstLineInPath release];
+                firstLineInPath = nil;
+            }
+        }
     } else {
         if ([IIMath2D lineLengthFromPoint:[self lastLine].endPoint toEndPoint:newPoint] >= minimumLineLength) {
             
             CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:[self lastLine].endPoint endPoint:newPoint];
+            
             IILine2D *line = [IILine2D lineFromOrigin:[self lastLine].endPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
-            [linesInPath addObject:line];
-            [self addChild:line];
+            [self addLine:line];
             
             [self smoothPath];
         }
@@ -179,8 +204,7 @@
 - (void) removeFirstLine {
     if (linesInPath.count > 0) {
         IILine2D *firstLine = [self firstLine];
-        [linesInPath removeObjectAtIndex:0];
-        [self removeChild:firstLine cleanup:YES];
+        [self removeLine:firstLine];
     }
 }
 
