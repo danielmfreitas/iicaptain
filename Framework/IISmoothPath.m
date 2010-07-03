@@ -28,6 +28,28 @@
     return self;
 }
 
+/**
+ * Given the line formed by the two points, calculates a new end point to guarante line length is multiple of
+ * minimum line length. The new point will guarante the line has length at least equal to minimum length.
+ */
+- (CGPoint) calculateLengthToBeMultipleOfMinimumLength: (CGPoint) startPoint endPoint: (CGPoint) endPoint {
+    CGFloat lineLength = [IIMath2D lineLengthFromPoint: startPoint toEndPoint: endPoint];
+    
+    NSInteger lengthMultiple = (NSInteger) (lineLength / minimumLineLength);
+    
+    if (lengthMultiple == 0) {
+        lengthMultiple = 1;
+    }
+    
+    CGFloat adjustedLength = lengthMultiple * minimumLineLength; 
+    CGFloat lineRatio = adjustedLength / lineLength;
+    
+    CGFloat adjustedX = startPoint.x + ((endPoint.x - startPoint.x) * lineRatio);
+    CGFloat adjustedY = startPoint.y + ((endPoint.y - startPoint.y) * lineRatio);
+    
+    return CGPointMake(adjustedX, adjustedY);
+}
+
 - (void) smoothPath {
     
     // Bail out if there are not at least two lines.
@@ -63,21 +85,7 @@
                                           endPoint: lastLine.endPoint];
         
         //3 - Adjust new points so that the distance between them is a multiple of minimumLineLength.
-        CGFloat newLineLength = [IIMath2D lineLengthFromPoint: newPointPreviousLine toEndPoint: newPointLastLine];
-        
-        NSInteger lengthMultiple = (NSInteger) (newLineLength / minimumLineLength);
-        
-        if (lengthMultiple == 0) {
-            lengthMultiple = 1;
-        }
-        
-        CGFloat adjustedLength = lengthMultiple * minimumLineLength; 
-        CGFloat lineRatio = adjustedLength / newLineLength;
-        
-        CGFloat adjustedX = newPointPreviousLine.x + ((newPointLastLine.x - newPointPreviousLine.x) * lineRatio);
-        CGFloat adjustedY = newPointPreviousLine.y + ((newPointLastLine.y - newPointPreviousLine.y) * lineRatio);
-        
-        newPointLastLine = CGPointMake(adjustedX, adjustedY);
+        newPointLastLine = [self calculateLengthToBeMultipleOfMinimumLength:newPointPreviousLine endPoint:newPointLastLine];
         
         //4 - Move last line start point to new created point.
         //    Check new length of last line and adjust it to a multiple of minimumLineLength.
@@ -92,19 +100,7 @@
             // If the distance > minimum length, then move lastLine's star point to the new point and adjust ist's length
             // to respect minimumLineLength ratio.
             lastLine.startPoint = newPointLastLine;
-            lengthMultiple = (NSInteger) (lastLine.length / minimumLineLength);
-            
-            if (lengthMultiple == 0) {
-                lengthMultiple = 1;
-            }
-            
-            adjustedLength = lengthMultiple * minimumLineLength; 
-            lineRatio = adjustedLength / lastLine.length;
-            
-            adjustedX = lastLine.startPoint.x + ((lastLine.endPoint.x - lastLine.startPoint.x) * lineRatio);
-            adjustedY = lastLine.startPoint.y + ((lastLine.endPoint.y - lastLine.startPoint.y) * lineRatio);
-            
-            lastLine.endPoint = CGPointMake(adjustedX, adjustedY);
+            lastLine.endPoint = [self calculateLengthToBeMultipleOfMinimumLength:lastLine.startPoint endPoint:lastLine.endPoint];
         }
 
         //5 - Move previous line end point to the first new point.
@@ -130,15 +126,7 @@
     } else {
         if ([IIMath2D lineLengthFromPoint:lastPoint toEndPoint:newPoint] >= minimumLineLength) {
             
-            CGFloat length = [IIMath2D lineLengthFromPoint:lastPoint toEndPoint:newPoint];
-            NSInteger lengthMultiple = (NSInteger) (length / minimumLineLength);
-            CGFloat adjustedLength = lengthMultiple * minimumLineLength; 
-            CGFloat lineRatio = adjustedLength / length;
-            
-            CGFloat adjustedX = lastPoint.x + ((newPoint.x - lastPoint.x) * lineRatio);
-            CGFloat adjustedY = lastPoint.y + ((newPoint.y - lastPoint.y) * lineRatio);
-            
-            CGPoint adjustedPoint = CGPointMake(adjustedX, adjustedY);
+            CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:lastPoint endPoint:newPoint];
             IILine2D *line = [IILine2D lineFromOrigin:lastPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
             [linesInPath addObject:line];
             [self addChild:line];
