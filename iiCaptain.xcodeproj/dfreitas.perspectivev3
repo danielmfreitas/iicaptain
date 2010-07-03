@@ -332,8 +332,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -351,7 +349,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D3B5013911DF68FE00FD95F2</string>
+										<string>D3252D5E11DF69A800DACE49</string>
 										<key>history</key>
 										<array>
 											<string>D35462F411CB42320053E707</string>
@@ -393,7 +391,7 @@
 											<string>D3B5011011DF104D00FD95F2</string>
 											<string>D3B5011C11DF630C00FD95F2</string>
 											<string>D3B5011D11DF630C00FD95F2</string>
-											<string>D3B5011E11DF630C00FD95F2</string>
+											<string>D3252D5311DF699E00DACE49</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -407,18 +405,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1192, 667}}</string>
+								<string>{{0, 0}, {1192, 661}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>667pt</string>
+							<string>661pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>106pt</string>
+							<string>112pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -432,7 +430,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1192, 46}}</string>
+										<string>{{10, 27}, {1192, 85}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -486,7 +484,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1192, 79}}</string>
+										<string>{{10, 27}, {1192, 85}}</string>
 										<key>RubberWindowFrame</key>
 										<string>0 59 1440 819 0 0 1440 878 </string>
 									</dict>
@@ -516,11 +514,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D3B5007F11DEFB5800FD95F2</string>
+				<string>D3252D5511DF699F00DACE49</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>D3B5008011DEFB5800FD95F2</string>
+				<string>D3252D5611DF699F00DACE49</string>
 				<string>D3E0809D11CB2A3A0036D6DF</string>
-				<string>D3B5008111DEFB5800FD95F2</string>
+				<string>D3252D5711DF699F00DACE49</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -669,14 +667,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>D3B5008211DEFB5800FD95F2</string>
+				<string>D3252D5811DF699F00DACE49</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>D3B5008311DEFB5800FD95F2</string>
-				<string>D3B5008411DEFB5800FD95F2</string>
-				<string>D3B5008511DEFB5800FD95F2</string>
-				<string>D3B5008611DEFB5800FD95F2</string>
-				<string>D3B5008711DEFB5800FD95F2</string>
+				<string>D3252D5911DF699F00DACE49</string>
+				<string>D3252D5A11DF699F00DACE49</string>
+				<string>D3252D5B11DF699F00DACE49</string>
+				<string>D3252D5C11DF699F00DACE49</string>
+				<string>D3252D5D11DF699F00DACE49</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -693,7 +691,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>299854078.10360903</real>
+	<real>299854248.94289303</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -710,9 +708,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>D3308E0111CB32A300AC838A</string>
-		<string>D3B500AA11DF002700FD95F2</string>
-		<string>D3B500A711DF000500FD95F2</string>
 		<string>/Users/dfreitas/dev/projects/iphone/iiCaptain/iiCaptain.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
