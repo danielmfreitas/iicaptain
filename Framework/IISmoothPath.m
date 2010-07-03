@@ -12,6 +12,7 @@
 
 // 2.7925 rad =~ 160 degrees
 #define MIN_ANGLE_BEFORE_SMOOTH_IN_RADS 2.7925
+#define SIXTY_DEGREES_IN_RADS 1.04719755
 
 @implementation IISmoothPath
 
@@ -61,13 +62,14 @@
     IILine2D *previousLine = [linesInPath objectAtIndex: [linesInPath count] - 2];
     IILine2D *lastLine = [linesInPath lastObject];
     
-    // If last line is a point, skip.
+    // If last line is a POISON point, skip and remove. This will prevent the algorithm from removing last smoothed line.
     if (previousLine.startPoint.x == previousLine.endPoint.x && previousLine.startPoint.y == previousLine.endPoint.y) {
-        NSLog(@"Last line is a point. Return.");
+        [linesInPath removeObjectAtIndex:[linesInPath count] - 2];
+        [self removeChild:previousLine cleanup:YES];
         return;
     }
     
-    // Get the angle between the two lines and see if it is too sharp. Igf it is, smooth it out.
+    // Get the angle between the two lines and see if it is too small. If it is, smooth it out.
     CGFloat angleBetweenLastTwoLines = [IIMath2D angleBetweenLines:previousLine.startPoint
                                                           line1End:previousLine.endPoint
                                                         line2Start:lastLine.startPoint
@@ -75,32 +77,35 @@
     
     if (angleBetweenLastTwoLines <= MIN_ANGLE_BEFORE_SMOOTH_IN_RADS) {
 
-        //1 - In the previous line, get the point at (length - minimumLineLength).
+        //1 - In the previous line, get the new point at (length - minimumLineLength).
         CGPoint newPointPreviousLine = [IIMath2D pointAtLength: (previousLine.length - minimumLineLength)
                                                     startPoint: previousLine.startPoint
                                                       endPoint: previousLine.endPoint];
             
-        //2 - In the last line. Get the point at minimumLineLength.
+        //2 - In the last line. Get the new point at minimumLineLength.
         CGPoint newPointLastLine = [IIMath2D pointAtLength: minimumLineLength startPoint: lastLine.startPoint
                                           endPoint: lastLine.endPoint];
         
-        //3 - Adjust new points so that the distance between them is a multiple of minimumLineLength.
-        newPointLastLine = [self calculateLengthToBeMultipleOfMinimumLength:newPointPreviousLine endPoint:newPointLastLine];
+        //3 - Adjust end new point so that the new line length is a multiple of minimumLineLength.
+        newPointLastLine = [self calculateLengthToBeMultipleOfMinimumLength:newPointPreviousLine
+                                                                   endPoint:newPointLastLine];
         
         //4 - Move last line start point to new created point.
         //    Check new length of last line and adjust it to a multiple of minimumLineLength.
         lastLine.startPoint = newPointLastLine;
-        CGFloat distanceBetweenOriginalLines = [IIMath2D lineLengthFromPoint:newPointPreviousLine toEndPoint:lastLine.endPoint];
         
-        if (distanceBetweenOriginalLines <= minimumLineLength) {
-            // If the distance between the first new point and last line's end point <= minimum length we need to remove
-            // the last line. TODO removing last line still does not look so good.
+        if (angleBetweenLastTwoLines <= SIXTY_DEGREES_IN_RADS) {
+            // If the angle <= 60 degrees (equilateral triangle), setting the start point to the new point will put it
+            // AFTER the end point, inverting the direction of the line. If this happens, it means that the angle is so
+            // sharp that subsequent calls to smooth the path will remove the last smoothed line, giving a result less
+            // than ideal. If this happens, we just "remove" the last line by turning it to a POISON point. This will
+            // avoid the algorithm to try to smooth the new added line again, which would remove the smooth appearance.
             lastLine.endPoint = lastLine.startPoint;
         } else {
-            // If the distance > minimum length, then move lastLine's star point to the new point and adjust ist's length
+            // If the angle > 60 degrees, then move lastLine's star point to the new point and adjust ist's length
             // to respect minimumLineLength ratio.
-            lastLine.startPoint = newPointLastLine;
-            lastLine.endPoint = [self calculateLengthToBeMultipleOfMinimumLength:lastLine.startPoint endPoint:lastLine.endPoint];
+            lastLine.endPoint = [self calculateLengthToBeMultipleOfMinimumLength:lastLine.startPoint
+                                                                        endPoint:lastLine.endPoint];
         }
 
         //5 - Move previous line end point to the first new point.
@@ -108,11 +113,17 @@
         
         //6 - Now connect a new line between the new points.
         IILine2D *newLine = [IILine2D lineFromOrigin:newPointPreviousLine toEnd:newPointLastLine withTextureFile:@"path_texture.png"];
+        
         [linesInPath removeLastObject];
+        
+        // If previous line new length is zero, remove it.
+        if (previousLine.length == 0) {
+            [linesInPath removeLastObject];
+            [self removeChild:previousLine cleanup:YES];
+        }
+        
         [linesInPath addObject:newLine];
         [self addChild:newLine];
-        
-        //Do a final check to see if the last line should be removed or not.
         [linesInPath addObject:lastLine];
         lastPoint = lastLine.endPoint;
     }
