@@ -48,10 +48,9 @@
         [self setManager: theManager];
         pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
         behaviors = [[NSMutableArray alloc] initWithCapacity:5];
-        //currentLineBeingFollowed = nil;
         speed = 32;
         
-        // Change this later. The path could be now outside of this object and respond to the touches instead.
+        // TODO Change this later. The path could be now outside of this object and respond to the touches instead.
         [behaviors addObject:[[[IIFollowPathBehavior alloc] initWithSmoothPath: pathToFollow] autorelease]];
     }
     

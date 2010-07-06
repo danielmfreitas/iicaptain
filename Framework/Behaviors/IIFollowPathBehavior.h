@@ -24,7 +24,6 @@
  */
 @interface IIFollowPathBehavior : NSObject <IIBehaviorProtocol> {
     IISmoothPath *pathToFollow;
-    IILine2D *currentLineBeingFollowed;
 }
 
 - (IIFollowPathBehavior *) init;

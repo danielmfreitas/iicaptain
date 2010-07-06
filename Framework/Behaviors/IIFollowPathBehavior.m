@@ -41,14 +41,6 @@
     }
 }
 
-- (void) setCurrentLineBeingFollowed: (IILine2D *) theLine {
-    if (currentLineBeingFollowed != theLine) {
-        [currentLineBeingFollowed release];
-        currentLineBeingFollowed = theLine;
-        [currentLineBeingFollowed retain];
-    }
-}
-
 - (void) rotateTarget: (id <IIBehavioralProtocol>) theTarget toLine: (IILine2D *) line {
     CGFloat angle = line.rotation - theTarget.rotation;
     
@@ -66,7 +58,8 @@
     [theTarget runAction:rotateAction];
 }
 
-- (void) updateTargetPosition: (id <IIBehavioralProtocol>) theTarget by: (CGFloat) pixelsToMove remainingLength: (CGFloat) remainingLength {
+- (void) updateTargetPosition: (id <IIBehavioralProtocol>) theTarget by: (CGFloat) pixelsToMove
+              remainingLength: (CGFloat) remainingLength alongLine: (IILine2D *) currentLineBeingFollowed {
     
     CGFloat movementRatio = pixelsToMove / remainingLength;
     
@@ -96,20 +89,19 @@
     }
 }
 
-- (void) moveTarget: (id <IIBehavioralProtocol>) theTarget withTime: (ccTime) timeElapsedSinceLastFrame  {
+- (void) moveTarget: (id <IIBehavioralProtocol>) theTarget withTime: (ccTime) timeElapsedSinceLastFrame {
+    IILine2D *currentLineBeingFollowed = [pathToFollow firstLine];
+    
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
     CGFloat remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(theTarget.position.x, theTarget.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
     
     if (pixelsToMoveThisFrame <= remainingLength) {
-        [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength];
+        [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength alongLine: currentLineBeingFollowed];
     } else {
         // If pixels to move > ramining length of current line, consumes pixels from the next lines until all pixels
         // are accounted or the path ends.
         while (pixelsToMoveThisFrame > remainingLength) {
-            [pathToFollow removeFirstLine];
-            
-            if ([pathToFollow firstLine] != nil) {
-                
+            if ([pathToFollow count] > 1) {
                 // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
                 // do not screw up.
                 [self normalizeTargetRotation: theTarget];
@@ -117,7 +109,8 @@
                 // Move directly to the end of the current line and get next line in path
                 theTarget.position = CGPointMake(currentLineBeingFollowed.endPoint.x,
                                                     currentLineBeingFollowed.endPoint.y);
-                [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
+                [pathToFollow removeFirstLine];
+                currentLineBeingFollowed = [pathToFollow firstLine];
                 
                 // Get the remaining pixels we still have to move on the new line
                 pixelsToMoveThisFrame = pixelsToMoveThisFrame - remainingLength;
@@ -131,32 +124,39 @@
                 // If last line in path, just set final position to the end of the line.
                 theTarget.position = CGPointMake(currentLineBeingFollowed.endPoint.x,
                                                 currentLineBeingFollowed.endPoint.y);
-                theTarget.rotation = currentLineBeingFollowed.rotation;
                 pixelsToMoveThisFrame = 0;
                 remainingLength = 0;
                 [pathToFollow removeFirstLine];
-                [self setCurrentLineBeingFollowed:nil];
             }
         }
         
         // Move only if we still have pixels to move.
         if (pixelsToMoveThisFrame > 0) {
-            [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength];
+            [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength
+                             alongLine: currentLineBeingFollowed];
             [self rotateTarget: theTarget toLine: currentLineBeingFollowed];
         }
     }
 }
 
 - (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
-    if (currentLineBeingFollowed == nil) {
-        if ([pathToFollow count] > 0) {
-            [self setCurrentLineBeingFollowed:[pathToFollow firstLine]];
-            [self rotateTarget: theTarget toLine: currentLineBeingFollowed];
-        }
-    }
     
-    if (currentLineBeingFollowed != nil) {
+    // Static local variable to check if the path was empty in the previous loop
+    // TODO If we remove the rotateBy action and actually calculate the rotation based on the position in the line,
+    // we can remove this check as the moveTarget will always calculate and update the rotation.
+    static BOOL wasEmpty = YES;
+    IILine2D *currentLine = [pathToFollow firstLine];
+    
+    if (currentLine != nil) {
+        if (wasEmpty) {
+            // If it was empty before, the this is the first line. Needs to rotate to the first line.
+            [self rotateTarget: theTarget toLine: currentLine];
+            wasEmpty = NO;
+        }
+        
         [self moveTarget: theTarget withTime: timeElapsedSinceLastFrame];
+    } else {
+        wasEmpty = YES;
     }
 }
 
