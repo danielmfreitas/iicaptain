@@ -216,48 +216,7 @@
 		</dict>
 	</array>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>D3F8C24711E2D2CB003167EA</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>IIFollowPathBehavior.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>D3F8C24811E2D2CB003167EA</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>IIFollowPathBehavior.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>D3F8C37311E2EBBC003167EA</string>
-						<key>history</key>
-						<array>
-							<string>D3F8C23D11E2D249003167EA</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1425, 625}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 207 1425 666 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1440</integer>
@@ -291,6 +250,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -340,7 +301,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
 									<integer>5</integer>
 									<integer>4</integer>
 									<integer>0</integer>
@@ -380,7 +340,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>D3E0809D11CB2A3A0036D6DF</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>IIFollowPathBehavior.m</string>
+								<string>IICollections.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -388,11 +348,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>D3E0809E11CB2A3A0036D6DF</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>IIFollowPathBehavior.m</string>
+										<string>IICollections.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>D3F8C37211E2EBBC003167EA</string>
+										<string>D3F8C38B11E3FEE4003167EA</string>
 										<key>history</key>
 										<array>
 											<string>D35462F411CB42320053E707</string>
@@ -411,12 +371,10 @@
 											<string>D3BDC26D11D9AC3A000D0409</string>
 											<string>D3E2424411DAE23600244094</string>
 											<string>D3E2424511DAE23600244094</string>
-											<string>D3E2439B11DAFAAC00244094</string>
 											<string>D3E2439D11DAFAAC00244094</string>
 											<string>D3F8E8C111DCFBBA007B4400</string>
 											<string>D3F8E90A11DD00D3007B4400</string>
 											<string>D3571AE511DD835100DC928D</string>
-											<string>D3AFD20F11DD9B6B00993999</string>
 											<string>D3AFD28311DDABC400993999</string>
 											<string>D3AFD29A11DDAC8500993999</string>
 											<string>D3AFD35F11DE879B00993999</string>
@@ -434,13 +392,15 @@
 											<string>D3F8C30111E2DD48003167EA</string>
 											<string>D3F8C30211E2DD48003167EA</string>
 											<string>D3F8C30311E2DD48003167EA</string>
-											<string>D3F8C30411E2DD48003167EA</string>
 											<string>D3F8C30611E2DD48003167EA</string>
 											<string>D3F8C30811E2DD48003167EA</string>
-											<string>D3F8C32D11E2E3FD003167EA</string>
-											<string>D3F8C34A11E2E5F7003167EA</string>
-											<string>D3F8C36411E2E7A8003167EA</string>
-											<string>D3F8C36511E2E7A8003167EA</string>
+											<string>D3F8C38411E3FEE4003167EA</string>
+											<string>D3F8C38511E3FEE4003167EA</string>
+											<string>D3F8C38611E3FEE4003167EA</string>
+											<string>D3F8C38711E3FEE4003167EA</string>
+											<string>D3F8C38811E3FEE4003167EA</string>
+											<string>D3F8C38911E3FEE4003167EA</string>
+											<string>D3F8C38A11E3FEE4003167EA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -740,7 +700,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>300084156.99317902</real>
+	<real>300154596.164572</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -760,7 +720,6 @@
 		<string>D3F8C34711E2E51B003167EA</string>
 		<string>D3F8C33C11E2E471003167EA</string>
 		<string>D3308E0111CB32A300AC838A</string>
-		<string>D3F8C24711E2D2CB003167EA</string>
 		<string>/Users/dfreitas/dev/projects/iphone/iiCaptain/iiCaptain.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

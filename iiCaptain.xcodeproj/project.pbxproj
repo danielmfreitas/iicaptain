@@ -289,7 +289,6 @@
 		D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308E8511CB3A9600AC838A /* IIMath2D.m */; };
 		D338448011CED05400D18251 /* IISmoothPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D338447F11CED05400D18251 /* IISmoothPath.m */; };
 		D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D33DA35A11D7842A00E55001 /* IIGestureManager.m */; };
-		D33DA41211D81A3500E55001 /* IICollections.m in Sources */ = {isa = PBXBuildFile; fileRef = D33DA41111D81A3500E55001 /* IICollections.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
@@ -603,8 +602,6 @@
 		D338447F11CED05400D18251 /* IISmoothPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISmoothPath.m; sourceTree = "<group>"; };
 		D33DA35911D7842A00E55001 /* IIGestureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGestureManager.h; sourceTree = "<group>"; };
 		D33DA35A11D7842A00E55001 /* IIGestureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIGestureManager.m; sourceTree = "<group>"; };
-		D33DA41011D81A3500E55001 /* IICollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICollections.h; sourceTree = "<group>"; };
-		D33DA41111D81A3500E55001 /* IICollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICollections.m; sourceTree = "<group>"; };
 		D35462E311CB3E3F0053E707 /* path_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture.png; sourceTree = "<group>"; };
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
@@ -1142,8 +1139,6 @@
 				D38DC60411D056580022249E /* IICaptain.m */,
 				D33DA35911D7842A00E55001 /* IIGestureManager.h */,
 				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
-				D33DA41011D81A3500E55001 /* IICollections.h */,
-				D33DA41111D81A3500E55001 /* IICollections.m */,
 				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
 				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
 			);
@@ -1410,7 +1405,6 @@
 				D338448011CED05400D18251 /* IISmoothPath.m in Sources */,
 				D38DC60511D056580022249E /* IICaptain.m in Sources */,
 				D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */,
-				D33DA41211D81A3500E55001 /* IICollections.m in Sources */,
 				D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */,
 				D3F8C10711E2B332003167EA /* IIFollowPathBehavior.m in Sources */,
 			);
