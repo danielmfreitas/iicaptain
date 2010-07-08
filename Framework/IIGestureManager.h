@@ -12,10 +12,7 @@
  * themselves as listeners for those events by providing the gesture name. Filters can also be applied to the events,
  * allowing the framework to decide if the event should be forwarded to the target listener or not.
  */
-
 #import <Foundation/Foundation.h>
-#import "IICollections.h"
-
 
 /**
  * The protocol to be implemented by classes wishing to act as filters to gesture events. Implementing classes must

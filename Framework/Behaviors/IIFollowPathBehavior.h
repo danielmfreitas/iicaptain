@@ -7,6 +7,7 @@
 //
 
 #import "IIBehaviorProtocol.h"
+#import "IIBasicBehavior.h"
 
 @class IISmoothPath;
 @class IILine2D;
@@ -22,7 +23,7 @@
  * This behavior moves and rotates the object through the general purpose setXXX and getXXX methods defined in the
  * IIBehavioralProtocol.
  */
-@interface IIFollowPathBehavior : NSObject <IIBehaviorProtocol> {
+@interface IIFollowPathBehavior : IIBasicBehavior {
     IISmoothPath *pathToFollow;
 }
 

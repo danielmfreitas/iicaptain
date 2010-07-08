@@ -292,6 +292,8 @@
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
+		D3B409A211E540A600D0A1F9 /* IIMoveStraightBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */; };
+		D3B40A4C11E54B4200D0A1F9 /* IIBasicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B40A4B11E54B4200D0A1F9 /* IIBasicBehavior.m */; };
 		D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */; };
 		D3F8C10711E2B332003167EA /* IIFollowPathBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F8C10611E2B332003167EA /* IIFollowPathBehavior.m */; };
 		D3F8E89B11DCF887007B4400 /* bigship.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F8E89A11DCF887007B4400 /* bigship.png */; };
@@ -606,6 +608,10 @@
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
 		D38DC63111D058980022249E /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		D3B409A011E540A600D0A1F9 /* IIMoveStraightBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIMoveStraightBehavior.h; sourceTree = "<group>"; };
+		D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIMoveStraightBehavior.m; sourceTree = "<group>"; };
+		D3B40A4A11E54B4200D0A1F9 /* IIBasicBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIBasicBehavior.h; sourceTree = "<group>"; };
+		D3B40A4B11E54B4200D0A1F9 /* IIBasicBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIBasicBehavior.m; sourceTree = "<group>"; };
 		D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIStartOnNodeGestureFilter.h; sourceTree = "<group>"; };
 		D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIStartOnNodeGestureFilter.m; sourceTree = "<group>"; };
 		D3F8C10511E2B332003167EA /* IIFollowPathBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIFollowPathBehavior.h; sourceTree = "<group>"; };
@@ -1163,6 +1169,10 @@
 				D3F8C10611E2B332003167EA /* IIFollowPathBehavior.m */,
 				D3F8C10811E2B4C8003167EA /* IIBehaviorProtocol.h */,
 				D3F8C16711E2C20B003167EA /* IIBehavioralProtocol.h */,
+				D3B409A011E540A600D0A1F9 /* IIMoveStraightBehavior.h */,
+				D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */,
+				D3B40A4A11E54B4200D0A1F9 /* IIBasicBehavior.h */,
+				D3B40A4B11E54B4200D0A1F9 /* IIBasicBehavior.m */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -1407,6 +1417,8 @@
 				D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */,
 				D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */,
 				D3F8C10711E2B332003167EA /* IIFollowPathBehavior.m in Sources */,
+				D3B409A211E540A600D0A1F9 /* IIMoveStraightBehavior.m in Sources */,
+				D3B40A4C11E54B4200D0A1F9 /* IIBasicBehavior.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

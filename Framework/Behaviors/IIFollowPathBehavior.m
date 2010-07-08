@@ -141,6 +141,12 @@
 
 - (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
     
+    //First, check if dependant behavior failed to execute. If there's no dependant behavior, than nil evaluates
+    //to FALSE, making this behavior execute.
+    if ([dependantBehavior executed]) {
+        return;
+    }
+    
     // Static local variable to check if the path was empty in the previous loop
     // TODO If we remove the rotateBy action and actually calculate the rotation based on the position in the line,
     // we can remove this check as the moveTarget will always calculate and update the rotation.
@@ -150,13 +156,17 @@
     if (currentLine != nil) {
         if (wasEmpty) {
             // If it was empty before, the this is the first line. Needs to rotate to the first line.
+            // Set the line start point to ship coords in case the ship moved since the start point was captured.
+            currentLine.startPoint = CGPointMake(theTarget.position.x, theTarget.position.y);
             [self rotateTarget: theTarget toLine: currentLine];
             wasEmpty = NO;
         }
         
         [self moveTarget: theTarget withTime: timeElapsedSinceLastFrame];
+        executed = YES;
     } else {
         wasEmpty = YES;
+        executed = NO;
     }
 }
 

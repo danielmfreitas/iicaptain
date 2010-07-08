@@ -29,6 +29,11 @@
 + (CGPoint) pointAtLength: (CGFloat) length startPoint: (CGPoint) startPoint endPoint: (CGPoint) endPoint;
 
 /**
+ * Converts degrees to radians.
+ */
++ (CGFloat) degreesToRadians: (CGFloat) angleInDegrees;
+
+/**
  * Converts radians to degrees.
  */
 + (CGFloat) radiansToDegrees: (CGFloat) angleInRadians;

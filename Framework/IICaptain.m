@@ -8,6 +8,7 @@
 
 #import "IICaptain.h"
 #import "IIStartOnNodeGestureFilter.h"
+#import "IIMoveStraightBehavior.h"
 #import "IIFollowPathBehavior.h"
 #import "IISmoothPath.h"
 
@@ -51,7 +52,13 @@
         speed = 32;
         
         // TODO Change this later. The path could be now outside of this object and respond to the touches instead.
-        [behaviors addObject:[[[IIFollowPathBehavior alloc] initWithSmoothPath: pathToFollow] autorelease]];
+        IIFollowPathBehavior *followPath = [[[IIFollowPathBehavior alloc] initWithSmoothPath:pathToFollow] autorelease];
+        IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];
+        
+        [moveStraight requiresBehaviorToFail: followPath];
+        
+        [behaviors addObject:followPath];
+        [behaviors addObject:moveStraight];
     }
     
     return self;

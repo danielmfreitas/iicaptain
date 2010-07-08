@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class CCAction;
+
 // Forward reference to the needed protocol to break circularity.
 @protocol IIBehaviorProtocol;
 
@@ -15,12 +17,19 @@
  * Protocol for classes which accepts behaviors. Basically it exposes properties through getters and setters (much of
  * which are already provided by cocos2d CCNode).
  */
-@protocol IIBehavioralProtocol
+@protocol IIBehavioralProtocol <NSObject>
 
 /**
  * Gets the current speed of the object. The unit depends on the algorithms used by the bahavior or object.
  */
 - (CGFloat) speed;
+
+/**
+ * Gets the current rotation of the object. The unit depends on the algorithms used by the bahavior or object. If the
+ * object extends CCNode, most likely it will be given in degrees, with 0 (zero) being pointing up (instead of right)
+ * like the trigonometric circle.
+ */
+- (CGFloat) rotation;
 
 /**
  * Gets the position of the object. The position is relative to another entity and depends on the algorithm used by the

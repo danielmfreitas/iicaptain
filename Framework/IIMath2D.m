@@ -36,6 +36,10 @@
     return pointAtLength;
 }
 
++ (CGFloat) degreesToRadians: (CGFloat) angleInDegrees {
+    return (angleInDegrees * M_PI) / 180;
+}
+
 + (CGFloat) radiansToDegrees: (CGFloat) angleInRadians {
     return (angleInRadians * 180) / M_PI;
 }

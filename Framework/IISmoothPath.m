@@ -77,6 +77,12 @@
     IILine2D *previousLine = [linesInPath objectAtIndex: [linesInPath count] - 2];
     IILine2D *lastLine = [linesInPath lastObject];
     
+    // If length of previous line < minimumLength, than ship is moving through it and is almost done. Ignore smooth then
+    // or else previousLine end point will be moved BEFORE the start point, reverting the line direction.
+    if (round(previousLine.length) < minimumLineLength) {
+        return;
+    }
+    
     // If last line is a POISON point, skip and remove. This will prevent the algorithm from removing last smoothed line.
     if (previousLine.startPoint.x == previousLine.endPoint.x && previousLine.startPoint.y == previousLine.endPoint.y) {
         [self removeLine:previousLine];

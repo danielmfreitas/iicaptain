@@ -13,8 +13,11 @@
 /**
  * A comportment that can be added to objects implementing the IIBehavioralProtocol.
  */
-@protocol IIBehaviorProtocol
+@protocol IIBehaviorProtocol <NSObject>
 
-- (void) updateTarget: (id <IIBehavioralProtocol>) target timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame;
+- (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame;
 
+- (void) requiresBehaviorToFail: (id <IIBehaviorProtocol>) theDependantBehavior;
+
+- (BOOL) executed;
 @end
