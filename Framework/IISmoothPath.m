@@ -79,7 +79,8 @@
     
     // If length of previous line < minimumLength, than ship is moving through it and is almost done. Ignore smooth then
     // or else previousLine end point will be moved BEFORE the start point, reverting the line direction.
-    if (round(previousLine.length) < minimumLineLength) {
+    // For float point comparison, assume a tolerance of 0.001
+    if (fabs(minimumLineLength - previousLine.length) > 0.001) {
         return;
     }
     

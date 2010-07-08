@@ -17,6 +17,8 @@
  * Protocol for classes which accepts behaviors. Basically it exposes properties through getters and setters (much of
  * which are already provided by cocos2d CCNode).
  */
+// TODO Instead of exposing objects properties, use general purpose methods like moveBy, rotateBy or getRotationInRadians
+// to avoid hardcoding behavior logic to ccnode.
 @protocol IIBehavioralProtocol <NSObject>
 
 /**
