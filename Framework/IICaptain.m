@@ -59,7 +59,7 @@
         [moveStraight requiresBehaviorToFail: followPath];
         
         [behaviors addObject:followPath];
-            //[behaviors addObject:moveStraight];
+        [behaviors addObject:moveStraight];
     }
     
     return self;

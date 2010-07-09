@@ -6,17 +6,17 @@
 //  Copyright 2010 Eye Eye. All rights reserved.
 //
 
-#import <cocos2d/cocos2d.h>
+#import "IISmoothPath.h"
 #import "IILine2D.h"
 #import "IIBehaviorProtocol.h"
 #import "IIBehavioralProtocol.h"
 #import "IIFollowPathBehavior.h"
 #import "IIMath2D.h"
-#import "IISmoothPath.h"
+
 
 @implementation IIFollowPathBehavior
 
-- (IIFollowPathBehavior *) initWithSmoothPath: (IISmoothPath *) thePathToFollow {
+- (id) initWithSmoothPath: (IISmoothPath *) thePathToFollow {
     if ((self = [self init])) {
         pathToFollow = thePathToFollow;
         [pathToFollow retain];
@@ -55,7 +55,7 @@
     CGFloat movementX = dX * movementRatio;
     CGFloat movementY = dY * movementRatio;
     
-    [theTarget moveByX:movementX andY:movementY];
+    [theTarget moveByX: movementX andY: movementY];
     CGPoint newPosition = CGPointMake(positionX + movementX, positionY + movementY);
     currentLineBeingFollowed.startPoint = newPosition;
 }

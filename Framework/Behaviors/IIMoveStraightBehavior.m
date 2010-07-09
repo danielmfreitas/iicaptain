@@ -15,22 +15,8 @@
 - (BOOL) doUpdate: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
         
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
-    CGFloat angle = [IIMath2D radiansToDegrees:theTarget.rotation];
     
-    // Make sure the shortest angle is obtained.
-    if (angle < -180) {
-        angle = angle +360;
-    }
-    
-    if (angle > 180) {
-        angle = angle - 360;
-    }
-    
-    // Cast the angle in accordance with the trigonometric circle.
-    angle = 90 - angle;
-    
-    // Change it to radians.
-    angle = [IIMath2D degreesToRadians:angle];
+    CGFloat angle = theTarget.rotation;
     
     CGFloat dX = pixelsToMoveThisFrame * cos(angle);
     CGFloat dY = pixelsToMoveThisFrame * sin(angle);

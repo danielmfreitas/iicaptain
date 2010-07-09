@@ -56,7 +56,7 @@
 
 - (void) rotateBy: (CGFloat) angle {
     // Calculate new node rotation.
-    //angle = [IIMath2D radiansToDegrees: angle];
+    angle = [IIMath2D radiansToDegrees: angle];
     angle = node.rotation + angle;
     
     angle = [self normalizeAngle: angle];
@@ -75,8 +75,7 @@
     // Have to cast node rotation to trigonometric angles.
     CGFloat nodeAngle = [self normalizeAngle: 90 - node.rotation];
     
-    
-    CGFloat distance = destinationAngle - (nodeAngle);
+    CGFloat distance = destinationAngle - nodeAngle;
     distance = [self normalizeAngle: distance];
     
     // Make sure the shortest angle is obtained.
