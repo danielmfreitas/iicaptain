@@ -12,16 +12,10 @@
 
 @implementation IIMoveStraightBehavior
 
-- (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
-    
-    //First, check if dependant behavior failed to execute. If there's no dependant behavior, than nil evaluates
-    //to FALSE, making this behavior execute.
-    if ([dependantBehavior executed]) {
-        return;
-    }
-    
+- (BOOL) doUpdate: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
+        
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
-    CGFloat angle = theTarget.rotation;
+    CGFloat angle = [IIMath2D radiansToDegrees:theTarget.rotation];
     
     // Make sure the shortest angle is obtained.
     if (angle < -180) {
@@ -33,7 +27,7 @@
     }
     
     // Cast the angle in accordance with the trigonometric circle.
-    angle = 90 - theTarget.rotation;
+    angle = 90 - angle;
     
     // Change it to radians.
     angle = [IIMath2D degreesToRadians:angle];
@@ -41,9 +35,9 @@
     CGFloat dX = pixelsToMoveThisFrame * cos(angle);
     CGFloat dY = pixelsToMoveThisFrame * sin(angle);
     
-    theTarget.position = CGPointMake(theTarget.position.x + dX, theTarget.position.y + dY);
+    [theTarget moveByX:dX andY:dY];
     
-    executed = YES;
+    return YES;
 }
 
 @end

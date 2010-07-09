@@ -17,7 +17,6 @@
 
 - (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame;
 
-- (void) requiresBehaviorToFail: (id <IIBehaviorProtocol>) theDependantBehavior;
-
 - (BOOL) executed;
+
 @end

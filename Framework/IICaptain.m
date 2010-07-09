@@ -14,7 +14,6 @@
 
 @implementation IICaptain
 
-@synthesize speed;
 @synthesize pathToFollow;
 
 - (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
@@ -39,13 +38,15 @@
 
 - (void) setManager:(IIGestureManager *) theManager {
     manager = theManager;
-    IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: self widthTolerance: 16 andHeightTolerance: 0] autorelease];
-    [manager addTarget: self action: @selector(handleDragGesture:) toRecognizer: @"singleDragGesture" withFilter: filter];
+    IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc]
+                                           initWithNode: node widthTolerance: 16 andHeightTolerance: 0] autorelease];
+    [manager addTarget: self action: @selector(handleDragGesture:)
+          toRecognizer: @"singleDragGesture" withFilter: filter];
     [manager retain];
 }
 
-- (id) initWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager {
-    if ((self = [super initWithTexture: texture rect: rect])) {
+- (id) initWithNode: (CCNode *) aNode andManager: (IIGestureManager *) theManager {
+    if ((self = [super initWithNode: aNode])) {
         [self setManager: theManager];
         pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
         behaviors = [[NSMutableArray alloc] initWithCapacity:5];
@@ -58,7 +59,7 @@
         [moveStraight requiresBehaviorToFail: followPath];
         
         [behaviors addObject:followPath];
-        [behaviors addObject:moveStraight];
+            //[behaviors addObject:moveStraight];
     }
     
     return self;
@@ -77,14 +78,6 @@
 
 - (void) addBehavior:(id <IIBehaviorProtocol>) behaviorToAdd {
     [behaviors addObject: behaviorToAdd];
-}
-
-+(id) spriteWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager
-{
-	IICaptain *me = [[[self alloc] initWithTexture:texture rect:rect andManager: theManager] autorelease];
-    me.manager = theManager;
-    
-    return me;
 }
 
 -(void) dealloc {

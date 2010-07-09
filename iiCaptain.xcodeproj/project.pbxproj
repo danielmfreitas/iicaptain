@@ -289,6 +289,9 @@
 		D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308E8511CB3A9600AC838A /* IIMath2D.m */; };
 		D338448011CED05400D18251 /* IISmoothPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D338447F11CED05400D18251 /* IISmoothPath.m */; };
 		D33DA35B11D7842A00E55001 /* IIGestureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D33DA35A11D7842A00E55001 /* IIGestureManager.m */; };
+		D347A4F711E6C726009C2C47 /* IIBaseBehavioral.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A4F611E6C726009C2C47 /* IIBaseBehavioral.m */; };
+		D347A51C11E6CA41009C2C47 /* IIBehavioralNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */; };
+		D347A52D11E6CB1A009C2C47 /* IIChainableBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
@@ -604,6 +607,13 @@
 		D338447F11CED05400D18251 /* IISmoothPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISmoothPath.m; sourceTree = "<group>"; };
 		D33DA35911D7842A00E55001 /* IIGestureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGestureManager.h; sourceTree = "<group>"; };
 		D33DA35A11D7842A00E55001 /* IIGestureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIGestureManager.m; sourceTree = "<group>"; };
+		D347A4E711E6C47C009C2C47 /* IIGameObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGameObjectProtocol.h; sourceTree = "<group>"; };
+		D347A4F511E6C726009C2C47 /* IIBaseBehavioral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIBaseBehavioral.h; sourceTree = "<group>"; };
+		D347A4F611E6C726009C2C47 /* IIBaseBehavioral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIBaseBehavioral.m; sourceTree = "<group>"; };
+		D347A51A11E6CA41009C2C47 /* IIBehavioralNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIBehavioralNode.h; sourceTree = "<group>"; };
+		D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIBehavioralNode.m; sourceTree = "<group>"; };
+		D347A52B11E6CB1A009C2C47 /* IIChainableBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIChainableBehavior.h; sourceTree = "<group>"; };
+		D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIChainableBehavior.m; sourceTree = "<group>"; };
 		D35462E311CB3E3F0053E707 /* path_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture.png; sourceTree = "<group>"; };
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
@@ -1147,6 +1157,7 @@
 				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
 				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
 				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
+				D347A4E711E6C47C009C2C47 /* IIGameObjectProtocol.h */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -1173,6 +1184,12 @@
 				D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */,
 				D3B40A4A11E54B4200D0A1F9 /* IIBasicBehavior.h */,
 				D3B40A4B11E54B4200D0A1F9 /* IIBasicBehavior.m */,
+				D347A4F511E6C726009C2C47 /* IIBaseBehavioral.h */,
+				D347A4F611E6C726009C2C47 /* IIBaseBehavioral.m */,
+				D347A51A11E6CA41009C2C47 /* IIBehavioralNode.h */,
+				D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */,
+				D347A52B11E6CB1A009C2C47 /* IIChainableBehavior.h */,
+				D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -1419,6 +1436,9 @@
 				D3F8C10711E2B332003167EA /* IIFollowPathBehavior.m in Sources */,
 				D3B409A211E540A600D0A1F9 /* IIMoveStraightBehavior.m in Sources */,
 				D3B40A4C11E54B4200D0A1F9 /* IIBasicBehavior.m in Sources */,
+				D347A4F711E6C726009C2C47 /* IIBaseBehavioral.m in Sources */,
+				D347A51C11E6CA41009C2C47 /* IIBehavioralNode.m in Sources */,
+				D347A52D11E6CB1A009C2C47 /* IIChainableBehavior.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

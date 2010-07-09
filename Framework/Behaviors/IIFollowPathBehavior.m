@@ -16,14 +16,6 @@
 
 @implementation IIFollowPathBehavior
 
-- (IIFollowPathBehavior *) init {
-    if ((self = [super init])) {
-        
-    }
-    
-    return self;
-}
-
 - (IIFollowPathBehavior *) initWithSmoothPath: (IISmoothPath *) thePathToFollow {
     if ((self = [self init])) {
         pathToFollow = thePathToFollow;
@@ -33,28 +25,19 @@
     return self;
 }
 
-- (void) followNewPath: (IISmoothPath *) theNewPath {
-    if (pathToFollow != theNewPath) {
-        [pathToFollow release];
-        pathToFollow = theNewPath;
-        [pathToFollow retain];
-    }
-}
-
 - (void) rotateTarget: (id <IIBehavioralProtocol>) theTarget toLine: (IILine2D *) line {
-    CGFloat angle = line.rotation - theTarget.rotation;
+    CGFloat lineRotation = line.rotation;
     
-    // Make sure the shortest angle is obtained.
-    if (angle < -180) {
-        angle = angle +360;
-    }
+    //Cast rotation back to trigonometric circle and then to radians.
+    lineRotation = 90 - lineRotation;
+    lineRotation = [IIMath2D degreesToRadians: lineRotation];
     
-    if (angle > 180) {
-        angle = angle - 360;
-    }
+    CGFloat angle = [theTarget distanceFromAngle: lineRotation];
+    angle = [IIMath2D radiansToDegrees: angle];
     
     // TODO Change hardcoded duration for rotation
-    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle:angle];
+    // Rotate to -angle since cocos2d increases angle clockwise.
+    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle: -angle];
     [theTarget runAction:rotateAction];
 }
 
@@ -72,43 +55,32 @@
     CGFloat movementX = dX * movementRatio;
     CGFloat movementY = dY * movementRatio;
     
+    [theTarget moveByX:movementX andY:movementY];
     CGPoint newPosition = CGPointMake(positionX + movementX, positionY + movementY);
-    
-    theTarget.position = newPosition;
     currentLineBeingFollowed.startPoint = newPosition;
-}
-
-- (void) normalizeTargetRotation: (id <IIBehavioralProtocol>) theTarget {
-    
-    CGFloat rotation = theTarget.rotation;
-    
-    if (rotation >= 360) {
-        theTarget.rotation = rotation - 360;
-    } else if (rotation <= -360) {
-        theTarget.rotation = rotation + 360;
-    }
 }
 
 - (void) moveTarget: (id <IIBehavioralProtocol>) theTarget withTime: (ccTime) timeElapsedSinceLastFrame {
     IILine2D *currentLineBeingFollowed = [pathToFollow firstLine];
     
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
-    CGFloat remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(theTarget.position.x, theTarget.position.y) toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x, currentLineBeingFollowed.endPoint.y)];
+    CGFloat remainingLength = [theTarget distanceToPoint:CGPointMake(currentLineBeingFollowed.endPoint.x,
+                                                                     currentLineBeingFollowed.endPoint.y)];
     
     if (pixelsToMoveThisFrame <= remainingLength) {
-        [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength alongLine: currentLineBeingFollowed];
+        [self updateTargetPosition: theTarget by: pixelsToMoveThisFrame remainingLength: remainingLength
+                         alongLine: currentLineBeingFollowed];
     } else {
         // If pixels to move > ramining length of current line, consumes pixels from the next lines until all pixels
         // are accounted or the path ends.
         while (pixelsToMoveThisFrame > remainingLength) {
+            
+            CGFloat toLineEndX = currentLineBeingFollowed.endPoint.x - theTarget.position.x;
+            CGFloat toLineEndY = currentLineBeingFollowed.endPoint.y - theTarget.position.y;
+            
             if ([pathToFollow count] > 1) {
-                // If a new line needs to be followed, first put rotation back to the 0-360 range so the calculations
-                // do not screw up.
-                [self normalizeTargetRotation: theTarget];
-                
                 // Move directly to the end of the current line and get next line in path
-                theTarget.position = CGPointMake(currentLineBeingFollowed.endPoint.x,
-                                                    currentLineBeingFollowed.endPoint.y);
+                [theTarget moveByX:toLineEndX andY:toLineEndY];
                 [pathToFollow removeFirstLine];
                 currentLineBeingFollowed = [pathToFollow firstLine];
                 
@@ -116,14 +88,11 @@
                 pixelsToMoveThisFrame = pixelsToMoveThisFrame - remainingLength;
                 
                 // Calculates the remainign length on the new line in path
-                remainingLength = [IIMath2D lineLengthFromPoint:CGPointMake(theTarget.position.x,
-                                                                            theTarget.position.y)
-                                                     toEndPoint:CGPointMake(currentLineBeingFollowed.endPoint.x,
-                                                                            currentLineBeingFollowed.endPoint.y)];
+                remainingLength = [theTarget distanceToPoint:CGPointMake(currentLineBeingFollowed.endPoint.x,
+                                                                         currentLineBeingFollowed.endPoint.y)];
             } else {
                 // If last line in path, just set final position to the end of the line.
-                theTarget.position = CGPointMake(currentLineBeingFollowed.endPoint.x,
-                                                currentLineBeingFollowed.endPoint.y);
+                [theTarget moveByX:toLineEndX andY:toLineEndY];
                 pixelsToMoveThisFrame = 0;
                 remainingLength = 0;
                 [pathToFollow removeFirstLine];
@@ -139,13 +108,7 @@
     }
 }
 
-- (void) updateTarget: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
-    
-    //First, check if dependant behavior failed to execute. If there's no dependant behavior, than nil evaluates
-    //to FALSE, making this behavior execute.
-    if ([dependantBehavior executed]) {
-        return;
-    }
+- (BOOL) doUpdate: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
     
     // Static local variable to check if the path was empty in the previous loop
     // TODO If we remove the rotateBy action and actually calculate the rotation based on the position in the line,
@@ -163,10 +126,10 @@
         }
         
         [self moveTarget: theTarget withTime: timeElapsedSinceLastFrame];
-        executed = YES;
+        return YES;
     } else {
         wasEmpty = YES;
-        executed = NO;
+        return NO;
     }
 }
 

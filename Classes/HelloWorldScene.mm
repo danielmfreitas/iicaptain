@@ -66,14 +66,16 @@ enum {
         [manager retain];
         
         heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
-        hero = [IICaptain spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 64) andManager: manager];
+        CCSprite *heroSprite = [CCSprite spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 64)];
+        [heroSprite autorelease];
+        hero = [[IICaptain alloc] initWithNode:heroSprite andManager: theManager];
         [hero addPathToNode: self];
         
         [self addChild:heroSpriteSheet z:1]; 
         // TODO Figure out a way to add pathToFollow automatically.
         // [self addChild: hero.pathToFollow z: -1];
-        [heroSpriteSheet addChild:hero];
-        [hero setPosition:CGPointMake(screenSize.width / 2, screenSize.height / 2)];
+        [heroSpriteSheet addChild:heroSprite];
+        [hero moveByX: screenSize.width / 2 andY: screenSize.height / 2];
     }
     
 	return self;

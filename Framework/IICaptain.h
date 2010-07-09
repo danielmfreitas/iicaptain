@@ -8,30 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import <cocos2d/CCSprite.h>
-#import "IIBehavioralProtocol.h"
+#import "IIBehavioralNode.h"
 
 @class IISmoothPath;
 @class IIGestureManager;
 
-@interface IICaptain : CCSprite <IIBehavioralProtocol> {
+@interface IICaptain : IIBehavioralNode {
     IISmoothPath *pathToFollow;
-    CGFloat speed;
     CGFloat rotateSpeed;
     IIGestureManager *manager;
-    NSMutableArray *behaviors;
 }
-
-@property (nonatomic, assign) CGFloat speed;
 
 // TODO Remove this property once I figure out how to automatically add the pathToFollow to the parent view.
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
 
-- (id) initWithTexture:(CCTexture2D*) texture rect:(CGRect) rect andManager: (IIGestureManager *) theManager;
+- (id) initWithNode: (CCNode *) aNode andManager: (IIGestureManager *) theManager;
 
 - (void) addPathToNode: (CCNode *) theNode;
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
-
-+(id)spriteWithTexture:(CCTexture2D*)texture rect:(CGRect)rect andManager: (IIGestureManager *) theManager;
 
 @end

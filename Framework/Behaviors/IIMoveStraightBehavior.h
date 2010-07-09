@@ -7,9 +7,9 @@
 //
 
 #import "IIBehaviorProtocol.h"
-#import "IIBasicBehavior.h"
+#import "IIChainableBehavior.h"
 
-@interface IIMoveStraightBehavior : IIBasicBehavior {
+@interface IIMoveStraightBehavior : IIChainableBehavior {
 
 }
 

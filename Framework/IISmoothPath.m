@@ -158,7 +158,7 @@
             [firstLineInPath retain];
         } else {
             if ([IIMath2D lineLengthFromPoint:firstLineInPath.endPoint toEndPoint:newPoint] >= minimumLineLength) {
-                CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:[self lastLine].endPoint endPoint:newPoint];
+                CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength: firstLineInPath.endPoint endPoint:newPoint];
                 firstLineInPath.endPoint = adjustedPoint;
                 [self addLine:firstLineInPath];
                 [firstLineInPath release];
