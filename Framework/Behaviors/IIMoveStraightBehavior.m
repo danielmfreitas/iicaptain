@@ -16,7 +16,8 @@
         
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
     
-    CGFloat angle = theTarget.rotation;
+    CGFloat angle = 90 - theTarget.rotation;
+    angle = [IIMath2D degreesToRadians:angle];
     
     CGFloat dX = pixelsToMoveThisFrame * cos(angle);
     CGFloat dY = pixelsToMoveThisFrame * sin(angle);

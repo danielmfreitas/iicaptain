@@ -605,6 +605,7 @@
 		D3308E8511CB3A9600AC838A /* IIMath2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIMath2D.m; sourceTree = "<group>"; };
 		D338447E11CED05400D18251 /* IISmoothPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IISmoothPath.h; sourceTree = "<group>"; };
 		D338447F11CED05400D18251 /* IISmoothPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IISmoothPath.m; sourceTree = "<group>"; };
+		D33AC77C11E81385000FBE99 /* IIBehavioralNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIBehavioralNodeProtocol.h; sourceTree = "<group>"; };
 		D33DA35911D7842A00E55001 /* IIGestureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGestureManager.h; sourceTree = "<group>"; };
 		D33DA35A11D7842A00E55001 /* IIGestureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIGestureManager.m; sourceTree = "<group>"; };
 		D347A4E711E6C47C009C2C47 /* IIGameObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGameObjectProtocol.h; sourceTree = "<group>"; };
@@ -1176,12 +1177,9 @@
 		D3F8C10311E2B2B2003167EA /* Behaviors */ = {
 			isa = PBXGroup;
 			children = (
-				D3F8C10511E2B332003167EA /* IIFollowPathBehavior.h */,
-				D3F8C10611E2B332003167EA /* IIFollowPathBehavior.m */,
 				D3F8C10811E2B4C8003167EA /* IIBehaviorProtocol.h */,
 				D3F8C16711E2C20B003167EA /* IIBehavioralProtocol.h */,
-				D3B409A011E540A600D0A1F9 /* IIMoveStraightBehavior.h */,
-				D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */,
+				D33AC77C11E81385000FBE99 /* IIBehavioralNodeProtocol.h */,
 				D3B40A4A11E54B4200D0A1F9 /* IIBasicBehavior.h */,
 				D3B40A4B11E54B4200D0A1F9 /* IIBasicBehavior.m */,
 				D347A4F511E6C726009C2C47 /* IIBaseBehavioral.h */,
@@ -1190,6 +1188,10 @@
 				D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */,
 				D347A52B11E6CB1A009C2C47 /* IIChainableBehavior.h */,
 				D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */,
+				D3F8C10511E2B332003167EA /* IIFollowPathBehavior.h */,
+				D3F8C10611E2B332003167EA /* IIFollowPathBehavior.m */,
+				D3B409A011E540A600D0A1F9 /* IIMoveStraightBehavior.h */,
+				D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";

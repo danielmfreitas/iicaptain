@@ -12,8 +12,6 @@
 
 @implementation IIBaseBehavioral
 
-@synthesize speed;
-
 - (id) init {
     if ((self = [super init])) {
         behaviors = [[NSMutableArray alloc] init];
@@ -40,23 +38,35 @@
     [self afterBehaviors];
 }
 
-- (CCAction*) runAction: (CCAction *) action {
-    return nil;
+- (void) addBehavior: (id <IIBehaviorProtocol>) behaviorToAdd {
+    [behaviors addObject: behaviorToAdd];
 }
 
-- (CGFloat) rotation {
+- (CGFloat) speed {
     return 0;
+}
+
+- (void) setSpeed: (CGFloat) theSpeed {
+    
 }
 
 - (CGPoint) position {
     return CGPointZero;
 }
 
-- (void) addBehavior: (id <IIBehaviorProtocol>) behaviorToAdd {
-    [behaviors addObject: behaviorToAdd];
+- (void) setPosition: (CGPoint) newPosition {
+    
 }
 
 - (void) moveByX: (CGFloat) dX andY: (CGFloat) dY {
+    
+}
+
+- (CGFloat) rotation {
+    return 0;
+}
+
+- (void) setRotation: (CGFloat) newRotation {
     
 }
 

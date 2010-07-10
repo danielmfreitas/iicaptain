@@ -15,12 +15,13 @@
 
 @interface IICaptain : IIBehavioralNode {
     IISmoothPath *pathToFollow;
-    CGFloat rotateSpeed;
+    CGFloat speed;
     IIGestureManager *manager;
 }
 
 // TODO Remove this property once I figure out how to automatically add the pathToFollow to the parent view.
 @property (nonatomic, readonly) IISmoothPath *pathToFollow;
+@property (nonatomic, assign) CGFloat speed;
 
 - (id) initWithNode: (CCNode *) aNode andManager: (IIGestureManager *) theManager;
 

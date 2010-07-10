@@ -9,6 +9,9 @@
 #import "IIBehaviorProtocol.h"
 #import "IIChainableBehavior.h"
 
+/**
+ * Makes the IIBehavioralProtocol move in a straight line based on the rotation and speed. 
+ */
 @interface IIMoveStraightBehavior : IIChainableBehavior {
 
 }

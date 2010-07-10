@@ -11,10 +11,12 @@
 
 
 @interface IIChainableBehavior : NSObject <IIBehaviorProtocol> {
-    id<IIBehaviorProtocol> requiredBehaviorToFail;
+    IIChainableBehavior *requiredBehaviorToFail;
     id<IIBehaviorProtocol> nextBehavior;
     BOOL executed;
 }
+
+@property (nonatomic, readonly) BOOL executed;
 
 - (void) requiresBehaviorToFail: (id <IIBehaviorProtocol>) theDependantBehavior;
 

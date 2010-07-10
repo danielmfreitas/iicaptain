@@ -6,8 +6,8 @@
 //  Copyright 2010 Eye Eye. All rights reserved.
 //
 
-#import "IIBehavioralNode.h"
 #import <cocos2d/CCNode.h>
+#import "IIBehavioralNode.h"
 #import "IIMath2D.h"
 
 @implementation IIBehavioralNode
@@ -34,33 +34,32 @@
     return angle;
 }
 
-- (CGFloat) rotation {
-    // Cast rotation to trigonometric coords.
-    CGFloat rotation = 90 - node.rotation;
-    rotation = [self normalizeAngle: rotation];
-    
-    return [IIMath2D degreesToRadians: rotation];
-}
-
 - (CGPoint) position {
     return node.position;
 }
 
-- (CCAction*) runAction: (CCAction *) action {
-    return [node runAction: action];
+- (void) setPosition: (CGPoint) newPosition {
+    node.position = newPosition;
 }
 
 - (void) moveByX: (CGFloat) dX andY: (CGFloat) dY {
     node.position = CGPointMake(node.position.x + dX, node.position.y + dY);
 }
 
-- (void) rotateBy: (CGFloat) angle {
-    // Calculate new node rotation.
-    angle = [IIMath2D radiansToDegrees: angle];
-    angle = node.rotation + angle;
-    
-    angle = [self normalizeAngle: angle];
+- (CGFloat) rotation {
+    return node.rotation;
+}
 
+- (void) setRotation: (CGFloat) newRotation {
+    node.rotation = newRotation;
+}
+
+
+- (void) rotateBy: (CGFloat) angle {
+        // Calculate new node rotation.
+    angle = node.rotation + angle;
+    angle = [self normalizeAngle: angle];
+    
     node.rotation = angle;
 }
 
@@ -69,13 +68,10 @@
 }
 
 - (CGFloat) distanceFromAngle: (CGFloat) destinationAngle {
-    destinationAngle = [IIMath2D radiansToDegrees: destinationAngle];
-    destinationAngle = [self normalizeAngle: destinationAngle];
+    CGFloat destAngle = [self normalizeAngle: destinationAngle];
+    CGFloat nodeAngle = [self normalizeAngle: node.rotation];
     
-    // Have to cast node rotation to trigonometric angles.
-    CGFloat nodeAngle = [self normalizeAngle: 90 - node.rotation];
-    
-    CGFloat distance = destinationAngle - nodeAngle;
+    CGFloat distance = destAngle - nodeAngle;
     distance = [self normalizeAngle: distance];
     
     // Make sure the shortest angle is obtained.
@@ -87,8 +83,13 @@
         distance = distance - 360;
     }
     
-    return [IIMath2D degreesToRadians: distance];
+    return distance;
 }
+
+- (CCAction*) runAction: (CCAction *) action {
+    return [node runAction: action];
+}
+
 
 - (void) dealloc {
     [node release];

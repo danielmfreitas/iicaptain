@@ -12,6 +12,7 @@
 #import "IIBehavioralProtocol.h"
 #import "IIFollowPathBehavior.h"
 #import "IIMath2D.h"
+#import "IIBehavioralNode.h"
 
 
 @implementation IIFollowPathBehavior
@@ -25,19 +26,12 @@
     return self;
 }
 
-- (void) rotateTarget: (id <IIBehavioralProtocol>) theTarget toLine: (IILine2D *) line {
+- (void) rotateTarget: (id<IIBehavioralNodeProtocol>) theTarget toLine: (IILine2D *) line {
     CGFloat lineRotation = line.rotation;
-    
-    //Cast rotation back to trigonometric circle and then to radians.
-    lineRotation = 90 - lineRotation;
-    lineRotation = [IIMath2D degreesToRadians: lineRotation];
-    
     CGFloat angle = [theTarget distanceFromAngle: lineRotation];
-    angle = [IIMath2D radiansToDegrees: angle];
     
     // TODO Change hardcoded duration for rotation
-    // Rotate to -angle since cocos2d increases angle clockwise.
-    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle: -angle];
+    CCRotateBy *rotateAction = [CCRotateBy actionWithDuration:0.5 angle: angle];
     [theTarget runAction:rotateAction];
 }
 
@@ -60,7 +54,7 @@
     currentLineBeingFollowed.startPoint = newPosition;
 }
 
-- (void) moveTarget: (id <IIBehavioralProtocol>) theTarget withTime: (ccTime) timeElapsedSinceLastFrame {
+- (void) moveTarget: (id<IIBehavioralNodeProtocol>) theTarget withTime: (ccTime) timeElapsedSinceLastFrame {
     IILine2D *currentLineBeingFollowed = [pathToFollow firstLine];
     
     CGFloat pixelsToMoveThisFrame = theTarget.speed * timeElapsedSinceLastFrame;
@@ -108,7 +102,7 @@
     }
 }
 
-- (BOOL) doUpdate: (id <IIBehavioralProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
+- (BOOL) doUpdate: (id<IIBehavioralNodeProtocol>) theTarget timeSinceLastFrame: (ccTime) timeElapsedSinceLastFrame {
     
     // Static local variable to check if the path was empty in the previous loop
     // TODO If we remove the rotateBy action and actually calculate the rotation based on the position in the line,

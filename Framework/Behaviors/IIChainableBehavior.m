@@ -11,6 +11,8 @@
 
 @implementation IIChainableBehavior
 
+@synthesize executed;
+
 - (id) init {
     if ((self = [super init])) {
         executed = NO;

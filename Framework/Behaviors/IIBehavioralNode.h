@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "IIBaseBehavioral.h"
+#import "IIBehavioralNodeProtocol.h"
 
 @class CCNode;
 
-@interface IIBehavioralNode : IIBaseBehavioral {
+@interface IIBehavioralNode : IIBaseBehavioral <IIBehavioralNodeProtocol> {
     CCNode *node;
 }
 

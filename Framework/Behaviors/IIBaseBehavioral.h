@@ -13,9 +13,6 @@
 
 @interface IIBaseBehavioral : NSObject <IIGameObjectProtocol, IIBehavioralProtocol> {
     NSMutableArray *behaviors;
-    CGFloat speed;
 }
-
-@property (nonatomic, assign) CGFloat speed;
 
 @end

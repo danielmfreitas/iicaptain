@@ -10,8 +10,7 @@
 
 
 @interface IIBasicBehavior : NSObject <IIBehaviorProtocol> {
-    id<IIBehaviorProtocol> dependantBehavior;
-    BOOL executed;
+
 }
 
 @end

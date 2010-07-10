@@ -15,6 +15,7 @@
 @implementation IICaptain
 
 @synthesize pathToFollow;
+@synthesize speed;
 
 - (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
     CGPoint point = [sender locationInView: sender.view];
