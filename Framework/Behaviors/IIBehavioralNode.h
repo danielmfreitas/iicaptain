@@ -16,6 +16,8 @@
     CCNode *node;
 }
 
+@property (nonatomic, readonly) CCNode *node;
+
 - (id) initWithNode: (CCNode *) aNode;
 
 @end

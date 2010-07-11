@@ -9,9 +9,14 @@
 #import "IIBehavioralProtocol.h"
 
 @class CCAction;
-
+@class CCNode;
 
 @protocol IIBehavioralNodeProtocol <IIBehavioralProtocol>
+
+/**
+ * This behavioral node.
+ */
+- (CCNode *) node;
 
 /**
  * Runs an action on the node.

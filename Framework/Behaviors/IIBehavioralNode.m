@@ -12,6 +12,8 @@
 
 @implementation IIBehavioralNode
 
+@synthesize node;
+
 - (id) initWithNode: (CCNode *) aNode {
     if ((self = [super init])) {
         node = aNode;
@@ -22,7 +24,7 @@
 }
 
 - (CGFloat) normalizeAngle: (CGFloat) angle  {
-    // Normalize to (-360, 360). Have to use while as modulus only work on integer.
+    // Normalize to (-360, 360). Have to use while loop as modulus only work on integer.
     while (angle >= 360) {
         angle = angle - 360;
     }

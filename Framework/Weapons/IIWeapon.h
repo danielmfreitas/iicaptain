@@ -10,10 +10,12 @@
 #import "IIChainableBehavior.h"
 
 @class IIGestureManager;
+@class CCSprite;
 
 @interface IIWeapon : IIChainableBehavior {
     IIGestureManager *gestureManager;
     BOOL fired;
+    CCSprite *cannonBall;
 }
 
 + (IIWeapon *) initWithManager: (IIGestureManager *) theManager;

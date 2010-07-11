@@ -9,11 +9,11 @@
 #import "IIWeapon.h"
 #import "IIBehavioralNodeProtocol.h"
 #import "IIGestureManager.h"
+#import <cocos2d/cocos2d.h>
 
 @implementation IIWeapon
 
 - (void) handleTapGesture: (UITapGestureRecognizer *) sender {
-    NSLog(@"Tapped...");
     fired = YES;
 }
 
@@ -23,6 +23,8 @@
         [gestureManager retain];
         
         [gestureManager addTarget: self action: @selector(handleTapGesture:) toRecognizer: @"singleTapGesture"];
+        
+        cannonBall = [CCSprite spriteWithFile:@"cannonBall.png"];
     }
     
     return self;
@@ -32,6 +34,9 @@
     if (fired) {
         NSLog(@"Fired!");
         fired = NO;
+        
+        [theTarget.node addChild: cannonBall];
+        
         return YES;
     }
     
@@ -45,6 +50,7 @@
 
 - (void) dealloc {
     [gestureManager release];
+    [cannonBall release];
     
     [super dealloc];
 }
