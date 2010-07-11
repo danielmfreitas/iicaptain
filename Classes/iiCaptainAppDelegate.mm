@@ -69,11 +69,14 @@
     [dragRecognizer setMaximumNumberOfTouches:1];
     [dragRecognizer autorelease];
     
+    // Creates a single tap recognizer.
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] init];
+    tapRecognizer.numberOfTapsRequired = 1;
+    [tapRecognizer autorelease];
+    
     // Add the gesture recognizer to the manager
-    IITaggedGestureRecognizer *gesture = [[IITaggedGestureRecognizer alloc] initWithName:@"singleDragGesture"
-                                                                    andGestureRecognizer:dragRecognizer];
-    [gesture autorelease];
-    [manager addGesture:gesture];
+    [manager addGesture: dragRecognizer withTag: @"singleDragGesture"];
+    [manager addGesture: tapRecognizer withTag: @"singleTapGesture"];
 	
 	[[CCDirector sharedDirector] runWithScene: [HelloWorld sceneAndManager: manager]];
 }

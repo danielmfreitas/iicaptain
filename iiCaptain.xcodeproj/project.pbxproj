@@ -285,6 +285,7 @@
 		50F4144A10692EE7002A0D5E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F4144510692EE7002A0D5E /* fps_images.png */; };
 		50F4144B10692EE7002A0D5E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F4144610692EE7002A0D5E /* Icon.png */; };
 		D3189D1C11CC86F900C694B2 /* path_texture_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = D3189D1B11CC86F900C694B2 /* path_texture_debug.png */; };
+		D3288A1D11E982100085CAED /* IIWeapon.m in Sources */ = {isa = PBXBuildFile; fileRef = D3288A1C11E982100085CAED /* IIWeapon.m */; };
 		D3308DE611CB321000AC838A /* IILine2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308DE511CB321000AC838A /* IILine2D.m */; };
 		D3308E8611CB3A9600AC838A /* IIMath2D.m in Sources */ = {isa = PBXBuildFile; fileRef = D3308E8511CB3A9600AC838A /* IIMath2D.m */; };
 		D338448011CED05400D18251 /* IISmoothPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D338447F11CED05400D18251 /* IISmoothPath.m */; };
@@ -599,6 +600,8 @@
 		50F4144610692EE7002A0D5E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		50F4144710692EE7002A0D5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3189D1B11CC86F900C694B2 /* path_texture_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture_debug.png; sourceTree = "<group>"; };
+		D3288A1B11E982100085CAED /* IIWeapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWeapon.h; sourceTree = "<group>"; };
+		D3288A1C11E982100085CAED /* IIWeapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWeapon.m; sourceTree = "<group>"; };
 		D3308DE411CB321000AC838A /* IILine2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IILine2D.h; sourceTree = "<group>"; };
 		D3308DE511CB321000AC838A /* IILine2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IILine2D.m; sourceTree = "<group>"; };
 		D3308E8411CB3A9600AC838A /* IIMath2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIMath2D.h; sourceTree = "<group>"; };
@@ -1142,9 +1145,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D3288A1A11E981F20085CAED /* Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				D3288A1B11E982100085CAED /* IIWeapon.h */,
+				D3288A1C11E982100085CAED /* IIWeapon.m */,
+			);
+			path = Weapons;
+			sourceTree = "<group>";
+		};
 		D3308DE311CB318E00AC838A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				D3288A1A11E981F20085CAED /* Weapons */,
 				D3F8C10311E2B2B2003167EA /* Behaviors */,
 				D338447E11CED05400D18251 /* IISmoothPath.h */,
 				D338447F11CED05400D18251 /* IISmoothPath.m */,
@@ -1441,6 +1454,7 @@
 				D347A4F711E6C726009C2C47 /* IIBaseBehavioral.m in Sources */,
 				D347A51C11E6CA41009C2C47 /* IIBehavioralNode.m in Sources */,
 				D347A52D11E6CB1A009C2C47 /* IIChainableBehavior.m in Sources */,
+				D3288A1D11E982100085CAED /* IIWeapon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

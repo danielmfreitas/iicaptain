@@ -11,6 +11,9 @@
 #import "HelloWorldScene.h"
 #import "IILine2D.h"
 #import "IIFollowPathBehavior.h"
+#import "IIMoveStraightBehavior.h"
+#import "IIFollowPathBehavior.h"
+#import "IIWeapon.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -58,7 +61,6 @@ enum {
 		self.isAccelerometerEnabled = YES;
 		
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
-		CCLOG(@"Screen width %0.2f screen height %0.2f",screenSize.width,screenSize.height);
 		
 		[self schedule: @selector(tick:)];
         
@@ -66,16 +68,31 @@ enum {
         [manager retain];
         
         heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
+        
         CCSprite *heroSprite = [CCSprite spriteWithTexture: heroSpriteSheet.texture rect: CGRectMake(0, 0, 32, 64)];
         [heroSprite autorelease];
-        hero = [[IICaptain alloc] initWithNode:heroSprite andManager: theManager];
-        [hero addPathToNode: self];
         
-        [self addChild:heroSpriteSheet z:1]; 
+        IISmoothPath *pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
+        hero = [[IICaptain alloc] initWithNode:heroSprite andPath: pathToFollow];
+        
+        IIFollowPathBehavior *followPath = [[[IIFollowPathBehavior alloc] initWithUpdatablePath: pathToFollow onNode:heroSprite andGestureManager:theManager] autorelease];
+        
+        IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];
+        [moveStraight requiresBehaviorToFail: followPath];
+        
+        IIWeapon *weapon = [[IIWeapon alloc] initWithManager: theManager];
+        
+        [hero addBehavior: followPath];
+        [hero addBehavior: moveStraight];
+        [hero addBehavior: weapon];
+        
+        [self addChild: pathToFollow];
+        [self addChild: heroSpriteSheet]; 
+        
         // TODO Figure out a way to add pathToFollow automatically.
         // [self addChild: hero.pathToFollow z: -1];
         [heroSpriteSheet addChild:heroSprite];
-        [hero moveByX: screenSize.width / 2 andY: screenSize.height / 2];
+        hero.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
     }
     
 	return self;

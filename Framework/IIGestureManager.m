@@ -128,14 +128,19 @@
     return self;
 }
 
-- (void) addGesture: (IITaggedGestureRecognizer *) gesture {
-    [gesturesDictionary setObject: gesture forKey: gesture.name];
-    [targetView addGestureRecognizer: gesture.gestureRecognizer];
+- (void) addGesture: (UIGestureRecognizer *) gestureRecognizer withTag: (NSString *) tagName {
+    IITaggedGestureRecognizer *taggedGesture = [[IITaggedGestureRecognizer alloc] initWithName: tagName
+                                                                    andGestureRecognizer: gestureRecognizer];
+    [taggedGesture autorelease];
+
+    [gesturesDictionary setObject: taggedGesture forKey: tagName];
+    [targetView addGestureRecognizer: gestureRecognizer];
 }
 
-- (void) removeGesture: (IITaggedGestureRecognizer *) gesture {
-    [gesturesDictionary removeObjectForKey: gesture.name];
-    [targetView removeGestureRecognizer: gesture.gestureRecognizer];
+- (void) removeGesture: (NSString *) tagName {
+    IITaggedGestureRecognizer *taggedGesture = [gesturesDictionary objectForKey: tagName];
+    [targetView removeGestureRecognizer: taggedGesture.gestureRecognizer];
+    [gesturesDictionary removeObjectForKey: tagName];
 }
 
 - (void) addTarget: (id) theTarget action: (SEL) theAction toRecognizer: (NSString *) recognizerName {

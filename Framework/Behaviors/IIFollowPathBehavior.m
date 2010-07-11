@@ -13,14 +13,56 @@
 #import "IIFollowPathBehavior.h"
 #import "IIMath2D.h"
 #import "IIBehavioralNode.h"
+#import "IIGestureManager.h"
+#import "IIStartOnNodeGestureFilter.h"
 
 
 @implementation IIFollowPathBehavior
+
+- (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
+    CGPoint point = [sender locationInView: sender.view];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+    
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+                //point = self.position;
+            [pathToFollow clear];
+            [pathToFollow processPoint:point];
+            break;
+        case UIGestureRecognizerStateChanged:
+            
+            [pathToFollow processPoint:point];
+            
+            break;
+        default:
+            break;
+    }
+}
 
 - (id) initWithSmoothPath: (IISmoothPath *) thePathToFollow {
     if ((self = [self init])) {
         pathToFollow = thePathToFollow;
         [pathToFollow retain];
+    }
+    
+    return self;
+}
+
+- (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
+                      onNode: (CCNode *) node
+           andGestureManager: (IIGestureManager *) theManager {
+    if ((self = [self initWithSmoothPath: thePathToFollow])) {
+        gestureManager = theManager;
+        [gestureManager retain];
+        
+        IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: node
+                                                                                widthTolerance: 16
+                                                                            andHeightTolerance: 0] autorelease];
+        
+        [gestureManager addTarget: self
+                           action: @selector(handleDragGesture:)
+                     toRecognizer: @"singleDragGesture"
+                       withFilter: filter];
     }
     
     return self;
@@ -129,7 +171,7 @@
 
 - (void) dealloc {
     [pathToFollow release];
-    
+    [gestureManager release];
     [super dealloc];
 }
 

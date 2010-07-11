@@ -9,6 +9,7 @@
 #import "IIChainableBehavior.h"
 
 @class IISmoothPath;
+@class IIGestureManager;
 
 /**
  * This behavior requires IIBehavioralNodeProtocol objects to work properly as it will invoke CCNode's runAction
@@ -25,8 +26,13 @@
  */
 @interface IIFollowPathBehavior : IIChainableBehavior {
     IISmoothPath *pathToFollow;
+    IIGestureManager *gestureManager;
 }
 
 - (id) initWithSmoothPath: (IISmoothPath *) thePathToFollow;
+
+- (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
+                      onNode: (CCNode *) node
+           andGestureManager: (IIGestureManager *) theManager;
 
 @end
