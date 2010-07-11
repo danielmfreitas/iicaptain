@@ -7,6 +7,7 @@
 //
 
 #import "IIBasicBehavior.h"
+#import "IIBehavioralProtocol.h"
 
 @implementation IIBasicBehavior
 

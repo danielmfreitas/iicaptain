@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "cocos2d.h"
-#import "IILine2D.h"
+#import <cocos2d/cocos2d.h>
+
+@class IILine2D;
 
 
 @interface IISmoothPath : CCNode {

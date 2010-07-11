@@ -7,7 +7,8 @@
 //
 
 #import "IIChainableBehavior.h"
-
+#import <cocos2d/ccTypes.h>
+#import "IIBehavioralProtocol.h"
 
 @implementation IIChainableBehavior
 

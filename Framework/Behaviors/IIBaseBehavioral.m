@@ -6,6 +6,7 @@
 //  Copyright 2010 Eye Eye. All rights reserved.
 //
 
+#import <cocos2d/ccTypes.h>
 #import "IIBaseBehavioral.h"
 #import "IIBehaviorProtocol.h"
 

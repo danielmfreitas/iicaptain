@@ -1159,6 +1159,7 @@
 			children = (
 				D3288A1A11E981F20085CAED /* Weapons */,
 				D3F8C10311E2B2B2003167EA /* Behaviors */,
+				D347A4E711E6C47C009C2C47 /* IIGameObjectProtocol.h */,
 				D338447E11CED05400D18251 /* IISmoothPath.h */,
 				D338447F11CED05400D18251 /* IISmoothPath.m */,
 				D3308DE411CB321000AC838A /* IILine2D.h */,
@@ -1171,7 +1172,6 @@
 				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
 				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
 				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
-				D347A4E711E6C47C009C2C47 /* IIGameObjectProtocol.h */,
 			);
 			path = Framework;
 			sourceTree = "<group>";

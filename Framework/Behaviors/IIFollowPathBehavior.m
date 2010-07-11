@@ -6,16 +6,13 @@
 //  Copyright 2010 Eye Eye. All rights reserved.
 //
 
-#import "IISmoothPath.h"
-#import "IILine2D.h"
-#import "IIBehaviorProtocol.h"
-#import "IIBehavioralProtocol.h"
 #import "IIFollowPathBehavior.h"
-#import "IIMath2D.h"
-#import "IIBehavioralNode.h"
+#import <cocos2d/cocos2d.h>
+#import "IISmoothPath.h"
 #import "IIGestureManager.h"
 #import "IIStartOnNodeGestureFilter.h"
-
+#import "IIBehavioralNodeProtocol.h"
+#import "IILine2D.h"
 
 @implementation IIFollowPathBehavior
 

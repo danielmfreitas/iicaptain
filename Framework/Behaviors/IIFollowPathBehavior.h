@@ -6,8 +6,10 @@
 //  Copyright 2010 Eye Eye. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "IIChainableBehavior.h"
 
+@class CCNode;
 @class IISmoothPath;
 @class IIGestureManager;
 

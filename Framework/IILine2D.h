@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+#import <cocos2d/cocos2d.h>
 
 /**
  * A 2D line which uses a texture to render itself on the screen. The texture mapping is set to repeat along its length.
