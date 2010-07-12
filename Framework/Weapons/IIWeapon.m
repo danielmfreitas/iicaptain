@@ -35,8 +35,6 @@
         NSLog(@"Fired!");
         fired = NO;
         
-        [theTarget.node addChild: cannonBall];
-        
         return YES;
     }
     
