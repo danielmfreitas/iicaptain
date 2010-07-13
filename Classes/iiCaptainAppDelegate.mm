@@ -60,7 +60,7 @@
 	[window makeKeyAndVisible];		
 		
     // Creates gesture manager
-	IIGestureManager *manager = [IIGestureManager gestureManagerWithTargetView:window];
+	IIGestureManager *manager = [IIGestureManager gestureManagerWithTargetView:[CCDirector sharedDirector].openGLView];
     [manager autorelease];
     
     // Creates a single touch and drag recognizer
