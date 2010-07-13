@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IIChainableBehavior.h"
+#import <cocos2d/cocos2d.h>
 
-@class IIGestureManager;
-@class CCSprite;
+typedef enum
+{
+    STATE_IDLE = 0,
+    STATE_COOLINGDOWN = 1,
+    STATE_FIRING = 2
+} WeaponState;
 
-@interface IIWeapon : IIChainableBehavior {
-    IIGestureManager *gestureManager;
-    BOOL fired;
-    CCSprite *cannonBall;
+@interface IIWeapon : NSObject {
+    WeaponState state;
 }
 
-+ (IIWeapon *) initWithManager: (IIGestureManager *) theManager;
+- (id) init;
+- (void) fire;
+- (void) update: (ccTime) timeElapsedSinceLastFrame;
 
 @end

@@ -293,6 +293,7 @@
 		D347A4F711E6C726009C2C47 /* IIBaseBehavioral.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A4F611E6C726009C2C47 /* IIBaseBehavioral.m */; };
 		D347A51C11E6CA41009C2C47 /* IIBehavioralNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */; };
 		D347A52D11E6CB1A009C2C47 /* IIChainableBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */; };
+		D34A110611EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A110511EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
@@ -619,6 +620,8 @@
 		D347A51B11E6CA41009C2C47 /* IIBehavioralNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIBehavioralNode.m; sourceTree = "<group>"; };
 		D347A52B11E6CB1A009C2C47 /* IIChainableBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIChainableBehavior.h; sourceTree = "<group>"; };
 		D347A52C11E6CB1A009C2C47 /* IIChainableBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIChainableBehavior.m; sourceTree = "<group>"; };
+		D34A110411EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIFireWeaponByGestureBehavior.h; sourceTree = "<group>"; };
+		D34A110511EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIFireWeaponByGestureBehavior.m; sourceTree = "<group>"; };
 		D35462E311CB3E3F0053E707 /* path_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture.png; sourceTree = "<group>"; };
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
@@ -1152,6 +1155,8 @@
 			children = (
 				D3288A1B11E982100085CAED /* IIWeapon.h */,
 				D3288A1C11E982100085CAED /* IIWeapon.m */,
+				D34A110411EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.h */,
+				D34A110511EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m */,
 			);
 			path = Weapons;
 			sourceTree = "<group>";
@@ -1459,6 +1464,7 @@
 				D347A51C11E6CA41009C2C47 /* IIBehavioralNode.m in Sources */,
 				D347A52D11E6CB1A009C2C47 /* IIChainableBehavior.m in Sources */,
 				D3288A1D11E982100085CAED /* IIWeapon.m in Sources */,
+				D34A110611EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "IIMoveStraightBehavior.h"
 #import "IIFollowPathBehavior.h"
 #import "IIWeapon.h"
+#import "IIFireWeaponByGestureBehavior.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -80,17 +81,16 @@ enum {
         IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];
         [moveStraight requiresBehaviorToFail: followPath];
         
-        IIWeapon *weapon = [[IIWeapon alloc] initWithManager: theManager];
+        IIWeapon *cannon = [[[IIWeapon alloc] init] autorelease];
+        IIFireWeaponByGestureBehavior *fireWeaponByGestureBehavior = [[[IIFireWeaponByGestureBehavior alloc] initWithManager:manager gesture:@"singleTapGesture" andWeapon:cannon] autorelease];
         
         [hero addBehavior: followPath];
         [hero addBehavior: moveStraight];
-        [hero addBehavior: weapon];
+        [hero addBehavior:fireWeaponByGestureBehavior];
         
         [self addChild: pathToFollow];
         [self addChild: heroSpriteSheet]; 
         
-        // TODO Figure out a way to add pathToFollow automatically.
-        // [self addChild: hero.pathToFollow z: -1];
         [heroSpriteSheet addChild:heroSprite];
         hero.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
     }
