@@ -11,14 +11,20 @@
 
 typedef enum
 {
-    STATE_IDLE = 0,
-    STATE_COOLINGDOWN = 1,
-    STATE_FIRING = 2
+    STATE_IDLE = 1,
+    STATE_FIRING = 2,
+    STATE_COOLINGDOWN = 4,
 } WeaponState;
 
 @interface IIWeapon : NSObject {
     WeaponState state;
+    CGFloat weaponCooldown;
+    CGFloat remainingCooldown;
 }
+
+@property (nonatomic, readonly) WeaponState state;
+@property (nonatomic, readonly) CGFloat weaponCooldown;
+@property (nonatomic, readonly) CGFloat remainingCooldown;
 
 - (id) init;
 - (void) fire;

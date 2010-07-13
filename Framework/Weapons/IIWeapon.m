@@ -10,6 +10,10 @@
 
 @implementation IIWeapon
 
+@synthesize state;
+@synthesize weaponCooldown;
+@synthesize remainingCooldown;
+
 - (id) init {
     if ((self = [super init])) {
         state = STATE_IDLE;
@@ -19,7 +23,9 @@
 }
 
 - (void) fire {
-    state = STATE_FIRING;
+    if (state == STATE_IDLE) {
+        state = STATE_FIRING;
+    }
 }
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame {
@@ -28,9 +34,13 @@
             break;
         case STATE_FIRING:
             break;
+        case STATE_COOLINGDOWN:
+            break;
         default:
             break;
     }
+    
+    // Update any projectile created by the weapon.
 }
 
 @end

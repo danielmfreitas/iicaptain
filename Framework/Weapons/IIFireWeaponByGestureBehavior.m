@@ -13,8 +13,6 @@
 @implementation IIFireWeaponByGestureBehavior
 
 - (void) handleTapGesture: (UITapGestureRecognizer *) sender {
-    // Have to use CCDirector openGLView since Tap gesture recognizer always return (0,0) for the position on the window.
-    // Is this a bug in UITapGestureRecognizer (other recognizers works just fine with window).
     //CGPoint clickedPoint = [sender locationInView: sender.view];
     [weapon fire];
 }
