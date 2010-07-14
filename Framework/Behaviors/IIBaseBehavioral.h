@@ -11,7 +11,7 @@
 #import "IIBehavioralProtocol.h"
 
 
-@interface IIBaseBehavioral : NSObject <IIGameObjectProtocol, IIBehavioralProtocol> {
+@interface IIBaseBehavioral : NSObject {
     NSMutableArray *behaviors;
 }
 

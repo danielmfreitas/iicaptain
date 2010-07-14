@@ -9,6 +9,9 @@
 #import "IISmoothPath.h"
 #import "IILine2D.h"
 #import "IIMath2D.h"
+#import "IIGameScene.h"
+#import "HelloWorldScene.h"
+#import "IICaptain.h"
 
 // 2.7925 rad =~ 160 degrees
 #define MIN_ANGLE_BEFORE_SMOOTH_IN_RADS 2.7925
@@ -80,7 +83,7 @@
     // If length of previous line < minimumLength, than ship is moving through it and is almost done. Ignore smooth then
     // or else previousLine end point will be moved BEFORE the start point, reverting the line direction.
     // For float point comparison, assume a tolerance of 0.001
-    if (fabs(minimumLineLength - previousLine.length) > 0.001) {
+    if ((previousLine.length - minimumLineLength) < -0.001) {
         return;
     }
     
@@ -148,7 +151,7 @@
     }
 }
 
-- (void) processPoint: (CGPoint)newPoint {
+- (void) processPoint: (CGPoint) newPoint {
     
     static IILine2D *firstLineInPath = nil;
     

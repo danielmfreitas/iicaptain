@@ -7,7 +7,8 @@
 //
 
 #import "IIStartOnNodeGestureFilter.h"
-
+#import "HelloWorldScene.h"
+#import "IICaptain.h"
 
 @implementation IIStartOnNodeGestureFilter
 - (id) initWithNode: (CCNode *) node {
@@ -36,8 +37,10 @@
     switch (recognizer.state) {
         case UIGestureRecognizerStateBegan: {
             CGPoint point = [recognizer locationInView: recognizer.view];
-            
             point = [[CCDirector sharedDirector] convertToGL:point];
+            //TODO Provide a better way to access the game layer.
+            point = [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer convertToNodeSpace: point];
+            
             CGRect spriteBounds = CGRectMake(targetNode.position.x - (targetNode.contentSize.width / 2 + widthTolerance),
                                              targetNode.position.y - (targetNode.contentSize.height / 2 + heightTolerance),
                                              targetNode.contentSize.width + widthTolerance,

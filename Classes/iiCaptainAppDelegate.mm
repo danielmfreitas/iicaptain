@@ -78,7 +78,9 @@
     [manager addGesture: dragRecognizer withTag: @"singleDragGesture"];
     [manager addGesture: tapRecognizer withTag: @"singleTapGesture"];
 	
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld sceneAndManager: manager]];
+    HelloWorld *scene = [[HelloWorld alloc] initWithGestureManaget: manager];
+    
+	[[CCDirector sharedDirector] runWithScene: scene];
 }
 
 

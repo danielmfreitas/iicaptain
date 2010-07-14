@@ -7,6 +7,7 @@
 //
 
 #import <cocos2d/CCNode.h>
+#import "IIBehaviorProtocol.h"
 #import "IIBehavioralNode.h"
 #import "IIMath2D.h"
 
@@ -18,9 +19,41 @@
     if ((self = [super init])) {
         node = aNode;
         [node retain];
+        
+        behaviors = [[NSMutableArray alloc] init];
     }
     
     return self;
+}
+
+- (void) addBehavior: (id <IIBehaviorProtocol>) behaviorToAdd {
+    [behaviors addObject: behaviorToAdd];
+}
+
+- (CGFloat) speed {
+    return 0;
+}
+
+- (void) setSpeed: (CGFloat) theSpeed {
+    
+}
+
+- (void) beforeBehaviors {
+    
+}
+
+- (void) afterBehaviors {
+    
+}
+
+- (void) update: (ccTime) timeElapsedSinceLastFrame {
+    [self beforeBehaviors];
+    
+    for (id<IIBehaviorProtocol> behavior in behaviors) {
+        [behavior updateTarget: self timeSinceLastFrame: timeElapsedSinceLastFrame];
+    }
+    
+    [self afterBehaviors];
 }
 
 - (CGFloat) normalizeAngle: (CGFloat) angle  {
@@ -94,6 +127,7 @@
 
 
 - (void) dealloc {
+    [behaviors release];
     [node release];
     
     [super dealloc];

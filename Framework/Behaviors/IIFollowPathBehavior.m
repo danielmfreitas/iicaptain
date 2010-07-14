@@ -13,16 +13,19 @@
 #import "IIStartOnNodeGestureFilter.h"
 #import "IIBehavioralNodeProtocol.h"
 #import "IILine2D.h"
+#import "HelloWorldScene.h"
+#import "IICaptain.h"
 
 @implementation IIFollowPathBehavior
 
 - (void) handleDragGesture: (UIPanGestureRecognizer *) sender {
     CGPoint point = [sender locationInView: sender.view];
     point = [[CCDirector sharedDirector] convertToGL:point];
+    //TODO Provide a better way to access the game layer.
+    point = [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer convertToNodeSpace: point];
     
     switch (sender.state) {
         case UIGestureRecognizerStateBegan:
-                //point = self.position;
             [pathToFollow clear];
             [pathToFollow processPoint:point];
             break;

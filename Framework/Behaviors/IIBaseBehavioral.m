@@ -33,7 +33,7 @@
     [self beforeBehaviors];
     
     for (id<IIBehaviorProtocol> behavior in behaviors) {
-        [behavior updateTarget: self timeSinceLastFrame: timeElapsedSinceLastFrame];
+            //[behavior updateTarget: self timeSinceLastFrame: timeElapsedSinceLastFrame];
     }
     
     [self afterBehaviors];

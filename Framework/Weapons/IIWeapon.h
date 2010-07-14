@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <cocos2d/cocos2d.h>
+#import <cocos2d/ccTypes.h>
+
+@class CCNode;
 
 typedef enum
 {
@@ -20,13 +22,15 @@ typedef enum
     WeaponState state;
     CGFloat weaponCooldown;
     CGFloat remainingCooldown;
+    CCNode *node;
+    CCNode *projectile;
 }
 
 @property (nonatomic, readonly) WeaponState state;
 @property (nonatomic, readonly) CGFloat weaponCooldown;
 @property (nonatomic, readonly) CGFloat remainingCooldown;
 
-- (id) init;
+- (id) initWithNode: (CCNode *) theNode;
 - (void) fire;
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
 

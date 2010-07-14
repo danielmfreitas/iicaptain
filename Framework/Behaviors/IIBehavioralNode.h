@@ -12,7 +12,8 @@
 
 @class CCNode;
 
-@interface IIBehavioralNode : IIBaseBehavioral <IIBehavioralNodeProtocol> {
+@interface IIBehavioralNode : NSObject <IIGameObjectProtocol, IIBehavioralProtocol> {
+    NSMutableArray *behaviors;
     CCNode *node;
 }
 

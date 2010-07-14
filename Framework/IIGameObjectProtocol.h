@@ -7,9 +7,11 @@
 //
 
 #import <cocos2d/ccTypes.h>
+@class CCNode;
 
 @protocol IIGameObjectProtocol
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
+- (CCNode *) node;
 
 @end
