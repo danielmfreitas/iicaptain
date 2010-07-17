@@ -10,6 +10,7 @@
 #import <cocos2d/ccTypes.h>
 
 @class CCNode;
+@class CCPointParticleSystem;
 
 typedef enum
 {
@@ -24,6 +25,7 @@ typedef enum
     CGFloat remainingCooldown;
     CCNode *node;
     CCNode *projectile;
+    CCPointParticleSystem *smoke1;
 }
 
 @property (nonatomic, readonly) WeaponState state;

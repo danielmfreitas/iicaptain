@@ -41,9 +41,17 @@
             if (projectile == nil) {
                 projectile = [CCSprite spriteWithFile:@"cannonball.png"];
                 [projectile retain];
-                projectile.position = node.position;
+                projectile.position = ccp(node.position.x - node.contentSize.width / 2, node.position.y);
+
+                smoke1 = [CCPointParticleSystem particleWithFile:@"cannon_shot.plist"];
+                smoke1.position = node.position;
+                smoke1.angle = 180;
+                smoke1.positionType = kPositionTypeFree;
+                [smoke1 retain];
+
                 //TODO Give access to GameLayer instead of this.
                 [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: projectile];
+                [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: smoke1];
              }
             
             state = STATE_COOLINGDOWN;
@@ -57,12 +65,16 @@
     
     if (projectile != nil) {
         projectile.position = ccpAdd(projectile.position, CGPointMake(-5, 0));
+            //smoke1.position = node.position;
         
         if ([IIMath2D lineLengthFromPoint: projectile.position toEndPoint: node.position] > 300) {
             //TODO Give access to GameLayer instead of this.
             [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: projectile cleanup:YES];
+            [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: smoke1 cleanup:YES];
             [projectile release];
+            [smoke1 release];
             projectile = nil;
+            smoke1 = nil;
         }
     }
 }

@@ -297,6 +297,7 @@
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
+		D3AD1EFE11F1533E00C910F6 /* cannon_shot.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3AD1EFD11F1533E00C910F6 /* cannon_shot.plist */; };
 		D3B409A211E540A600D0A1F9 /* IIMoveStraightBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */; };
 		D3E242EE11DAEAD800244094 /* IIStartOnNodeGestureFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */; };
 		D3E3499211EA6BB400BA15E0 /* cannonball.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E3499111EA6BB400BA15E0 /* cannonball.png */; };
@@ -625,6 +626,7 @@
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
 		D38DC63111D058980022249E /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
+		D3AD1EFD11F1533E00C910F6 /* cannon_shot.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cannon_shot.plist; sourceTree = "<group>"; };
 		D3B409A011E540A600D0A1F9 /* IIMoveStraightBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIMoveStraightBehavior.h; sourceTree = "<group>"; };
 		D3B409A111E540A600D0A1F9 /* IIMoveStraightBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIMoveStraightBehavior.m; sourceTree = "<group>"; };
 		D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIStartOnNodeGestureFilter.h; sourceTree = "<group>"; };
@@ -1135,6 +1137,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D3AD1EFA11F152FC00C910F6 /* Particles */,
 				D35462DF11CB3D8A0053E707 /* Images */,
 				50F4144310692EE7002A0D5E /* blocks.png */,
 				50F4144410692EE7002A0D5E /* Default.png */,
@@ -1190,6 +1193,14 @@
 				D35462E311CB3E3F0053E707 /* path_texture.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		D3AD1EFA11F152FC00C910F6 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				D3AD1EFD11F1533E00C910F6 /* cannon_shot.plist */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 		D3F8C10311E2B2B2003167EA /* Behaviors */ = {
@@ -1432,6 +1443,7 @@
 				D38DC63211D058980022249E /* ship.png in Resources */,
 				D3F8E89B11DCF887007B4400 /* bigship.png in Resources */,
 				D3E3499211EA6BB400BA15E0 /* cannonball.png in Resources */,
+				D3AD1EFE11F1533E00C910F6 /* cannon_shot.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
