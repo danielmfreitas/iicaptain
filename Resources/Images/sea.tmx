@@ -3,9 +3,12 @@
  <tileset firstgid="1" name="sea" tilewidth="32" tileheight="32">
   <image source="sewer_tileset.png"/>
  </tileset>
- <layer name="Layer 1" width="40" height="40">
+ <layer name="Background" width="40" height="40">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3XSw6AMAiEYXZ4AO9/Vj2Aj0qk/KGzmK35GEybuplt4PiZHRr5xh1k32h/d3NEZu+0X/nkI6aL768z5Ot3uvQn37sv856q7C9zLgft92pOko/en3w1vspzZ2Z/kTk77Fe+XN8q95t8sTz9HwRfpL+q91CX/iiRbw0fOQfKQyJiABkAAA==
   </data>
  </layer>
+ <objectgroup name="GameObjects" width="40" height="40">
+  <object name="ShipPosition" x="623" y="689"/>
+ </objectgroup>
 </map>

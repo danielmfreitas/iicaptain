@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F3B9A2D0EF2145700286867 /* iiCaptainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B9A2B0EF2145700286867 /* iiCaptainAppDelegate.mm */; };
-		4984500711F285E900F0E684 /* sea.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4984500511F285E900F0E684 /* sea.tmx */; };
 		4984500811F285E900F0E684 /* sewer_tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 4984500611F285E900F0E684 /* sewer_tileset.png */; };
+		4984505A11F29C9D00F0E684 /* sea.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 4984505911F29C9D00F0E684 /* sea.tmx */; };
 		502BC32F1120834600A0B92A /* CDAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 502BC3271120834600A0B92A /* CDAudioManager.h */; };
 		502BC3301120834600A0B92A /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 502BC3281120834600A0B92A /* CDAudioManager.m */; };
 		502BC3311120834600A0B92A /* CDConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 502BC3291120834600A0B92A /* CDConfig.h */; };
@@ -329,8 +329,8 @@
 		1F3B9A2C0EF2145700286867 /* iiCaptainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iiCaptainAppDelegate.h; path = Classes/iiCaptainAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		1F3B9A820EF2151B00286867 /* iiCaptain_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iiCaptain_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4984500511F285E900F0E684 /* sea.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sea.tmx; sourceTree = "<group>"; };
 		4984500611F285E900F0E684 /* sewer_tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sewer_tileset.png; sourceTree = "<group>"; };
+		4984505911F29C9D00F0E684 /* sea.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sea.tmx; sourceTree = "<group>"; };
 		502BC3271120834600A0B92A /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
 		502BC3281120834600A0B92A /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
 		502BC3291120834600A0B92A /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
@@ -1187,7 +1187,7 @@
 		D35462DF11CB3D8A0053E707 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4984500511F285E900F0E684 /* sea.tmx */,
+				4984505911F29C9D00F0E684 /* sea.tmx */,
 				4984500611F285E900F0E684 /* sewer_tileset.png */,
 				D3E3499111EA6BB400BA15E0 /* cannonball.png */,
 				D3F8E89A11DCF887007B4400 /* bigship.png */,
@@ -1438,8 +1438,8 @@
 				D38DC63211D058980022249E /* ship.png in Resources */,
 				D3F8E89B11DCF887007B4400 /* bigship.png in Resources */,
 				D3E3499211EA6BB400BA15E0 /* cannonball.png in Resources */,
-				4984500711F285E900F0E684 /* sea.tmx in Resources */,
 				4984500811F285E900F0E684 /* sewer_tileset.png in Resources */,
+				4984505A11F29C9D00F0E684 /* sea.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

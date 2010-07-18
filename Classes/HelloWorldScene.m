@@ -50,11 +50,20 @@
                                                                              andWeapon: cannon]
                                                                       autorelease];
 		
+		
+		
 		//Setup Map
 		sea = [CCTMXTiledMap tiledMapWithTMXFile:@"sea.tmx"];
-		//TODO: Adjust map position in relation to the ship
-		sea.anchorPoint = ccp (0,0);
 		
+		CCTMXObjectGroup *objects = [sea objectGroupNamed:@"GameObjects"];
+        NSAssert(objects != nil, @"'GameObjects' object group not found");
+        NSMutableDictionary *spawnPoint = [objects objectNamed:@"ShipPosition"];        
+        NSAssert(spawnPoint != nil, @"ShipPosition object not found");
+        int x = [[spawnPoint valueForKey:@"x"] intValue];
+        int y = [[spawnPoint valueForKey:@"y"] intValue];
+		
+		//Put the ship in the center of the map. 
+		hero.position = ccp (x,y);
         
         [hero addBehavior: followPath];
         [hero addBehavior: moveStraight];
