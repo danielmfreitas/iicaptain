@@ -9,7 +9,7 @@
 #import "IIWeapon.h"
 #import <cocos2d/cocos2d.h>
 #import "IIMath2D.h"
-#import "HelloWorldScene.h"
+#import "IIGameScene.h"
 
 @implementation IIWeapon
 
@@ -17,11 +17,13 @@
 @synthesize weaponCooldown;
 @synthesize remainingCooldown;
 
-- (id) initWithNode: (CCNode *) theNode {
+- (id) initWithNode: (CCNode *) theNode andScene: (IIGameScene *) theScene {
     if ((self = [super init])) {
         state = STATE_IDLE;
         node = theNode;
         [node retain];
+        scene = theScene;
+        [scene retain];
     }
     
     return self;
@@ -49,9 +51,8 @@
                 smoke1.positionType = kPositionTypeFree;
                 [smoke1 retain];
 
-                //TODO Give access to GameLayer instead of this.
-                [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: projectile];
-                [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: smoke1];
+                [scene.gameLayer addChild: projectile];
+                [scene.gameLayer addChild: smoke1];
              }
             
             state = STATE_COOLINGDOWN;
@@ -64,13 +65,11 @@
     }
     
     if (projectile != nil) {
-        projectile.position = ccpAdd(projectile.position, CGPointMake(-5, 0));
-            //smoke1.position = node.position;
+        projectile.position = ccpAdd(projectile.position, CGPointMake(-3, 0));
         
         if ([IIMath2D lineLengthFromPoint: projectile.position toEndPoint: node.position] > 300) {
-            //TODO Give access to GameLayer instead of this.
-            [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: projectile cleanup:YES];
-            [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: smoke1 cleanup:YES];
+            [scene.gameLayer removeChild: projectile cleanup:YES];
+            [scene.gameLayer removeChild: smoke1 cleanup:YES];
             [projectile release];
             [smoke1 release];
             projectile = nil;
@@ -81,6 +80,7 @@
 
 - (void) dealloc {
     [node release];
+    [scene release];
     [projectile release];
     
     [super dealloc];

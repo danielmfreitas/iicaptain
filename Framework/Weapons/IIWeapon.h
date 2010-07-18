@@ -11,6 +11,7 @@
 
 @class CCNode;
 @class CCPointParticleSystem;
+@class IIGameScene;
 
 typedef enum
 {
@@ -24,6 +25,7 @@ typedef enum
     CGFloat weaponCooldown;
     CGFloat remainingCooldown;
     CCNode *node;
+    IIGameScene *scene;
     CCNode *projectile;
     CCPointParticleSystem *smoke1;
 }
@@ -32,7 +34,7 @@ typedef enum
 @property (nonatomic, readonly) CGFloat weaponCooldown;
 @property (nonatomic, readonly) CGFloat remainingCooldown;
 
-- (id) initWithNode: (CCNode *) theNode;
+- (id) initWithNode: (CCNode *) theNode andScene: (IIGameScene *) theScene;
 - (void) fire;
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
 

@@ -43,7 +43,7 @@
         IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];
         [moveStraight requiresBehaviorToFail: followPath];
         
-        IIWeapon *cannon = [[[IIWeapon alloc] initWithNode: heroSprite] autorelease];
+        IIWeapon *cannon = [[[IIWeapon alloc] initWithNode: heroSprite andScene: self] autorelease];
         IIFireWeaponByGestureBehavior *fireWeaponByGestureBehavior = [[[IIFireWeaponByGestureBehavior alloc]
                                                                        initWithManager: gestureManager
                                                                                gesture: @"singleTapGesture"
@@ -57,6 +57,8 @@
         
         [gameLayer addChild: pathToFollow];
         [gameLayer addChild: heroSprite]; 
+        
+        [self addChild:[CCColorLayer layerWithColor:ccc4(50, 50, 255, 255)] z: -1];
     }
     
     return self;
