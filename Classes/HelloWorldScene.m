@@ -52,8 +52,7 @@
 		
 		//Setup Map
 		sea = [CCTMXTiledMap tiledMapWithTMXFile:@"sea.tmx"];
-		//int xSea = sea.width/2;
-		//int ySea = sea.height/2;
+		//TODO: Adjust map position in relation to the ship
 		sea.anchorPoint = ccp (0,0);
 		
         
