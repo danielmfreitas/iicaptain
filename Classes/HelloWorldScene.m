@@ -49,6 +49,13 @@
                                                                                gesture: @"singleTapGesture"
                                                                              andWeapon: cannon]
                                                                       autorelease];
+		
+		//Setup Map
+		sea = [CCTMXTiledMap tiledMapWithTMXFile:@"sea.tmx"];
+		//int xSea = sea.width/2;
+		//int ySea = sea.height/2;
+		sea.anchorPoint = ccp (0,0);
+		
         
         [hero addBehavior: followPath];
         [hero addBehavior: moveStraight];
@@ -57,6 +64,7 @@
         
         [gameLayer addChild: pathToFollow];
         [gameLayer addChild: heroSprite]; 
+		[gameLayer addChild: sea z:-1];
     }
     
     return self;

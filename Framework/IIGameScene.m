@@ -15,7 +15,7 @@
 
 @synthesize gameLayer;
 @synthesize gestureManager;
-//iruu
+
 
 - (id) initWithGestureManaget: (IIGestureManager *) theGestureManager {
     if ((self = [super init]) != nil) {

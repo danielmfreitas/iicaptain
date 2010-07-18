@@ -7,6 +7,7 @@
 //
 
 #import "IIGameScene.h"
+#import "cocos2d.h"
 
 @class IICaptain;
 @class CCSpriteSheet;
@@ -14,6 +15,7 @@
 @interface HelloWorld : IIGameScene {
     CCSpriteSheet *heroSpriteSheet;
     IICaptain *hero;
+	CCTMXTiledMap *sea;
 }
 
 @property (readonly) IICaptain *hero;
