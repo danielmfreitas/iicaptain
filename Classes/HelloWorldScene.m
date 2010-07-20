@@ -63,7 +63,7 @@
         int y = [[spawnPoint valueForKey:@"y"] intValue];
 		
 		//Put the ship in the center of the map. 
-		hero.position = ccp (x,y);
+		hero.position = ccp(x, y);
         
         [hero addBehavior: followPath];
         [hero addBehavior: moveStraight];
