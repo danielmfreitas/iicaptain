@@ -297,6 +297,7 @@
 		D34A110611EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A110511EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m */; };
 		D34A12BA11ED653A006C2041 /* IIGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A12B911ED653A006C2041 /* IIGameScene.m */; };
 		D35462E411CB3E3F0053E707 /* path_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = D35462E311CB3E3F0053E707 /* path_texture.png */; };
+		D3854B0911F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3854B0811F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.m */; };
 		D38DC60511D056580022249E /* IICaptain.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC60411D056580022249E /* IICaptain.m */; };
 		D38DC63211D058980022249E /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = D38DC63111D058980022249E /* ship.png */; };
 		D3AD1EFE11F1533E00C910F6 /* cannon_shot.plist in Resources */ = {isa = PBXBuildFile; fileRef = D3AD1EFD11F1533E00C910F6 /* cannon_shot.plist */; };
@@ -627,6 +628,8 @@
 		D34A12B811ED653A006C2041 /* IIGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIGameScene.h; sourceTree = "<group>"; };
 		D34A12B911ED653A006C2041 /* IIGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIGameScene.m; sourceTree = "<group>"; };
 		D35462E311CB3E3F0053E707 /* path_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_texture.png; sourceTree = "<group>"; };
+		D3854B0711F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIDragTowardsNodeRotationGestureFilter.h; sourceTree = "<group>"; };
+		D3854B0811F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIDragTowardsNodeRotationGestureFilter.m; sourceTree = "<group>"; };
 		D38DC60311D056580022249E /* IICaptain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IICaptain.h; sourceTree = "<group>"; };
 		D38DC60411D056580022249E /* IICaptain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IICaptain.m; sourceTree = "<group>"; };
 		D38DC63111D058980022249E /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ship.png; sourceTree = "<group>"; };
@@ -1181,6 +1184,8 @@
 				D33DA35A11D7842A00E55001 /* IIGestureManager.m */,
 				D3E242EC11DAEAD800244094 /* IIStartOnNodeGestureFilter.h */,
 				D3E242ED11DAEAD800244094 /* IIStartOnNodeGestureFilter.m */,
+				D3854B0711F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.h */,
+				D3854B0811F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.m */,
 				D34A12B811ED653A006C2041 /* IIGameScene.h */,
 				D34A12B911ED653A006C2041 /* IIGameScene.m */,
 			);
@@ -1479,6 +1484,7 @@
 				D3288A1D11E982100085CAED /* IIWeapon.m in Sources */,
 				D34A110611EBEFE5006C2041 /* IIFireWeaponByGestureBehavior.m in Sources */,
 				D34A12BA11ED653A006C2041 /* IIGameScene.m in Sources */,
+				D3854B0911F54FCB00861D86 /* IIDragTowardsNodeRotationGestureFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

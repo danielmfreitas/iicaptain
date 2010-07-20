@@ -28,13 +28,14 @@
  */
 @interface IIFollowPathBehavior : IIChainableBehavior {
     IISmoothPath *pathToFollow;
+    CCNode *targetNode;
     IIGestureManager *gestureManager;
 }
 
 - (id) initWithSmoothPath: (IISmoothPath *) thePathToFollow;
 
 - (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
-                      onNode: (CCNode *) node
+                      onNode: (CCNode *) targetNode
            andGestureManager: (IIGestureManager *) theManager;
 
 @end

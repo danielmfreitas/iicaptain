@@ -9,6 +9,7 @@
 #import "IIStartOnNodeGestureFilter.h"
 #import "HelloWorldScene.h"
 #import "IICaptain.h"
+#import <cocos2d/cocos2d.h>
 
 @implementation IIStartOnNodeGestureFilter
 - (id) initWithNode: (CCNode *) node {

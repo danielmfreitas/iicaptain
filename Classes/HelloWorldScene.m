@@ -26,11 +26,17 @@
 - (id) initWithGestureManaget: (IIGestureManager *) theGestureManager {
     if ((self = [super initWithGestureManaget: theGestureManager]) != nil) {
         
-            //heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
-        CCSprite *heroSprite = [CCSprite spriteWithFile:@"bigship.png"];
-            //[heroSpriteSheet addChild: heroSprite];
+        heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
+        CCSprite *heroSprite = [CCSprite spriteWithTexture:heroSpriteSheet.texture];
+        [heroSpriteSheet addChild: heroSprite];
         
         IISmoothPath *pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
+        
+        // 2.7925 rad =~ 160 degrees
+        pathToFollow.angleThreshold = 2.7925;
+        // 1.04719755 rad =~ 60 degrees
+        pathToFollow.minimumAllowedAngle = 1.04719755;
+        pathToFollow.maximumPathLength = 800;
         hero = [[IICaptain alloc] initWithNode: heroSprite andPath: pathToFollow];
         CGSize screenSize = [CCDirector sharedDirector].winSize;
         hero.position = CGPointMake(screenSize.width / 2, screenSize.height / 2);
@@ -71,7 +77,7 @@
         [self addGameObject: hero];
         
         [gameLayer addChild: pathToFollow];
-        [gameLayer addChild: heroSprite]; 
+        [gameLayer addChild: heroSpriteSheet]; 
 		[gameLayer addChild: sea z:-1];
     }
     

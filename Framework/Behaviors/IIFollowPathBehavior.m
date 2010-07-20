@@ -15,6 +15,7 @@
 #import "IILine2D.h"
 #import "HelloWorldScene.h"
 #import "IICaptain.h"
+#import "IIDragTowardsNodeRotationGestureFilter.h"
 
 @implementation IIFollowPathBehavior
 
@@ -49,20 +50,31 @@
 }
 
 - (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
-                      onNode: (CCNode *) node
+                      onNode: (CCNode *) theNode
            andGestureManager: (IIGestureManager *) theManager {
     if ((self = [self initWithSmoothPath: thePathToFollow])) {
         gestureManager = theManager;
         [gestureManager retain];
         
-        IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: node
+        targetNode = theNode;
+        [targetNode retain];
+        
+        IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: theNode
                                                                                 widthTolerance: 16
                                                                             andHeightTolerance: 0] autorelease];
+        // TODO Currently, gesture recognition only accepts one type of filter. Refactor to accept multiple.
+        //IIDragTowardsNodeRotationGestureFilter *directionFilter = [[[IIDragTowardsNodeRotationGestureFilter alloc] initWithNode: theNode
+//                                                                                andAngleTolerance: 300] autorelease];
         
         [gestureManager addTarget: self
                            action: @selector(handleDragGesture:)
                      toRecognizer: @"singleDragGesture"
                        withFilter: filter];
+        // The second filter would be added here.
+        //[gestureManager addTarget: self
+//                           action: @selector(handleDragGesture:)
+//                     toRecognizer: @"singleDragGesture"
+//                       withFilter: filter];
     }
     
     return self;
@@ -171,6 +183,7 @@
 
 - (void) dealloc {
     [pathToFollow release];
+    [targetNode release];
     [gestureManager release];
     [super dealloc];
 }

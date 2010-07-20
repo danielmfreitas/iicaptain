@@ -13,13 +13,14 @@
 #import "HelloWorldScene.h"
 #import "IICaptain.h"
 
-// 2.7925 rad =~ 160 degrees
-#define MIN_ANGLE_BEFORE_SMOOTH_IN_RADS 2.7925
 #define SIXTY_DEGREES_IN_RADS 1.04719755
 
 @implementation IISmoothPath
 
 @synthesize minimumLineLength;
+@synthesize angleThreshold;
+@synthesize minimumAllowedAngle;
+@synthesize maximumPathLength;
 
 - (id) initWithMinimumLineLength: (CGFloat) minimumLength {
     
@@ -99,7 +100,7 @@
                                                         line2Start:lastLine.startPoint
                                                           line2End:lastLine.endPoint];
     
-    if (angleBetweenLastTwoLines <= MIN_ANGLE_BEFORE_SMOOTH_IN_RADS) {
+    if (angleBetweenLastTwoLines <= angleThreshold) {
 
         //1 - In the previous line, get the new point at (length - minimumLineLength).
         CGPoint newPointPreviousLine = [IIMath2D pointAtLength: (previousLine.length - minimumLineLength)
@@ -151,6 +152,17 @@
     }
 }
 
+// TODO Is there a faster way to do this? Maybe lazily calculate value and store result as lines are added/removed?
+- (CGFloat) pathLength {
+    CGFloat totalLength = 0;
+    
+    for (IILine2D *line in linesInPath) {
+        totalLength += line.length;
+    }
+    
+    return totalLength;
+}
+
 - (void) processPoint: (CGPoint) newPoint {
     
     static IILine2D *firstLineInPath = nil;
@@ -159,24 +171,39 @@
         if (firstLineInPath == nil) {
             firstLineInPath = [IILine2D lineFromOrigin:newPoint toEnd:newPoint withTextureFile:@"path_texture.png"];
             [firstLineInPath retain];
+            acceptingInput = YES;
         } else {
             if ([IIMath2D lineLengthFromPoint:firstLineInPath.endPoint toEndPoint:newPoint] >= minimumLineLength) {
                 CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength: firstLineInPath.endPoint endPoint:newPoint];
                 firstLineInPath.endPoint = adjustedPoint;
+                
                 [self addLine:firstLineInPath];
                 [firstLineInPath release];
                 firstLineInPath = nil;
             }
         }
     } else {
+        if (!acceptingInput) {
+            return;
+        }
+        
         if ([IIMath2D lineLengthFromPoint:[self lastLine].endPoint toEndPoint:newPoint] >= minimumLineLength) {
             
             CGPoint adjustedPoint = [self calculateLengthToBeMultipleOfMinimumLength:[self lastLine].endPoint endPoint:newPoint];
             
+            IILine2D *lastLine = [linesInPath lastObject];
             IILine2D *line = [IILine2D lineFromOrigin:[self lastLine].endPoint toEnd:adjustedPoint withTextureFile:@"path_texture.png"];
-            [self addLine:line];
             
-            [self smoothPath];
+            CGFloat angleBetweenLines = [IIMath2D angleBetweenLines:lastLine.startPoint line1End:lastLine.endPoint line2Start:line.startPoint line2End:line.endPoint];
+            
+            if (angleBetweenLines >= minimumAllowedAngle) {
+                [self addLine:line];
+                [self smoothPath];
+                
+                if ([self pathLength] >= maximumPathLength) {
+                    acceptingInput = NO;
+                }
+            } 
         }
     }
 }

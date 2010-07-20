@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <cocos2d/cocos2d.h>
 #import "IIGestureManager.h"
+
+@class CCNode;
 
 @interface IIStartOnNodeGestureFilter : NSObject <IIGestureFilter>
 {
