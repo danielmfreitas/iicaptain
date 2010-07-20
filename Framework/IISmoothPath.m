@@ -196,7 +196,7 @@
             
             CGFloat angleBetweenLines = [IIMath2D angleBetweenLines:lastLine.startPoint line1End:lastLine.endPoint line2Start:line.startPoint line2End:line.endPoint];
             
-            if (angleBetweenLines >= minimumAllowedAngle) {
+            if (angleBetweenLines > minimumAllowedAngle) {
                 [self addLine:line];
                 [self smoothPath];
                 
