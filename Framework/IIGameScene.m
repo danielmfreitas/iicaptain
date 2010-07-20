@@ -16,6 +16,7 @@
 @synthesize gameLayer;
 @synthesize gestureManager;
 
+
 - (id) initWithGestureManaget: (IIGestureManager *) theGestureManager {
     if ((self = [super init]) != nil) {
         gameLayer = [CCLayer node];

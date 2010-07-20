@@ -49,6 +49,21 @@
                                                                                gesture: @"singleTapGesture"
                                                                              andWeapon: cannon]
                                                                       autorelease];
+		
+		
+		
+		//Setup Map
+		sea = [CCTMXTiledMap tiledMapWithTMXFile:@"sea.tmx"];
+		
+		CCTMXObjectGroup *objects = [sea objectGroupNamed:@"GameObjects"];
+        NSAssert(objects != nil, @"'GameObjects' object group not found");
+        NSMutableDictionary *spawnPoint = [objects objectNamed:@"ShipPosition"];        
+        NSAssert(spawnPoint != nil, @"ShipPosition object not found");
+        int x = [[spawnPoint valueForKey:@"x"] intValue];
+        int y = [[spawnPoint valueForKey:@"y"] intValue];
+		
+		//Put the ship in the center of the map. 
+		hero.position = ccp (x,y);
         
         [hero addBehavior: followPath];
         [hero addBehavior: moveStraight];
@@ -57,8 +72,7 @@
         
         [gameLayer addChild: pathToFollow];
         [gameLayer addChild: heroSprite]; 
-        
-        [self addChild:[CCColorLayer layerWithColor:ccc4(50, 50, 255, 255)] z: -1];
+		[gameLayer addChild: sea z:-1];
     }
     
     return self;
