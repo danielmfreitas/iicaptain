@@ -24,10 +24,10 @@
 }
 
 - (BOOL) isValidAngle: (CGFloat) angle toRotation: (CGFloat) nodeRotation {
-    // 1 - Normaliza rotation to ]-360, 360[
+    // 1 - Normaliza node rotation to ]-360, 360[
     nodeRotation = [IIMath2D normalizeDegrees:nodeRotation];
     
-    // 2 - Cast node rotation to trig circle ]-360, 360[
+    // 2 - Cast CCNode rotation to trig circle ]-360, 360[
     CGFloat nodeDirection = 90 - nodeRotation;
     nodeDirection = [IIMath2D normalizeDegrees:nodeDirection];
     
@@ -36,7 +36,7 @@
         nodeDirection = 360 + nodeDirection;
     }
     
-    // 4 - Calculates acute angle between angles [180, -180[
+    // 4 - Calculates acute angle between gesture angle and node rotation [180, -180[
     CGFloat difference = fabs(angle - nodeDirection);
     
     if (difference > 180) {
@@ -59,13 +59,13 @@
             CGPoint velocityInView = [recognizer velocityInView: recognizer.view];
             velocityInView = [[CCDirector sharedDirector] convertToGL:velocityInView];    
             
-            // 2 - Gets the cos of the angle. Gets hipotenuse by pitagoras and 3-rule x to cos range: [-1, 1].
+            // 2 - Gets the cos of the angle. Gets hipotenuse by pitagoras and 3-rule x to get cos in range: [-1, 1].
             CGFloat h = sqrtf(velocityInView.x * velocityInView.x + velocityInView.y * velocityInView.y);
             CGFloat cos = velocityInView.x / h;
             
             CGFloat angle = 0;
             
-            // 3 - Gets the angle using cosin (takes into account quadrant).
+            // 3 - Gets the angle using cosin (takes quadrant into account).
             if (velocityInView.x >= 0 && velocityInView.y >= 0) {
                 angle = acosf(cos);
             } else if (velocityInView.x <= 0 && velocityInView.y >= 0) {
@@ -76,7 +76,7 @@
                 angle = 2 * M_PI - acosf(cos);
             }
             
-            // 4 - Finally, trnasforms it to degrees and compare with target node rotation.
+            // 4 - Finally, transforms it to degrees and compare with target node rotation.
             angle = [IIMath2D radiansToDegrees:angle];
             
             if ([self isValidAngle: angle toRotation: targetNode.rotation]) {
