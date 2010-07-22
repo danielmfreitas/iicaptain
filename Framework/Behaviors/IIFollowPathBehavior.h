@@ -38,4 +38,9 @@
                       onNode: (CCNode *) targetNode
            andGestureManager: (IIGestureManager *) theManager;
 
+- (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
+                      onNode: (CCNode *) theNode
+          withGestureManager: (IIGestureManager *) theManager
+         andAllowedDirection: (CGFloat) theAllowedDirection;
+
 @end

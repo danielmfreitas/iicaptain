@@ -23,22 +23,28 @@
     return self;
 }
 
-- (BOOL) validAngle: (CGFloat) angle toRotation: (CGFloat) nodeRotation {
-    // 1 - Normaliza rotation to 0-360
+- (BOOL) isValidAngle: (CGFloat) angle toRotation: (CGFloat) nodeRotation {
+    // 1 - Normaliza rotation to ]-360, 360[
     nodeRotation = [IIMath2D normalizeDegrees:nodeRotation];
     
-    // 2 - Cast node rotation to trig circle
+    // 2 - Cast node rotation to trig circle ]-360, 360[
     CGFloat nodeDirection = 90 - nodeRotation;
+    nodeDirection = [IIMath2D normalizeDegrees:nodeDirection];
     
+    // 3 - Normalize node rotation to [0, 360[
     if (nodeDirection < 0) {
         nodeDirection = 360 + nodeDirection;
     }
     
-    // 3 - Splits angle tolerance in two equal parts
-    CGFloat angleDelta = angleTolerance / 2;
+    // 4 - Calculates acute angle between angles [180, -180[
+    CGFloat difference = fabs(angle - nodeDirection);
     
-    // 4 - Determine if angle is within angle tolerance based on node direction
-    if (angle <= nodeDirection + angleDelta && angle >= nodeDirection - angleDelta) {
+    if (difference > 180) {
+        difference = 360 - 180;
+    }
+    
+    // 5 - Finally, if difference <= tolerance / 2, direction is valid
+    if (difference <= angleTolerance / 2) {
         return YES;
     }
     
@@ -73,7 +79,7 @@
             // 4 - Finally, trnasforms it to degrees and compare with target node rotation.
             angle = [IIMath2D radiansToDegrees:angle];
             
-            if ([self validAngle: angle toRotation: targetNode.rotation]) {
+            if ([self isValidAngle: angle toRotation: targetNode.rotation]) {
                 shouldAcceptInput = YES;
                 return YES;
             }

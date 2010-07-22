@@ -43,7 +43,8 @@
         
         IIFollowPathBehavior *followPath = [[[IIFollowPathBehavior alloc] initWithUpdatablePath: pathToFollow
                                                                                          onNode: heroSprite
-                                                                              andGestureManager: gestureManager]
+                                                                             withGestureManager: gestureManager
+                                                                            andAllowedDirection: 120]
                                             autorelease];
         
         IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];

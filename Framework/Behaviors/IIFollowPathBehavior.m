@@ -52,6 +52,13 @@
 - (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
                       onNode: (CCNode *) theNode
            andGestureManager: (IIGestureManager *) theManager {
+    return [self initWithUpdatablePath:thePathToFollow onNode:theNode withGestureManager:theManager andAllowedDirection:360];
+}
+
+- (id) initWithUpdatablePath: (IISmoothPath *) thePathToFollow
+                      onNode: (CCNode *) theNode
+           withGestureManager: (IIGestureManager *) theManager
+           andAllowedDirection: (CGFloat) theAllowedDirection {
     if ((self = [self initWithSmoothPath: thePathToFollow])) {
         gestureManager = theManager;
         [gestureManager retain];
@@ -63,13 +70,14 @@
                                                                                 widthTolerance: 16
                                                                             andHeightTolerance: 0] autorelease];
         
-        IIDragTowardsNodeRotationGestureFilter *directionFilter = [[[IIDragTowardsNodeRotationGestureFilter alloc] initWithNode: theNode
-                                                                                andAngleTolerance: 120] autorelease];
+        IIDragTowardsNodeRotationGestureFilter *directionFilter = [[[IIDragTowardsNodeRotationGestureFilter alloc]
+                                                                    initWithNode: theNode
+                                                                    andAngleTolerance: theAllowedDirection] autorelease];
         
         [gestureManager addTarget: self
                            action: @selector(handleDragGesture:)
                      toRecognizer: @"singleDragGesture"
-                       withFilters: filter, directionFilter, nil];
+                      withFilters: filter, directionFilter, nil];
     }
     
     return self;
