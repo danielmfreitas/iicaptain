@@ -17,12 +17,12 @@
 {
     id target;
     SEL action;
-    id<IIGestureFilter> filter;
+    NSMutableArray *filters;
 }
 
 @property (nonatomic, readonly) id target;
 @property (nonatomic, readonly) SEL action;
-@property (nonatomic, readonly) id<IIGestureFilter> filter;
+@property (nonatomic, readonly) NSArray *filters;
 
 @end
 
@@ -34,7 +34,7 @@
 
 @synthesize target;
 @synthesize action;
-@synthesize filter;
+@synthesize filters;
 
 - (IITargetAction *) initWithTarget: (id) theTarget andAction: (SEL) theAction withFilter: (id<IIGestureFilter>) aFilter {
     if ((self = [super init])) {
@@ -43,8 +43,12 @@
         
         action = theAction;
         
-        filter = aFilter;
-        [filter retain];
+        filters = [[NSMutableArray alloc] init];
+        [filters retain];
+        
+        if (aFilter) {
+            [filters addObject:aFilter];
+        }
     }
     
     return self;
@@ -54,8 +58,14 @@
     return [self initWithTarget:theTarget andAction:theAction withFilter: nil];
 }
 
+- (void) addFilter: (id<IIGestureFilter>) filter {
+    if (filter) {
+        [filters addObject:filter];
+    }
+}
+
 - (void) dealloc {
-    [filter release];
+    [filters release];
     [target release];
     
     [super dealloc];
@@ -75,9 +85,14 @@
 - (void) handleGesture: (UIGestureRecognizer *) sender {
     
     for(IITargetAction *targetAction in targetActions) {
-        if (targetAction.filter == nil || [targetAction.filter acceptsEvent: sender]) {
-            [targetAction.target performSelector: targetAction.action withObject: sender];
+        for (id<IIGestureFilter> filter in targetAction.filters) {
+            if (![filter acceptsEvent: sender]) {
+                return;
+            }
         }
+        
+
+        [targetAction.target performSelector: targetAction.action withObject: sender];
     }
 }
 
@@ -154,6 +169,35 @@
     [theGesture addTargetAction: targetAction];
     
     [targetAction release];
+}
+
+- (void) addTarget: (id) theTarget action: (SEL) theAction
+      toRecognizer: (NSString *) recognizerName
+       withFilters: (id<IIGestureFilter>) firstFilter, ... {
+    
+    id eachObject;
+    va_list argumentList;
+    
+    // The first argument isn't part of the varargs list,                                  
+    if (firstFilter) {
+    
+        // So we handle it separately.
+        IITaggedGestureRecognizer *theGesture = [gesturesDictionary objectForKey: recognizerName];
+        IITargetAction *targetAction = [[IITargetAction alloc] initWithTarget: theTarget andAction: theAction withFilter: firstFilter];
+        
+        // Start scanning for arguments after firstObject.
+        va_start(argumentList, firstFilter);          
+        
+        while ((eachObject = va_arg(argumentList, id))) {
+            // As many times as we can get an argument of type "id" that isn't nil, add it to the list.
+            [targetAction addFilter: eachObject];
+        } 
+               
+        va_end(argumentList);
+        
+        [theGesture addTargetAction: targetAction];
+        [targetAction release];
+    }
 }
 
 - (void) dealloc {

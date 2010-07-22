@@ -66,6 +66,9 @@
 
 - (void) addTarget: (id) theTarget action: (SEL) theAction toRecognizer: (NSString *) recognizerName;
 - (void) addTarget: (id) theTarget action: (SEL) theAction toRecognizer: (NSString *) recognizerName withFilter: (id<IIGestureFilter>) filter;
+- (void) addTarget: (id) theTarget action: (SEL) theAction
+      toRecognizer: (NSString *) recognizerName
+       withFilters: (id<IIGestureFilter>) firstFilter, ...;
 - (void) addGesture: (UIGestureRecognizer *) gestureRecognizer withTag: (NSString *) tagName;
 - (void) removeGesture: (NSString *) tagName;
 

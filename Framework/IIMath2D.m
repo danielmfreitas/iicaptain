@@ -113,4 +113,31 @@
     return fabs(angleBetweenLines);
 }
 
++ (CGFloat) normalizeDegrees: (CGFloat) degrees {
+    // Have to use while loop as modulus only work on integer.
+    while (degrees >= 360) {
+        degrees = degrees - 360;
+    }
+    
+    while (degrees <= -360) {
+        degrees = degrees + 360;
+    }
+    
+    return degrees;
+}
+
++ (CGFloat) normalizeRadians: (CGFloat) radians {
+    // Have to use while loop as modulus only work on integer.
+    CGFloat PITimes2 = 2 * M_PI;
+    while (radians >= PITimes2) {
+        radians = radians - PITimes2;
+    }
+    
+    while (radians <= -PITimes2) {
+        radians = radians + PITimes2;
+    }
+    
+    return radians;
+}
+
 @end

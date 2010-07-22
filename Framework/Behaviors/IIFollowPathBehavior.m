@@ -62,19 +62,14 @@
         IIStartOnNodeGestureFilter *filter = [[[IIStartOnNodeGestureFilter alloc] initWithNode: theNode
                                                                                 widthTolerance: 16
                                                                             andHeightTolerance: 0] autorelease];
-        // TODO Currently, gesture recognition only accepts one type of filter. Refactor to accept multiple.
-        //IIDragTowardsNodeRotationGestureFilter *directionFilter = [[[IIDragTowardsNodeRotationGestureFilter alloc] initWithNode: theNode
-//                                                                                andAngleTolerance: 300] autorelease];
+        
+        IIDragTowardsNodeRotationGestureFilter *directionFilter = [[[IIDragTowardsNodeRotationGestureFilter alloc] initWithNode: theNode
+                                                                                andAngleTolerance: 120] autorelease];
         
         [gestureManager addTarget: self
                            action: @selector(handleDragGesture:)
                      toRecognizer: @"singleDragGesture"
-                       withFilter: filter];
-        // The second filter would be added here.
-        //[gestureManager addTarget: self
-//                           action: @selector(handleDragGesture:)
-//                     toRecognizer: @"singleDragGesture"
-//                       withFilter: filter];
+                       withFilters: filter, directionFilter, nil];
     }
     
     return self;

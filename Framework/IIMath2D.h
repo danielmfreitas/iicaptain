@@ -63,4 +63,14 @@
  */
 + (CGFloat) slopeOfLine: (CGPoint) lineStart lineEnd: (CGPoint) lineEnd;
 
+/**
+ * Normalize degrees from ]-360 to 360[.
+ */
++ (CGFloat) normalizeDegrees: (CGFloat) degrees;
+
+/**
+ * Normalize radians from ]-2PI to 2PI[.
+ */
++ (CGFloat) normalizeRadians: (CGFloat) radians;
+
 @end

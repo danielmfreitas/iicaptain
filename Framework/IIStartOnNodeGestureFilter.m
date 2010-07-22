@@ -58,14 +58,6 @@
             
             shouldAcceptInput = NO;
             return NO;
-            
-            break;
-        }
-        case UIGestureRecognizerStateEnded: {
-            
-            shouldAcceptInput = NO;
-            return YES;
-            break;
         }
         default:
             return shouldAcceptInput;

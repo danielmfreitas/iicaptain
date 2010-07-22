@@ -1,0 +1,98 @@
+//
+//  IIDragTowardsNodeRotationGestureFilter.m
+//  iiCaptain
+//
+//  Created by Daniel Freitas on 10-07-19.
+//  Copyright 2010 Eye Eye. All rights reserved.
+//
+
+#import "IIDragTowardsNodeRotationGestureFilter.h"
+#import <cocos2d/cocos2d.h>
+#import "IIMath2D.h"
+
+@implementation IIDragTowardsNodeRotationGestureFilter
+
+- (id) initWithNode: (CCNode *) node andAngleTolerance: (CGFloat) theAngleTolerance {
+    if (([self init]) != nil) {
+        targetNode = node;
+        [targetNode retain];
+        angleTolerance = theAngleTolerance;
+        shouldAcceptInput = NO;
+    }
+    
+    return self;
+}
+
+- (BOOL) validAngle: (CGFloat) angle toRotation: (CGFloat) nodeRotation {
+    // 1 - Normaliza rotation to 0-360
+    nodeRotation = [IIMath2D normalizeDegrees:nodeRotation];
+    
+    // 2 - Cast node rotation to trig circle
+    CGFloat nodeDirection = 90 - nodeRotation;
+    
+    if (nodeDirection < 0) {
+        nodeDirection = 360 + nodeDirection;
+    }
+    
+    // 3 - Splits angle tolerance in two equal parts
+    CGFloat angleDelta = angleTolerance / 2;
+    
+    // 4 - Determine if angle is within angle tolerance based on node direction
+    if (angle <= nodeDirection + angleDelta && angle >= nodeDirection - angleDelta) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) acceptsEvent: (UIPanGestureRecognizer *) recognizer {
+    
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan: {
+            // 1 - Get velocity on OpenGL view coordinate system.
+            CGPoint velocityInView = [recognizer velocityInView: recognizer.view];
+            velocityInView = [[CCDirector sharedDirector] convertToGL:velocityInView];    
+            
+            // 2 - Gets the cos of the angle. Gets hipotenuse by pitagoras and 3-rule x to cos range: [-1, 1].
+            CGFloat h = sqrtf(velocityInView.x * velocityInView.x + velocityInView.y * velocityInView.y);
+            CGFloat cos = velocityInView.x / h;
+            
+            CGFloat angle = 0;
+            
+            // 3 - Gets the angle using cosin (takes into account quadrant).
+            if (velocityInView.x >= 0 && velocityInView.y >= 0) {
+                angle = acosf(cos);
+            } else if (velocityInView.x <= 0 && velocityInView.y >= 0) {
+                angle = acosf(cos);
+            } else if (velocityInView.x <= 0 && velocityInView.y <= 0) {
+                angle = M_PI + (M_PI - acosf(cos));
+            } else if (velocityInView.x >= 0 && velocityInView.y <= 0) {
+                angle = 2 * M_PI - acosf(cos);
+            }
+            
+            // 4 - Finally, trnasforms it to degrees and compare with target node rotation.
+            angle = [IIMath2D radiansToDegrees:angle];
+            
+            if ([self validAngle: angle toRotation: targetNode.rotation]) {
+                shouldAcceptInput = YES;
+                return YES;
+            }
+            
+            shouldAcceptInput = NO;
+            return NO;
+            
+            break;
+        }
+        default:
+            return shouldAcceptInput;
+            break;
+    }
+}
+
+- (void) dealloc {
+    [targetNode release];
+ 
+    [super dealloc];
+}
+
+@end

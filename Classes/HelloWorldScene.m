@@ -88,9 +88,9 @@
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     CGPoint screenCenter = CGPointMake(screenSize.width / 2, screenSize.height / 2);
     
-    CGPoint scrrenCenterOnLayer = [gameLayer convertToNodeSpace: screenCenter];
+    CGPoint screenCenterOnLayer = [gameLayer convertToNodeSpace: screenCenter];
     
-    CGPoint heroDistanceToScreenCenter = ccpSub(hero.position, scrrenCenterOnLayer);
+    CGPoint heroDistanceToScreenCenter = ccpSub(hero.position, screenCenterOnLayer);
     
     gameLayer.position = ccpSub(gameLayer.position, heroDistanceToScreenCenter);
 }
