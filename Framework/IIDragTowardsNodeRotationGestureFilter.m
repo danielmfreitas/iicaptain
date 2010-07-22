@@ -40,7 +40,7 @@
     CGFloat difference = fabs(angle - nodeDirection);
     
     if (difference > 180) {
-        difference = 360 - 180;
+        difference = 360 - difference;
     }
     
     // 5 - Finally, if difference <= tolerance / 2, direction is valid
