@@ -9,7 +9,7 @@
 #import "IIWeapon.h"
 #import <cocos2d/cocos2d.h>
 #import "IIMath2D.h"
-#import "HelloWorldScene.h"
+#import "GameScene.h"
 
 @implementation IIWeapon
 
@@ -43,7 +43,7 @@
                 [projectile retain];
                 projectile.position = node.position;
                 //TODO Give access to GameLayer instead of this.
-                [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: projectile];
+                [((GameScene *)[[CCDirector sharedDirector] runningScene]).gameLayer addChild: projectile];
              }
             
             state = STATE_COOLINGDOWN;
@@ -60,7 +60,7 @@
         
         if ([IIMath2D lineLengthFromPoint: projectile.position toEndPoint: node.position] > 300) {
             //TODO Give access to GameLayer instead of this.
-            [((HelloWorld *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: projectile cleanup:YES];
+            [((GameScene *)[[CCDirector sharedDirector] runningScene]).gameLayer removeChild: projectile cleanup:YES];
             [projectile release];
             projectile = nil;
         }

@@ -8,7 +8,7 @@
 
 
 // Import the interfaces
-#import "HelloWorldScene.h"
+#import "GameScene.h"
 #import "IILine2D.h"
 #import "IIFollowPathBehavior.h"
 #import "IIMoveStraightBehavior.h"
@@ -19,7 +19,7 @@
 #import "IICaptain.h"
 
 // HelloWorld implementation
-@implementation HelloWorld
+@implementation GameScene
 
 @synthesize hero;
 
