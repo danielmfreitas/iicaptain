@@ -2,3 +2,4 @@ build
 .DS_Store
 iiCaptain.xcodeproj/*.pbxuser
 iiCaptain.xcodeproj/*.perspectivev3
+iiCaptain.xcodeproj/*.*v3
