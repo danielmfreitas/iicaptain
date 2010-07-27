@@ -10,7 +10,7 @@
 #import "IILine2D.h"
 #import "IIMath2D.h"
 #import "IIGameScene.h"
-#import "HelloWorldScene.h"
+#import "MainScene.h"
 #import "IICaptain.h"
 
 #define SIXTY_DEGREES_IN_RADS 1.04719755

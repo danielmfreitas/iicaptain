@@ -12,7 +12,7 @@
 @class IICaptain;
 @class CCSpriteSheet;
 
-@interface HelloWorld : IIGameScene {
+@interface GameScene : IIGameScene {
     CCSpriteSheet *heroSpriteSheet;
     IICaptain *hero;
 	CCTMXTiledMap *sea;

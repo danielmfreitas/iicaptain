@@ -8,7 +8,8 @@
 
 #import "iiCaptainAppDelegate.h"
 #import "cocos2d.h"
-#import "HelloWorldScene.h"
+#import "GameScene.h"
+#import "MainScene.h"
 #import "IIGestureManager.h"
 
 @implementation iiCaptainAppDelegate
@@ -59,28 +60,8 @@
 	[[CCDirector sharedDirector] attachInView:window];	
 	[window makeKeyAndVisible];		
 		
-    // Creates gesture manager
-	IIGestureManager *manager = [IIGestureManager gestureManagerWithTargetView:[CCDirector sharedDirector].openGLView];
-    [manager autorelease];
     
-    // Creates a single touch and drag recognizer
-    UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc] init];
-    [dragRecognizer setMinimumNumberOfTouches:1];
-    [dragRecognizer setMaximumNumberOfTouches:1];
-    [dragRecognizer autorelease];
-    
-    // Creates a single tap recognizer.
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] init];
-    tapRecognizer.numberOfTapsRequired = 1;
-    [tapRecognizer autorelease];
-    
-    // Add the gesture recognizer to the manager
-    [manager addGesture: dragRecognizer withTag: @"singleDragGesture"];
-    [manager addGesture: tapRecognizer withTag: @"singleTapGesture"];
-	
-    HelloWorld *scene = [[HelloWorld alloc] initWithGestureManaget: manager];
-    
-	[[CCDirector sharedDirector] runWithScene: scene];
+	[[CCDirector sharedDirector] runWithScene: [MainScene scene]];
 }
 
 
