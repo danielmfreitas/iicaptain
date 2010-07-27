@@ -10,7 +10,7 @@
 #import "IILine2D.h"
 #import "IIMath2D.h"
 #import "IIGameScene.h"
-#import "HelloWorldScene.h"
+#import "MainScene.h"
 #import "IICaptain.h"
 
 // 2.7925 rad =~ 160 degrees
