@@ -23,14 +23,14 @@
 
 @synthesize hero;
 
-- (id) initWithGestureManaget: (IIGestureManager *) theGestureManager {
-    if ((self = [super initWithGestureManaget: theGestureManager]) != nil) {
+- (id) initWithGestureManager: (IIGestureManager *) theGestureManager {
+    if ((self = [super initWithGestureManager: theGestureManager]) != nil) {
         
         heroSpriteSheet = [CCSpriteSheet spriteSheetWithFile: @"bigship.png"];
         CCSprite *heroSprite = [CCSprite spriteWithTexture:heroSpriteSheet.texture];
         [heroSpriteSheet addChild: heroSprite];
         
-        IISmoothPath *pathToFollow = [[IISmoothPath alloc] initWithMinimumLineLength: 16];
+        IISmoothPath *pathToFollow = [[[IISmoothPath alloc] initWithMinimumLineLength: 16] autorelease];
         
         // 2.7925 rad =~ 160 degrees
         pathToFollow.angleThreshold = 2.7925;
@@ -50,7 +50,7 @@
         IIMoveStraightBehavior *moveStraight = [[[IIMoveStraightBehavior alloc] init] autorelease];
         [moveStraight requiresBehaviorToFail: followPath];
         
-        IIWeapon *cannon = [[[IIWeapon alloc] initWithNode: heroSprite andScene: self] autorelease];
+        IIWeapon *cannon = [[[IIWeapon alloc] initWithBehavioral: hero andScene: self] autorelease];
         IIFireWeaponByGestureBehavior *fireWeaponByGestureBehavior = [[[IIFireWeaponByGestureBehavior alloc]
                                                                        initWithManager: gestureManager
                                                                                gesture: @"singleTapGesture"

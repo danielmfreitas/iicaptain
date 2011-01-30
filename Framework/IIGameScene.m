@@ -10,6 +10,7 @@
 #import "IIGestureManager.h"
 #import <cocos2d/CCLayer.h>
 #import "IIGameObjectProtocol.h"
+#import "IIBehavioralNode.h"
 
 @implementation IIGameScene
 
@@ -17,7 +18,7 @@
 @synthesize gestureManager;
 
 
-- (id) initWithGestureManaget: (IIGestureManager *) theGestureManager {
+- (id) initWithGestureManager: (IIGestureManager *) theGestureManager {
     if ((self = [super init]) != nil) {
         gameLayer = [CCLayer node];
         [self addChild: gameLayer];
@@ -39,7 +40,7 @@
 }
 
 - (void) afterUpdate: (ccTime) timeElapsedSinceLastFrame {
-    
+
 }
 
 - (void) update: (ccTime) timeElapsedSinceLastFrame {

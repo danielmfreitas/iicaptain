@@ -22,7 +22,7 @@
 @property (nonatomic, readonly) CCLayer *gameLayer;
 @property (nonatomic, readonly) IIGestureManager *gestureManager;
 
-- (id) initWithGestureManaget: (IIGestureManager *) theGestureManager;
+- (id) initWithGestureManager: (IIGestureManager *) theGestureManager;
 - (void) addGameObject: (id<IIGameObjectProtocol>) aGameObject;
 - (void) removeGameObject: (id<IIGameObjectProtocol>) theGameObject;
 

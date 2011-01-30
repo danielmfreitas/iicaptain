@@ -8,7 +8,6 @@
 
 // Forward reference to the needed protocol to break circularity.
 @protocol IIBehaviorProtocol;
-@class CCAction;
 
 /**
  * Protocol for classes which accept behaviors. Exposes common properties like sped rotation and position to be

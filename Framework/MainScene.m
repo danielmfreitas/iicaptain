@@ -75,7 +75,7 @@
 	
    
 	
-    GameScene *scene = [[GameScene alloc] initWithGestureManaget: manager];
+    GameScene *scene = [[[GameScene alloc] initWithGestureManager: manager] autorelease];
     [[CCDirector sharedDirector] replaceScene:scene];
 }
 

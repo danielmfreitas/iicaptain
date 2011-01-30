@@ -10,6 +10,7 @@
 #import <cocos2d/cocos2d.h>
 #import "IIMath2D.h"
 #import "IIGameScene.h"
+#import "IIBehavioralNodeProtocol.h"
 
 @implementation IIWeapon
 
@@ -17,11 +18,11 @@
 @synthesize weaponCooldown;
 @synthesize remainingCooldown;
 
-- (id) initWithNode: (CCNode *) theNode andScene: (IIGameScene *) theScene {
+- (id) initWithBehavioral: (id <IIBehavioralNodeProtocol>) theBehavioral andScene: (IIGameScene *) theScene {
     if ((self = [super init])) {
         state = STATE_IDLE;
-        node = theNode;
-        [node retain];
+        behavioral = theBehavioral;
+        [behavioral retain];
         scene = theScene;
         [scene retain];
     }
@@ -43,10 +44,10 @@
             if (projectile == nil) {
                 projectile = [CCSprite spriteWithFile:@"cannonball.png"];
                 [projectile retain];
-                projectile.position = ccp(node.position.x - node.contentSize.width / 2, node.position.y);
+                projectile.position = ccp([behavioral position].x - [behavioral node].contentSize.width / 2, [behavioral position].y);
 
                 smoke1 = [CCPointParticleSystem particleWithFile:@"cannon_shot.plist"];
-                smoke1.position = node.position;
+                smoke1.position = [behavioral position];
                 smoke1.angle = 180;
                 smoke1.positionType = kPositionTypeFree;
                 [smoke1 retain];
@@ -65,9 +66,10 @@
     }
     
     if (projectile != nil) {
+		
         projectile.position = ccpAdd(projectile.position, CGPointMake(-3, 0));
         
-        if ([IIMath2D lineLengthFromPoint: projectile.position toEndPoint: node.position] > 300) {
+        if ([IIMath2D lineLengthFromPoint: projectile.position toEndPoint: [behavioral position]] > 300) {
             [scene.gameLayer removeChild: projectile cleanup:YES];
             [scene.gameLayer removeChild: smoke1 cleanup:YES];
             [projectile release];
@@ -79,7 +81,7 @@
 }
 
 - (void) dealloc {
-    [node release];
+    [behavioral release];
     [scene release];
     [projectile release];
     

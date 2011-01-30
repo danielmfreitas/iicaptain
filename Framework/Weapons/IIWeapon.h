@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <cocos2d/ccTypes.h>
+#import "IIBehavioralNodeProtocol.h"
 
 @class CCNode;
 @class CCPointParticleSystem;
 @class IIGameScene;
+@class IIBehavioralNode;
 
 typedef enum
 {
@@ -24,7 +26,7 @@ typedef enum
     WeaponState state;
     CGFloat weaponCooldown;
     CGFloat remainingCooldown;
-    CCNode *node;
+    id <IIBehavioralNodeProtocol> behavioral;
     IIGameScene *scene;
     CCNode *projectile;
     CCPointParticleSystem *smoke1;
@@ -34,7 +36,7 @@ typedef enum
 @property (nonatomic, readonly) CGFloat weaponCooldown;
 @property (nonatomic, readonly) CGFloat remainingCooldown;
 
-- (id) initWithNode: (CCNode *) theNode andScene: (IIGameScene *) theScene;
+- (id) initWithBehavioral: (id <IIBehavioralNodeProtocol>) theNode andScene: (IIGameScene *) theScene;
 - (void) fire;
 - (void) update: (ccTime) timeElapsedSinceLastFrame;
 
